@@ -25,3 +25,10 @@ test('PDF válido com offsets, acentos, escapes e várias páginas',()=>{
   const offsets=[...text.matchAll(/^(\d{10}) 00000 n /gm)];
   offsets.forEach((m,i)=>assert.ok(text.slice(Number(m[1])).startsWith(`${i+1} 0 obj`)));
 });
+
+test('relatório usa polaridade interpretada e inclui origem, regra e qualidade',()=>{
+  const c={...ch('SAIDA_07',[]),activations:[.1],initial_active:false,normal:'0',classification:{category:'disparo',function:'',active_state:0,status:'manual',profile_id:'rele-b',profile_version:'2.1',rule_id:'saida-7',reason:'Diagrama 42',reviewer:'Eng. Responsável',canonical:'trip_geral'}};
+  const r={...record([c]),profile:{id:'rele-b',version:'2.1',sha256:'abc123',generic_fallback_version:'1.0'},files:{cfg_name:'b.cfg',dat_name:'b.dat',cfg_sha256:'cfg-hash',dat_sha256:'dat-hash'},validation:{checks:['Formato DAT'],warnings:['Há lacunas']}};
+  const lines=reportLines(r,false).join('\n');
+  for(const phrase of ['1 canais ativados','0 já ativos','REVISÃO MANUAL','ativo em 0','Diagrama 42','saida-7','Eng. Responsável','Há lacunas','cfg-hash','rele-b'])assert.ok(lines.includes(phrase),phrase);
+});

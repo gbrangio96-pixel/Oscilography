@@ -36,3 +36,21 @@ test('distingue ativação exclusiva, ausência e sinal já ativo', () => {
 test('zero canais é uma comparação vazia válida', () => {
   assert.deepEqual(compare([],[]), []);
 });
+
+const classified=(name,canonical,status='confirmed',extra={})=>channel(name,[],{activations:[.01],initial_active:false,classification:{canonical,status,category:'disparo',function:'',active_state:0,...extra}});
+test('equivalência confirmada relaciona nomes diferentes com a mesma fase/função/categoria',()=>{
+  const row=compare([classified('OUT_01','trip_geral')],[classified('GENERAL_TRIP','trip_geral','manual')])[0];
+  assert.equal(row.status,'both');
+  assert.equal(row.basis,'Equivalência confirmada em perfil');
+  assert.equal(row.a[0].name,'OUT_01');
+});
+test('não associa equivalência sugerida, função incompatível ou colisões de aliases',()=>{
+  assert.equal(compare([classified('OUT','trip')],[classified('TRIP','trip','suggested')]).length,2);
+  assert.equal(compare([classified('OUT','trip')],[classified('TRIP','trip','confirmed',{function:'50'})]).length,2);
+  const row=compare([classified('OUT1','trip'),classified('OUT2','trip')],[classified('TRIP','trip')])[0];
+  assert.equal(row.status,'ambiguous');
+});
+test('conflito de regras impede equivalência e comparação definitiva',()=>{
+  const row=compare([classified('TRIP','','conflict')],[channel('TRIP',[1])])[0];
+  assert.equal(row.status,'ambiguous');
+});

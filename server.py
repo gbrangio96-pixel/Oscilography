@@ -2,12 +2,21 @@ import json
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from comtrade_reader import analyze
+from profiles import generic_profile
 
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
+        if self.path == '/generic-profile.json':
+            body = json.dumps(generic_profile(), ensure_ascii=False, indent=2).encode()
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json; charset=utf-8')
+            self.end_headers()
+            self.wfile.write(body)
+            return
         files = {'/': ('index.html', 'text/html; charset=utf-8'),
                  '/comparison.js': ('comparison.js', 'text/javascript; charset=utf-8'),
-                 '/report.js': ('report.js', 'text/javascript; charset=utf-8')}
+                 '/report.js': ('report.js', 'text/javascript; charset=utf-8'),
+                 '/app.js': ('app.js', 'text/javascript; charset=utf-8')}
         if self.path not in files:
             self.send_error(404)
             return
@@ -28,7 +37,12 @@ class Handler(BaseHTTPRequestHandler):
                 raise ValueError('Envie arquivos com tamanho total de até 32 MB.')
             import base64
             payload = json.loads(self.rfile.read(size))
-            result = analyze(base64.b64decode(payload['cfg'], validate=True), base64.b64decode(payload['dat'], validate=True))
+            cfg_data = base64.b64decode(payload['cfg'], validate=True)
+            dat_data = base64.b64decode(payload['dat'], validate=True)
+            if len(cfg_data) + len(dat_data) > 32 * 1024 * 1024:
+                raise ValueError('O par CFG/DAT deve ter até 32 MB.')
+            result = analyze(cfg_data, dat_data, payload.get('profile'))
+            result['files'].update(cfg_name=str(payload.get('cfg_name', 'registro.cfg'))[:250], dat_name=str(payload.get('dat_name', 'registro.dat'))[:250])
             body, code = json.dumps(result, ensure_ascii=False).encode(), 200
         except Exception as exc:
             body, code = json.dumps({'error': f'Não foi possível ler o COMTRADE: {exc}'}, ensure_ascii=False).encode(), 400
