@@ -3,6 +3,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from comtrade_reader import analyze
 from profiles import generic_profile
+from containers import analyze_container, join_segments
 
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -37,12 +38,25 @@ class Handler(BaseHTTPRequestHandler):
                 raise ValueError('Envie arquivos com tamanho total de até 32 MB.')
             import base64
             payload = json.loads(self.rfile.read(size))
-            cfg_data = base64.b64decode(payload['cfg'], validate=True)
-            dat_data = base64.b64decode(payload['dat'], validate=True)
-            if len(cfg_data) + len(dat_data) > 32 * 1024 * 1024:
-                raise ValueError('O par CFG/DAT deve ter até 32 MB.')
-            result = analyze(cfg_data, dat_data, payload.get('profile'))
-            result['files'].update(cfg_name=str(payload.get('cfg_name', 'registro.cfg'))[:250], dat_name=str(payload.get('dat_name', 'registro.dat'))[:250])
+            if 'source' in payload:
+                source = base64.b64decode(payload['source'], validate=True)
+                result = analyze_container(source, str(payload.get('source_name', 'registro.cff')), payload.get('profile'))
+            else:
+                cfg_data = base64.b64decode(payload['cfg'], validate=True)
+                parts = [(str(p['name']), base64.b64decode(p['data'], validate=True)) for p in payload.get('dat_files', [])]
+                if parts:
+                    dat_data = join_segments(parts, cfg_data)
+                    dat_name = ', '.join(sorted(p[0] for p in parts))
+                else:
+                    dat_data = base64.b64decode(payload['dat'], validate=True)
+                    dat_name = str(payload.get('dat_name', 'registro.dat'))
+                if len(cfg_data) + len(dat_data) > 32 * 1024 * 1024:
+                    raise ValueError('O par CFG/DAT deve ter até 32 MB.')
+                result = analyze(cfg_data, dat_data, payload.get('profile'))
+                if parts:
+                    import hashlib
+                    result['files']['dat_segments'] = [dict(name=n,sha256=hashlib.sha256(d).hexdigest()) for n,d in parts]
+                result['files'].update(cfg_name=str(payload.get('cfg_name', 'registro.cfg'))[:250], dat_name=dat_name[:1000])
             body, code = json.dumps(result, ensure_ascii=False).encode(), 200
         except Exception as exc:
             body, code = json.dumps({'error': f'Não foi possível ler o COMTRADE: {exc}'}, ensure_ascii=False).encode(), 400

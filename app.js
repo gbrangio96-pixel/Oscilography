@@ -4,7 +4,7 @@ async function b64(file){let bytes=new Uint8Array(await file.arrayBuffer()),s=''
 const acts=channelActivations, initial=channelInitialActive;
 const origins={suggested:'Sugestão automática',confirmed:'Perfil confirmado',manual:'Revisão manual',unclassified:'Não classificado',conflict:'Conflito de regras'};
 function classificationHtml(c){const cl=c.classification;if(!cl)return '';return `<b>${esc(cl.category)}${cl.function?' · ANSI '+esc(cl.function):''}</b><small>${esc(origins[cl.status])} · Estado ativo: ${cl.active_state}</small><small>Regra: ${esc(cl.rule_id||'nenhuma')} · Perfil ${esc(cl.profile_id)} v${esc(cl.profile_version)}</small><small>${esc(cl.reason)}</small>${cl.reviewer?`<small>Responsável: ${esc(cl.reviewer)}</small>`:''}${cl.canonical?`<small>Equivalência: ${esc(cl.canonical)}</small>`:''}`}
-function qualityHtml(r,label=''){return `<h3>${esc(label)} · Qualidade e rastreabilidade</h3><p>Perfil ${esc(r.profile.id)} v${esc(r.profile.version)} · ${r.validation.checks.length} verificações estruturais concluídas.</p>${r.validation.warnings.length?'<ul class="warning">'+r.validation.warnings.map(w=>`<li>${esc(w)}</li>`).join('')+'</ul>':'<p>Sem alertas estruturais detectados. Isso não comprova a correção da lógica ou da polaridade do relé.</p>'}<p>${r.channels.filter(c=>['unclassified','conflict','suggested'].includes(c.classification.status)).length} canais com interpretação ou polaridade não confirmada.</p><details><summary>Arquivos e hashes SHA-256</summary><p>${esc(r.files.cfg_name)}<br>${esc(r.files.cfg_sha256)}<br>${esc(r.files.dat_name)}<br>${esc(r.files.dat_sha256)}<br>Perfil: ${esc(r.profile.sha256)}</p></details>`}
+function qualityHtml(r,label=''){return `<h3>${esc(label)} · Qualidade e rastreabilidade</h3><p>Perfil ${esc(r.profile.id)} v${esc(r.profile.version)} · Revisão ${esc(r.revision)} (${esc(r.revision_mode||'standard')}) · ${r.validation.checks.length} verificações estruturais concluídas.</p>${r.validation.warnings.length?'<ul class="warning">'+r.validation.warnings.map(w=>`<li>${esc(w)}</li>`).join('')+'</ul>':'<p>Sem alertas estruturais detectados. Isso não comprova a correção da lógica ou da polaridade do relé.</p>'}<p>${r.channels.filter(c=>['unclassified','conflict','suggested'].includes(c.classification.status)).length} canais com interpretação ou polaridade não confirmada.</p><details><summary>Arquivos e hashes SHA-256</summary><p>${esc(r.files.cfg_name)}<br>${esc(r.files.cfg_sha256)}<br>${esc(r.files.dat_name)}<br>${esc(r.files.dat_sha256)}${r.files.container_name?`<br>Contêiner: ${esc(r.files.container_name)}<br>${esc(r.files.container_sha256)}`:''}${(r.files.dat_segments||[]).map(p=>`<br>Segmento: ${esc(p.name)}<br>${esc(p.sha256)}`).join('')}<br>Perfil: ${esc(r.profile.sha256)}</p></details>`}
 function render(){const list=result.channels.filter(c=>el('filter').value==='all'||(el('filter').value==='rises'?acts(c).length:channelActiveSamples(c)));el('channels').innerHTML=list.map(c=>`<tr><td><b>${esc(c.name||'(sem identificação no CFG)')}</b><small>#${c.number} ${esc(c.phase)} · Normal CFG: ${esc(c.normal??'não informado')}</small></td><td>${c.initial} → ${c.final}${initial(c)?' <small>Já ativo no início</small>':''}</td><td class="tag">${acts(c).length}<small>Entrada no estado ${c.classification.active_state}</small></td><td>${classificationHtml(c)}${reviewButton(c,'A')}<small>Transições observadas (s): ${acts(c).map(t=>t.toFixed(6)).join(' · ')||'nenhuma'}</small></td><td>${c.returns.map(t=>t.toFixed(6)).join(' · ')||'—'}</td></tr>`).join('');el('empty').hidden=!!list.length}
 
 let comparison;
@@ -19,21 +19,32 @@ function renderComparison(){
 function download(data,name){const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
 function resetResults(){el('results').hidden=true;el('comparison').hidden=true;el('error').textContent='';result=undefined;comparison=undefined}
 function updateMode(){const compare=el('mode').value==='compare';el('second').hidden=!compare;for(const id of ['cfgB','datB']){el(id).disabled=!compare;el(id).required=compare}el('run').textContent=compare?'Comparar oscilografias →':'Analisar oscilografia →';resetResults()}
-el('mode').onchange=updateMode;
-for(const id of ['cfg','dat','cfgB','datB'])el(id).onchange=resetResults;
-async function analyzeFiles(cfg,dat,label,side){
-  if(!cfg||!dat)throw Error(`${label}: selecione os arquivos CFG e DAT.`);
-  if(cfg.size+dat.size>32*1024*1024)throw Error(`${label}: o par de arquivos deve ter até 32 MB.`);
-  const response=await fetch('/analyze',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({cfg:await b64(cfg),dat:await b64(dat),cfg_name:cfg.name,dat_name:dat.name,profile:readProfile(side)})});
+el('mode').onchange=()=>{updateMode();updateInputs()};
+function updateInputs(){
+  const compare=el('mode').value==='compare';
+  for(const [first,second,enabled] of [['cfg','dat',true],['cfgB','datB',compare]]){
+    const single=/\.(cff|zip)$/i.test(el(first).files[0]?.name||'');
+    el(second).required=enabled&&!single;el(second).disabled=!enabled||single;
+  }
+}
+for(const id of ['cfg','dat','cfgB','datB'])el(id).onchange=()=>{resetResults();updateInputs()};
+async function analyzeFiles(cfg,parts,label,side){
+  if(!cfg)throw Error(`${label}: selecione o CFG, CFF ou ZIP.`);
+  const single=/\.(cff|zip)$/i.test(cfg.name);
+  if(!single&&!parts.length)throw Error(`${label}: selecione o DAT ou seus segmentos.`);
+  if(cfg.size+(single?0:[...parts].reduce((sum,f)=>sum+f.size,0))>32*1024*1024)throw Error(`${label}: entrada deve ter até 32 MB.`);
+  const profile=readProfile(side);
+  const payload=single?{source:await b64(cfg),source_name:cfg.name,profile}:{cfg:await b64(cfg),cfg_name:cfg.name,dat_files:await Promise.all([...parts].map(async f=>({name:f.name,data:await b64(f)}))),profile};
+  const response=await fetch('/analyze',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
   const data=await response.json();if(!response.ok)throw Error(`${label}: ${data.error}`);return data;
 }
 el('form').onsubmit=async e=>{
   e.preventDefault();resetResults();const compare=el('mode').value==='compare';
   const controls=[...el('form').querySelectorAll('input,select,button,textarea')];const disabled=controls.map(c=>c.disabled);controls.forEach(c=>c.disabled=true);el('run').textContent='Processando…';
   try{
-    const a=await analyzeFiles(el('cfg').files[0],el('dat').files[0],'Oscilografia A','A');
+    const a=await analyzeFiles(el('cfg').files[0],el('dat').files,'Oscilografia A','A');
     if(compare){
-      const b=await analyzeFiles(el('cfgB').files[0],el('datB').files[0],'Oscilografia B','B');
+      const b=await analyzeFiles(el('cfgB').files[0],el('datB').files,'Oscilografia B','B');
       comparison={criterion:'Canais ativados conforme polaridade do perfil; sem comparar horários',matching:'Nome/fase ou equivalência confirmada com categoria/função/fase idênticas',a,b,channels:compareRecords(a,b)};
       el('compareMeta').innerHTML=[['A',a],['B',b]].map(([label,r])=>`<b>${label}: ${esc(r.station)} · ${esc(r.device)}</b><br>Início: ${esc(r.start)} · Trigger: ${esc(r.trigger)}<br>${r.samples} amostras · ${r.duration.toFixed(6)} s · ${esc(r.format)}`).join('<br><br>');
       el('compareStats').innerHTML=[['a','A',a],['b','B',b]].map(([key,label,r])=>`<div class="stat"><strong>${r.channels.filter(c=>acts(c).length).length}</strong>Canais com ativação em ${label}</div>`).join('')+`<div class="stat"><strong>${comparison.channels.filter(c=>['only_a','only_b'].includes(c.status)).length}</strong>Canais com ativação exclusiva</div>`;

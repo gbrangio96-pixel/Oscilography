@@ -90,7 +90,7 @@ class ValidationTests(unittest.TestCase):
     def test_invalid_cfg(self):
         invalid = [cfg().replace(b'2,0A,2D', b'3,0A,2D'), cfg().replace(b'2,DISJUNTOR', b'1,DISJUNTOR'),
                    cfg().replace(b'1000,3', b'-1,3'), cfg().replace(b'19/10/2026', b'31/02/2026'),
-                   cfg().replace(b',,,0', b',,,2'), cfg().replace(b'1999', b'2025')]
+                   cfg().replace(b',,,0', b',,,2')]
         for definition in invalid:
             with self.subTest(cfg=definition), self.assertRaises(ValueError):
                 analyze(definition, DATA)

@@ -10,7 +10,7 @@ Requer Python 3.10 ou superior, sem dependências externas. Extraia o ZIP e abra
 python3 server.py --port 8000
 ```
 
-Abra `http://localhost:8000` no navegador e selecione os arquivos CFG e DAT do mesmo registro. No Windows, use `py server.py --port 8000` se o comando `python3` não estiver disponível. Encerre com Ctrl+C. Limite total: 32 MB por par. Os arquivos são processados em memória e não são salvos pelo aplicativo.
+Abra `http://localhost:8000` no navegador e selecione os arquivos CFG e DAT do mesmo registro, ou um arquivo único CFF/ZIP. No Windows, use `py server.py --port 8000` se o comando `python3` não estiver disponível. Encerre com Ctrl+C. Limite total: 32 MB por par. Os arquivos são processados em memória e não são salvos pelo aplicativo.
 
 ## Validar
 
@@ -19,7 +19,13 @@ python3 -m unittest discover -s tests -v
 node --test tests/test_comparison.js tests/test_report.js
 ```
 
-Suporta canais digitais em DAT ASCII, BINARY, BINARY32 e FLOAT32, com configuração COMTRADE 1991/1999/2013. Os canais analógicos são usados apenas para posicionar os dados digitais; não há análise de formas de onda. Tempos são relativos à referência do DAT, com multiplicador do CFG e reconstrução pelas taxas de amostragem quando o timestamp é zero. Identificação de função usa o nome original, sem inferir códigos ANSI ou traduzir identificações proprietárias.
+Suporta canais digitais em DAT ASCII, BINARY, BINARY32 e FLOAT32, com configuração COMTRADE 1991/1999/2001/2013. Os canais analógicos são usados apenas para posicionar os dados digitais; não há análise de formas de onda. Tempos são relativos à referência do DAT, com multiplicador do CFG e reconstrução pelas taxas de amostragem quando o timestamp é zero. Identificação de função usa o nome original, sem inferir códigos ANSI ou traduzir identificações proprietárias.
+
+## Formatos e revisões
+
+A revisão **2001** é reconhecida junto com 1991, 1999 e 2013. Além do par CFG/DAT, é possível carregar CFF, ZIP com um registro e DAT dividido em segmentos numerados. Campos de revisão não padronizados são diagnosticados e lidos em modo de compatibilidade somente quando a estrutura passa pelas validações.
+
+Veja [COMPATIBILITY.md](COMPATIBILITY.md) para formatos binários, codificações, limites e variações de exportadores. O suporte validado não equivale a uma garantia para qualquer arquivo proprietário ou danificado.
 
 ## Comparar duas oscilografias
 

@@ -11,7 +11,7 @@
     const records=compare?[['A',data.a],['B',data.b]]:[['Registro',data]];
     lines.push('1. RESUMO EXECUTIVO');
     for(const [label,r] of records){
-      lines.push(`${label}: ${r.station} | Equipamento: ${r.device}`,`Início: ${r.start} | Trigger: ${r.trigger}`,`${r.samples} amostras | ${r.format} | ${r.channels.length} canais digitais`,`${r.channels.filter(c=>acts(c).length).length} canais ativados durante o registro; ${r.channels.filter(initial).length} já ativos na primeira amostra.`);
+      lines.push(`${label}: ${r.station} | Equipamento: ${r.device}`,`Início: ${r.start} | Trigger: ${r.trigger}`,`${r.samples} amostras | ${r.format} | Revisão ${r.revision||'-'} | ${r.channels.length} canais digitais`,`${r.channels.filter(c=>acts(c).length).length} canais ativados durante o registro; ${r.channels.filter(initial).length} já ativos na primeira amostra.`);
       const uncertain=r.channels.filter(c=>!['confirmed','manual'].includes(c.classification?.status));
       lines.push(`${uncertain.length} canais com classificação ou polaridade não confirmada.`,`${r.validation?.warnings.length||0} alertas de qualidade.`, '');
     }
@@ -51,7 +51,7 @@
     lines.push('','4. QUALIDADE E RASTREABILIDADE');
     for(const [label,r] of records){
       lines.push(label);
-      if(r.files){lines.push(`CFG: ${r.files.cfg_name||'não informado'}`,`SHA-256 CFG: ${r.files.cfg_sha256}`,`DAT: ${r.files.dat_name||'não informado'}`,`SHA-256 DAT: ${r.files.dat_sha256}`)}
+      if(r.files){lines.push(`CFG: ${r.files.cfg_name||'não informado'}`,`SHA-256 CFG: ${r.files.cfg_sha256}`,`DAT: ${r.files.dat_name||'não informado'}`,`SHA-256 DAT: ${r.files.dat_sha256}`);if(r.files.container_name)lines.push(`Contêiner: ${r.files.container_name}`,`SHA-256 contêiner: ${r.files.container_sha256}`);for(const part of r.files.dat_segments||[])lines.push(`Segmento: ${part.name}`,`SHA-256 segmento: ${part.sha256}`)}
       if(r.profile){lines.push(`Perfil: ${r.profile.id} | Versão: ${r.profile.version}`,`Fabricante/modelo declarados: ${r.profile.manufacturer||'-'} / ${r.profile.model||'-'}`,`Escopo: estação ${r.profile.station||'(sem restrição)'}; equipamento ${r.profile.device||'(sem restrição)'}`,`SHA-256 perfil: ${r.profile.sha256}`,`Fallback genérico: v${r.profile.generic_fallback_version}`)}
       lines.push('Verificações concluídas:',...(r.validation?.checks||['Não disponíveis nesta análise.']));
       lines.push('Alertas:',...(r.validation?.warnings.length?r.validation.warnings:['Nenhum alerta estrutural detectado. Isso não comprova a correção da lógica ou do perfil.']),'');
