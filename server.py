@@ -6,7 +6,8 @@ from comtrade_reader import analyze
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         files = {'/': ('index.html', 'text/html; charset=utf-8'),
-                 '/comparison.js': ('comparison.js', 'text/javascript; charset=utf-8')}
+                 '/comparison.js': ('comparison.js', 'text/javascript; charset=utf-8'),
+                 '/report.js': ('report.js', 'text/javascript; charset=utf-8')}
         if self.path not in files:
             self.send_error(404)
             return

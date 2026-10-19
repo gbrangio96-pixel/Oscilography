@@ -10,15 +10,12 @@
       }
     }
     return [...groups.values()].map(group => {
-      const unique = group.name.trim() && group.a.length === 1 && group.b.length === 1;
       const ambiguous = !group.name.trim() || group.a.length > 1 || group.b.length > 1;
-      const left = group.a[0], right = group.b[0];
-      const deltas = unique ? left.rises.slice(0, right.rises.length).map((t, i) => right.rises[i] - t) : [];
-      const same = unique && left.initial === right.initial && left.final === right.final &&
-        left.rises.length === right.rises.length && left.falls.length === right.falls.length &&
-        left.rises.every((t, i) => Math.abs(t - right.rises[i]) < 1e-9) &&
-        left.falls.every((t, i) => Math.abs(t - right.falls[i]) < 1e-9);
-      return {...group, deltas, status: ambiguous ? 'ambiguous' : !group.a.length ? 'only_b' : !group.b.length ? 'only_a' : same ? 'same' : 'different'};
+      const activatedA = group.a.some(c => c.rises.length > 0);
+      const activatedB = group.b.some(c => c.rises.length > 0);
+      const status = ambiguous ? 'ambiguous' : !group.a.length ? 'missing_a' : !group.b.length ? 'missing_b' :
+        activatedA && activatedB ? 'both' : activatedA ? 'only_a' : activatedB ? 'only_b' : 'neither';
+      return {...group, activatedA, activatedB, status};
     });
   }
   root.compareRecords = compareRecords;
