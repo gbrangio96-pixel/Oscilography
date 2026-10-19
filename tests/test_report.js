@@ -1,7 +1,7 @@
 const {test}=require('node:test');
 const assert=require('node:assert/strict');
 globalThis.compareRecords=require('../comparison.js').compareRecords;
-const {createReportPdf,reportLines}=require('../report.js');
+const {createReportPdf,reportLines,createReportLayout}=require('../report.js');
 const ch=(name,rises=[],initial=0)=>({number:1,name,phase:'',rises,falls:[],initial,final:0,active_samples:rises.length+initial});
 const record=channels=>({station:'Estação São José',device:'Relé',start:'19/10/2026',trigger:'19/10/2026',format:'ASCII',samples:3,channels});
 test('relatório inclui ativados e sinais já ativos, sem inferir atuação',()=>{
@@ -31,4 +31,37 @@ test('relatório usa polaridade interpretada e inclui origem, regra e qualidade'
   const r={...record([c]),profile:{id:'rele-b',version:'2.1',sha256:'abc123',generic_fallback_version:'1.0'},files:{cfg_name:'b.cfg',dat_name:'b.dat',cfg_sha256:'cfg-hash',dat_sha256:'dat-hash'},validation:{checks:['Formato DAT'],warnings:['Há lacunas']}};
   const lines=reportLines(r,false).join('\n');
   for(const phrase of ['1 canais ativados','0 já ativos','REVISÃO MANUAL','ativo em 0','Diagrama 42','saida-7','Eng. Responsável','Há lacunas','cfg-hash','rele-b'])assert.ok(lines.includes(phrase),phrase);
+});
+
+test('diagramação mantém nomes e justificativas longos dentro da página e preserva todos os canais',()=>{
+  const channels=Array.from({length:65},(_,i)=>({...ch('CANAL_'+i+'_'+'W'.repeat(260),[.1]),number:i+1,classification:{category:'desconhecido',function:'',active_state:1,status:'suggested',rule_id:'regra-'+i,profile_id:'teste',profile_version:'1.0',reason:'Justificativa longa '.repeat(100),reviewer:'',canonical:''}}));
+  const doc=createReportLayout(record(channels),false);
+  assert.ok(doc.pages.length>5);
+  const runs=doc.pages.flatMap(p=>p.text);
+  for(const t of runs){assert.ok(t.x>=40&&t.x+t.width<=555.1,JSON.stringify(t));assert.ok(t.y>=0&&t.y+t.size<=782,JSON.stringify(t))}
+  const text=runs.map(t=>t.s).join('\n');
+  for(let i=0;i<channels.length;i++)assert.ok(text.includes('CANAL_'+i+'_'));
+  assert.equal(doc.bookmarks.length,6);
+  assert.ok(Buffer.from(doc.serialize()).toString('latin1').includes('/Outlines'));
+});
+
+test('linhas múltiplas são preservadas e tabelas repetem cabeçalhos nas continuações',()=>{
+  const {Document,wrap}=require('../pdf_layout.js');
+  assert.deepEqual(wrap('Primeira linha\nSegunda linha',200),['Primeira linha','Segunda linha']);
+  const doc=new Document('Teste');doc.y=76;
+  doc.table(['COLUNA UM','COLUNA DOIS'],[['A'.repeat(10000),'Fim do conteúdo']], [150,365]);
+  assert.ok(doc.pages.length>1);
+  for(const page of doc.pages)assert.ok(page.text.some(t=>t.s==='COLUNA UM'));
+  const all=doc.pages.flatMap(p=>p.text).map(t=>t.s);
+  assert.equal(all.filter(t=>/^A+$/.test(t)).join('').length,10000);
+  assert.ok(all.includes('Fim do conteúdo'));
+});
+
+test('comparação diagramada preserva exclusividades, nomes originais e ausências sem delta temporal',()=>{
+  const doc=createReportLayout({a:record([ch('50',[1]),ch('51',[2])]),b:record([ch('50',[9]),ch('87',[3])])},true);
+  const text=doc.pages.flatMap(p=>p.text).map(t=>t.s).join('\n');
+  assert.ok(text.includes('Ativado em ambos'));
+  assert.ok(text.includes('Ausente no CFG'));
+  assert.ok(text.replace(/\s+/g,' ').includes('Não são comparados horários'));
+  assert.ok(!text.includes('Δt'));
 });

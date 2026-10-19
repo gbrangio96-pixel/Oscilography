@@ -49,6 +49,10 @@ Após analisar ou comparar, clique em **Baixar relatório PDF**. O documento é 
 
 O relatório usa todos os canais, independentemente dos filtros. Caracteres fora do alfabeto ocidental aparecem como códigos U+XXXX; as identificações originais permanecem no JSON. Preserve CFG/DAT originais, perfil JSON e análise JSON para revisão reproduzível.
 
+O PDF tem formato A4, capa com resumo executivo, cartões de indicadores, tabelas com cabeçalhos repetidos, distinção visual entre sugestões e classificações confirmadas, anexo técnico, numeração de páginas e marcadores de navegação por seção. Textos longos e tabelas são paginados automaticamente, sem cortar identificações ou justificativas. Os horários continuam fora da comparação de atuações.
+
+Veja [o relatório de demonstração](examples/relatorio-demonstracao.pdf), produzido com dados sintéticos e identificado como exemplo. O PDF é gerado localmente no navegador, sem bibliotecas a instalar. Para regenerar a demonstração no desenvolvimento: `node examples/gerar-demonstracao.js`.
+
 Node.js é necessário apenas para executar os testes da comparação; o aplicativo continua usando somente Python e um navegador.
 
 O estado ativo é definido pela regra (0 ou 1). Sem regra, estado 1 é uma hipótese explícita. O campo de estado normal do CFG é exibido, mas não define automaticamente a polaridade. Uma transição digital não comprova disparo de proteção: contatos, alarmes e sinais de lógica também podem estar registrados. Operações anteriores à primeira amostra e pulsos entre amostras não podem ser determinados. A validação usa registros sintéticos; valide também com registros reais dos relés utilizados antes de uso operacional.

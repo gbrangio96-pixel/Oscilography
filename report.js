@@ -74,31 +74,97 @@
     lines.push('6. LIMITES E RECOMENDAÇÕES','Ativação significa entrada no estado ativo da regra: 0 para 1 ou 1 para 0. Sinais ativos na primeira amostra são listados separadamente. Sem regra, estado ativo 1 é uma hipótese padrão. Estado normal no CFG não define automaticamente a polaridade.','As identificações são extraídas dos arquivos; contatos, alarmes e lógicas também podem estar presentes. A identificação de uma binária não comprova disparo de proteção ou causa da falta.','Fabricante/modelo são metadados declarados, sem identificação automática. Regras confirmadas representam a declaração do responsável, não validação independente da engenharia do relé.','A conclusão se limita aos canais e à janela de cada registro. Pulsos entre amostras e eventos anteriores não podem ser determinados. O relatório inclui todos os canais, independentemente dos filtros da tela.','Revisar alertas, classificações sugeridas, polaridades e ambiguidades. Conferir a lógica do equipamento e os documentos de referência. Análise de correntes/tensões ainda não está implementada.','Caracteres fora do alfabeto ocidental são representados por códigos U+XXXX; nomes originais e perfis completos permanecem no JSON.');
     return lines;
   }
-  function pdfText(s){return String(s).replace(/→/g,'para').replace(/—|–/g,'-').replace(/[^\x20-\x7e\xa0-\xff]/gu,c=>'U+'+c.codePointAt(0).toString(16).toUpperCase())}
-  function createReportPdf(data,compare=false){
-    const lines=reportLines(data,compare).flatMap(line=>{
-      const text=pdfText(line),out=[];
-      if(!text)return [''];
-      let rest=text;
-      while(rest.length>90){let cut=rest.lastIndexOf(' ',90);if(cut<1)cut=90;out.push(rest.slice(0,cut));rest=rest.slice(cut).trimStart()}
-      out.push(rest);return out;
-    });
-    const pages=[];for(let i=0;i<lines.length;i+=58)pages.push(lines.slice(i,i+58));
-    const objects=['<< /Type /Catalog /Pages 2 0 R >>','', '<< /Type /Font /Subtype /Type1 /BaseFont /Courier /Encoding /WinAnsiEncoding >>'];
-    const kids=[];
-    pages.forEach((page,index)=>{
-      const pageId=objects.length+1,streamId=pageId+1;kids.push(`${pageId} 0 R`);
-      objects.push(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents ${streamId} 0 R >>`);
-      const content=`BT /F1 9 Tf 12 TL 48 792 Td ${page.map(line=>`(${line.replace(/([\\()])/g,'\\$1')}) Tj T*`).join('\n')} ET\nBT /F1 9 Tf 48 28 Td (Oscilography | Página ${index+1} de ${pages.length}) Tj ET`;
-      objects.push(`<< /Length ${content.length} >>\nstream\n${content}\nendstream`);
-    });
-    objects[1]=`<< /Type /Pages /Kids [${kids.join(' ')}] /Count ${pages.length} >>`;
-    let pdf='%PDF-1.4\n',offsets=[0];
-    objects.forEach((object,i)=>{offsets.push(pdf.length);pdf+=`${i+1} 0 obj\n${object}\nendobj\n`});
-    const xref=pdf.length;
-    pdf+=`xref\n0 ${objects.length+1}\n0000000000 65535 f \n`+offsets.slice(1).map(n=>String(n).padStart(10,'0')+' 00000 n \n').join('')+`trailer\n<< /Size ${objects.length+1} /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF\n`;
-    return Uint8Array.from(pdf,c=>c.charCodeAt(0));
+  function createReportLayout(data,compare=false){
+    const engine=root.PdfLayout||(typeof require!=='undefined'?require('./pdf_layout.js'):null);
+    if(!engine)throw Error('Módulo de diagramação PDF não carregado. Atualize a página.');
+    const {Document,colors:C,wrap}=engine;
+    const doc=new Document((compare?'Comparação de registros':'Análise de oscilografia')+(data.demonstration?' · DEMONSTRAÇÃO':''));
+    const records=compare?[['A',data.a],['B',data.b]]:[['Registro',data]];
+    const semantic=reportLines(data,compare);
+    const count=r=>r.channels.filter(c=>acts(c).length).length;
+    const uncertain=r=>r.channels.filter(c=>!['confirmed','manual'].includes(c.classification?.status)).length;
+    const warnings=records.reduce((n,[_,r])=>n+(r.validation?.warnings.length||0),0);
+    const rows=compare?root.compareRecords(data.a,data.b):[];
+    const origin=c=>origins[c.classification?.status]||'NÃO CLASSIFICADO';
+    const originColor=c=>['confirmed','manual'].includes(c.classification?.status)?C.teal:c.classification?.status==='conflict'?C.red:C.amber;
+    const state=c=>c.classification?.active_state??1;
+    const category=c=>(c.classification?.category||'desconhecido')+(c.classification?.function?' / ANSI '+c.classification.function:'');
+    const side=channels=>channels.length?channels.map(c=>`${c.name||'(sem identificação)'} (#${c.number})\n${acts(c).length?'ATIVADO':'Sem nova ativação'}${initial(c)?'; já ativo no início':''}`).join('\n\n'):'Ausente no CFG';
+
+    // A capa funciona também como primeira página executiva, sem página vazia decorativa.
+    doc.rect(0,0,595,204,C.navy);doc.rect(40,58,40,4,C.mint);
+    doc.text(40,27,'OSCILOGRAPHY',13,'F2',C.white);if(data.demonstration)doc.text(365,30,'DADOS SINTÉTICOS · EXEMPLO',8,'F2',C.mint);
+    doc.text(40,76,'PROTEÇÃO DE SISTEMAS ELÉTRICOS',9,'F2',C.mint);
+    doc.text(40,100,'Relatório de',30,'F2',C.white);
+    doc.text(40,137,compare?'comparação digital':'análise digital',30,'F2',C.white);
+    doc.text(40,181,semantic[2],8.5,'F1',C.mint);
+    doc.y=220;
+    doc.section('1','Resumo executivo','Visão dos canais digitais. Quantidades referem-se à janela de cada registro.');
+    const metrics=compare?[[count(data.a),'Ativados em A'],[count(data.b),'Ativados em B'],[rows.filter(c=>['only_a','only_b'].includes(c.status)).length,'Ativações exclusivas'],[warnings,'Alertas de qualidade']]:[[count(data),'Canais ativados'],[data.channels.filter(initial).length,'Já ativos no início'],[uncertain(data),'Não confirmados'],[warnings,'Alertas de qualidade']];
+    metrics.forEach(([value,label],i)=>{const x=40+i*132;doc.rect(x,doc.y,119,76,C.pale);doc.rect(x,doc.y,119,3,i===3&&warnings?C.warning:C.mint);doc.text(x+12,doc.y+10,String(value),27,'F2',i===3&&warnings?C.amber:C.teal);wrap(label,96,8.5,'F2').forEach((line,j)=>doc.text(x+12,doc.y+47+j*11,line,8.5,'F2',C.muted))});
+    doc.y+=94;
+    const fields=[['Estação',r=>r.station],['Equipamento',r=>r.device],['Início do registro',r=>r.start],['Trigger',r=>r.trigger],['Formato / revisão',r=>`${r.format} / ${r.revision||'não informada'}`],['Amostras / canais',r=>`${r.samples} / ${r.channels.length}`],['Perfil / versão',r=>r.profile?`${r.profile.id} / ${r.profile.version}`:'Não informado']];
+    doc.table(compare?['IDENTIFICAÇÃO','REGISTRO A','REGISTRO B']:['IDENTIFICAÇÃO','REGISTRO'],fields.map(([label,get])=>[{text:label,font:'F2'},...records.map(([_,r])=>get(r)||'Não informado')]),compare?[145,185,185]:[145,370]);
+    doc.paragraph(records.map(([label,r])=>`${label}: ${uncertain(r)} canal(is) com classificação ou polaridade não confirmada.`).join(' '),{background:records.some(([_,r])=>uncertain(r))?C.warning:C.mint,fill:records.some(([_,r])=>uncertain(r))?C.amber:C.teal,size:9.5});
+
+    doc.section('2','Evidências observadas','Nomes originais preservados. Ativação é a entrada no estado ativo aplicado ao canal.');
+    for(const [label,r] of records){
+      doc.subtitle(`${label} | Canais ativados`);
+      const activated=r.channels.filter(c=>acts(c).length);
+      if(activated.length)doc.table(['CANAL ORIGINAL','FASE','CLASSIFICAÇÃO','ORIGEM','EVIDÊNCIA'],activated.map(c=>[
+        {text:`#${c.number} · ${c.name||'(sem identificação)'}`,font:'F2'},c.phase||'-',category(c),{text:origin(c),fill:originColor(c)},`${acts(c).length} ativação(ões)\nAtivo em ${state(c)}`]),[175,40,100,105,95]);
+      else doc.paragraph('Nenhum canal apresentou nova ativação.',{fill:C.muted});
+      const already=r.channels.filter(initial);
+      doc.subtitle(`${label} | Já ativos na primeira amostra`);
+      if(already.length)doc.table(['CANAL ORIGINAL','CLASSIFICAÇÃO','EVIDÊNCIA'],already.map(c=>[name(c),category(c),`Estado inicial: ${c.initial}\nJá ativo no início; instante anterior desconhecido.`]),[215,140,160]);
+      else doc.paragraph('Nenhum canal já ativo no início.',{fill:C.muted});
+    }
+
+    doc.section('3','Conclusão e interpretação',compare?'Comparação dos canais ativados, sem comparação de horários.':'Fatos observados e hipóteses de interpretação apresentados separadamente.');
+    if(compare){
+      const statuses=['both','only_a','only_b','missing_a','missing_b','ambiguous','neither'];
+      doc.table(['RESULTADO DA COMPARAÇÃO','QUANTIDADE'],statuses.map(status=>[labels[status],String(rows.filter(c=>c.status===status).length)]),[400,115]);
+      for(const status of statuses){const group=rows.filter(c=>c.status===status);if(!group.length)continue;
+        doc.subtitle(`${labels[status]} · ${group.length}`);
+        doc.table(['CANAL / SIGNIFICADO','REGISTRO A','REGISTRO B'],group.map(c=>[`${c.name||'(sem identificação)'}\nFase: ${c.phase||'-'}\n${c.basis||'Nome/fase'}`,side(c.a),side(c.b)]),[165,175,175]);
+      }
+    }
+    const section3=semantic.slice(semantic.indexOf('3. CONCLUSÃO AUTOMÁTICA E INTERPRETAÇÃO')+1,semantic.indexOf('4. QUALIDADE E RASTREABILIDADE'));
+    const interpretation=compare?section3.slice(section3.findIndex(s=>s.startsWith('Critério:'))):section3;
+    for(const line of interpretation.filter(Boolean))doc.paragraph(line,{size:10,background:line.includes('hipótese')||line.includes('Não é possível')?C.warning:null,fill:line.includes('hipótese')||line.includes('Não é possível')?C.amber:C.ink});
+
+    doc.section('4','Qualidade e rastreabilidade','Identificação das fontes, do perfil aplicado e das limitações detectadas.');
+    for(const [label,r] of records){
+      doc.subtitle(`${label} | Qualidade do registro`);
+      doc.paragraph((r.validation?.checks||['Verificações indisponíveis nesta análise.']).map(s=>'· '+s).join('\n'),{size:9.5});
+      const alerts=r.validation?.warnings||[];
+      doc.paragraph(alerts.length?alerts.map(s=>'ALERTA · '+s).join('\n'):'Nenhum alerta estrutural detectado. Isso não comprova a correção da lógica ou do perfil.',{background:alerts.length?C.warning:C.mint,fill:alerts.length?C.amber:C.teal,size:9.5});
+      const sources=[];
+      if(r.files){sources.push(['Arquivo CFG',r.files.cfg_name||'Não informado'],['SHA-256 CFG',r.files.cfg_sha256||'Não informado'],['Arquivo DAT',r.files.dat_name||'Não informado'],['SHA-256 DAT',r.files.dat_sha256||'Não informado']);if(r.files.container_name)sources.push(['Contêiner',r.files.container_name],['SHA-256 contêiner',r.files.container_sha256]);for(const part of r.files.dat_segments||[])sources.push(['Segmento',part.name],['SHA-256 segmento',part.sha256])}
+      if(r.profile)sources.push(['Perfil / versão',`${r.profile.id} / ${r.profile.version}`],['SHA-256 perfil',r.profile.sha256||'Não informado'],['Fabricante / modelo',`${r.profile.manufacturer||'Não informado'} / ${r.profile.model||'Não informado'}`],['Escopo',`Estação: ${r.profile.station||'sem restrição'}; equipamento: ${r.profile.device||'sem restrição'}`],['Fallback genérico',r.profile.generic_fallback_version||'Não informado']);
+      if(sources.length)doc.table(['FONTE / IDENTIFICADOR','VALOR'],sources.map(([label,value])=>[label,{text:value,font:label.startsWith('SHA-256')?'F3':'F1',size:label.startsWith('SHA-256')?8:9}]),[145,370]);
+    }
+
+    doc.section('5','Anexo técnico por canal','Relação completa, incluindo canais sem nova ativação e classificações não confirmadas.');
+    for(const [label,r] of records){
+      doc.subtitle(`${label} | ${r.channels.length} canais digitais`);
+      for(const c of r.channels){
+        doc.ensure(100);doc.paragraph(name(c),{font:'F2',size:11,background:C.pale,fill:C.navy,gap:4});
+        const cl=c.classification;
+        const facts=[['Estados observados',`Inicial: ${c.initial}; final: ${c.final}; normal CFG: ${c.normal??'-'}`],['Ativação aplicada',`${acts(c).length} ativação(ões); ativo em ${state(c)}; ${initial(c)?'já ativo no início':'não ativo no início'}`]];
+        if(cl)facts.push(['Classificação',`${origin(c)} | ${category(c)}`],['Regra / perfil',`${cl.rule_id||'nenhuma'} | ${cl.profile_id} v${cl.profile_version}`],['Justificativa',cl.reason||'Não informada'],['Responsável',cl.reviewer||'Não informado'],['Equivalência',cl.canonical||'Nenhuma']);
+        if(cl?.status==='conflict')facts.push(['Regras em conflito',(cl.candidates||[]).join('; ')]);
+        if(!compare&&acts(c).length)facts.push(['Ativações no DAT (s)',acts(c).slice(0,12).map(t=>t.toFixed(6)).join('; ')+(acts(c).length>12?' (até 12; lista completa no JSON)':'')]);
+        doc.table(['EVIDÊNCIA / INTERPRETAÇÃO','DETALHAMENTO'],facts,[145,370]);
+      }
+    }
+    doc.section('6','Limites e recomendações');
+    const limits=semantic.slice(semantic.indexOf('6. LIMITES E RECOMENDAÇÕES')+1);
+    limits.forEach((line,i)=>doc.paragraph(`${i+1}. ${line}`,{size:10,background:i===1?C.warning:null,fill:i===1?C.amber:C.ink}));
+    return doc;
   }
+  function createReportPdf(data,compare=false){return createReportLayout(data,compare).serialize()}
+  root.createReportLayout=createReportLayout;
   root.createReportPdf=createReportPdf;
-  if(typeof module!=='undefined')module.exports={createReportPdf,reportLines};
+  if(typeof module!=='undefined')module.exports={createReportPdf,reportLines,createReportLayout};
 })(typeof window!=='undefined'?window:globalThis);
