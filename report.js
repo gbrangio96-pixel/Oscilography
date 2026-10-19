@@ -106,7 +106,8 @@
     metrics.forEach(([value,label],i)=>{const x=40+i*132;doc.rect(x,doc.y,119,76,C.pale);doc.rect(x,doc.y,119,3,i===3&&warnings?C.warning:C.mint);doc.text(x+12,doc.y+10,String(value),27,'F2',i===3&&warnings?C.amber:C.teal);wrap(label,96,8.5,'F2').forEach((line,j)=>doc.text(x+12,doc.y+47+j*11,line,8.5,'F2',C.muted))});
     doc.y+=94;
     const fields=[['Objeto relacionado',r=>r.object?.name||'Não identificado'],['Tipo do objeto',r=>r.object?.type||'Não determinado'],['Estação',r=>r.station],['Equipamento',r=>r.device],['Início do registro',r=>r.start],['Trigger',r=>r.trigger],['Formato / revisão',r=>`${r.format} / ${r.revision||'não informada'}`],['Amostras / canais',r=>`${r.samples} / ${r.channels.length}`],['Perfil / versão',r=>r.profile?`${r.profile.id} / ${r.profile.version}`:'Não informado']];
-    doc.table(compare?['IDENTIFICAÇÃO','REGISTRO A','REGISTRO B']:['IDENTIFICAÇÃO','REGISTRO'],fields.map(([label,get])=>[{text:label,font:'F2'},...records.map(([_,r])=>get(r)||'Não informado')]),compare?[145,185,185]:[145,370]);
+    if(compare)doc.table(['OSCILOGRAFIA A','OSCILOGRAFIA B'],fields.map(([label,get])=>records.map(([_,r])=>`${label}\n${get(r)||'Não informado'}`)),[257.5,257.5]);
+    else doc.table(['IDENTIFICAÇÃO','REGISTRO'],fields.map(([label,get])=>[{text:label,font:'F2'},get(data)||'Não informado']),[145,370]);
     doc.paragraph(records.map(([label,r])=>`${label}: ${uncertain(r)} canal(is) com classificação ou polaridade não confirmada.`).join(' '),{background:records.some(([_,r])=>uncertain(r))?C.warning:C.mint,fill:records.some(([_,r])=>uncertain(r))?C.amber:C.teal,size:9.5});
 
     doc.section('2','Evidências observadas','Nomes originais preservados. Ativação é a entrada no estado ativo aplicado ao canal.');
@@ -128,7 +129,7 @@
       doc.table(['RESULTADO DA COMPARAÇÃO','QUANTIDADE'],statuses.map(status=>[labels[status],String(rows.filter(c=>c.status===status).length)]),[400,115]);
       for(const status of statuses){const group=rows.filter(c=>c.status===status);if(!group.length)continue;
         doc.subtitle(`${labels[status]} · ${group.length}`);
-        doc.table(['CANAL / SIGNIFICADO','REGISTRO A','REGISTRO B'],group.map(c=>[`${c.name||'(sem identificação)'}\nFase: ${c.phase||'-'}\n${c.basis||'Nome/fase'}`,side(c.a),side(c.b)]),[165,175,175]);
+        doc.table(['OSCILOGRAFIA A','OSCILOGRAFIA B'],group.map(c=>['a','b'].map(key=>`${c.name||'(sem identificação)'} | Fase: ${c.phase||'-'}\n${c.basis||'Nome/fase'}\n\n${side(c[key])}`)),[257.5,257.5]);
       }
     }
     const section3=semantic.slice(semantic.indexOf('3. CONCLUSÃO AUTOMÁTICA E INTERPRETAÇÃO')+1,semantic.indexOf('4. QUALIDADE E RASTREABILIDADE'));

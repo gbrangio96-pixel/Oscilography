@@ -13,7 +13,7 @@ function channelSummary(channels,side){return channels.map(c=>`<b>${esc(c.name)}
 function renderComparison(){
   const mode=el('compareFilter').value;
   const rows=comparison.channels.filter(c=>mode==='all'||(mode==='different'?['only_a','only_b','missing_a','missing_b','ambiguous'].includes(c.status):c.activatedA||c.activatedB));
-  el('compareRows').innerHTML=rows.map(c=>`<tr><td><b>${esc(c.name||'(sem identificação no CFG)')}</b><small>Fase: ${esc(c.phase||'—')} · ${esc(c.basis)}</small></td><td>${statusLabels[c.status]}</td><td>${channelSummary(c.a,'A')}</td><td>${channelSummary(c.b,'B')}</td></tr>`).join('');
+  el('compareRows').innerHTML=rows.map(c=>`<tr>${['a','b'].map(side=>`<td><div class="pair-context"><b>${esc(statusLabels[c.status])}</b><small>Correspondência: ${esc(c.name||'(sem identificação no CFG)')} · Fase: ${esc(c.phase||'—')}</small><small>${esc(c.basis)}</small></div>${channelSummary(c[side],side.toUpperCase())}</td>`).join('')}</tr>`).join('');
   el('compareEmpty').hidden=!!rows.length;
 }
 function download(data,name){const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
@@ -47,7 +47,7 @@ el('form').onsubmit=async e=>{
     if(compare){
       const b=await analyzeFiles(el('cfgB').files[0],el('datB').files,'Oscilografia B','B');
       comparison={criterion:'Canais ativados conforme polaridade do perfil; sem comparar horários',matching:'Nome/fase ou equivalência confirmada com categoria/função/fase idênticas',a,b,channels:compareRecords(a,b)};
-      el('compareMeta').innerHTML=[['A',a],['B',b]].map(([label,r])=>`<b>${label}: ${esc(r.station)} · ${esc(r.device)}</b><br>Início: ${esc(r.start)} · Trigger: ${esc(r.trigger)}<br>${r.samples} amostras · ${r.duration.toFixed(6)} s · ${esc(r.format)}`).join('<br><br>');
+      el('compareMeta').innerHTML=[['A',a],['B',b]].map(([label,r])=>`<div><b>Oscilografia ${label}: ${esc(r.station)} · ${esc(r.device)}</b><br>Início: ${esc(r.start)} · Trigger: ${esc(r.trigger)}<br>${r.samples} amostras · ${r.duration.toFixed(6)} s · ${esc(r.format)}</div>`).join('');
       el('compareStats').innerHTML=[['a','A',a],['b','B',b]].map(([key,label,r])=>`<div class="stat"><strong>${r.channels.filter(c=>acts(c).length).length}</strong>Canais com ativação em ${label}</div>`).join('')+`<div class="stat"><strong>${comparison.channels.filter(c=>['only_a','only_b'].includes(c.status)).length}</strong>Canais com ativação exclusiva</div>`;
       el('qualityComparison').innerHTML=qualityHtml(a,'A')+qualityHtml(b,'B');
       renderComparison();el('comparison').hidden=false;
