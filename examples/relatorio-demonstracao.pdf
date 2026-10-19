@@ -1,9 +1,9 @@
 %PDF-1.4
 1 0 obj
-<< /Type /Catalog /Pages 2 0 R /Outlines 24 0 R >>
+<< /Type /Catalog /Pages 2 0 R /Outlines 26 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [6 0 R 8 0 R 10 0 R 12 0 R 14 0 R 16 0 R 18 0 R 20 0 R 22 0 R] /Count 9 >>
+<< /Type /Pages /Kids [6 0 R 8 0 R 10 0 R 12 0 R 14 0 R 16 0 R 18 0 R 20 0 R 22 0 R 24 0 R] /Count 10 >>
 endobj
 3 0 obj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
@@ -18,7 +18,7 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 7 0 R >>
 endobj
 7 0 obj
-<< /Length 5157 >>
+<< /Length 6183 >>
 stream
 0.055 0.100 0.170 rg 0 638 595 204 re f
 0.870 0.950 0.930 rg 40 780 40 4 re f
@@ -27,7 +27,7 @@ BT /F2 8 Tf 0.870 0.950 0.930 rg 1 0 0 1 365 804 Tm (DADOS SINTÉTICOS · EXEMPLO)
 BT /F2 9 Tf 0.870 0.950 0.930 rg 1 0 0 1 40 757 Tm (PROTEÇÃO DE SISTEMAS ELÉTRICOS) Tj ET
 BT /F2 30 Tf 1.000 1.000 1.000 rg 1 0 0 1 40 712 Tm (Relatório de) Tj ET
 BT /F2 30 Tf 1.000 1.000 1.000 rg 1 0 0 1 40 675 Tm (comparação digital) Tj ET
-BT /F1 8.5 Tf 0.870 0.950 0.930 rg 1 0 0 1 40 652.5 Tm (Emitido em 19/10/2026, 11:49:54 \(America/Sao_Paulo\)) Tj ET
+BT /F1 8.5 Tf 0.870 0.950 0.930 rg 1 0 0 1 40 652.5 Tm (Emitido em 19/10/2026, 13:18:04 \(America/Sao_Paulo\)) Tj ET
 0.000 0.420 0.360 rg 40 585 27 25 re f
 BT /F2 11 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 594 Tm (1) Tj ET
 BT /F2 16 Tf 0.055 0.100 0.170 rg 1 0 0 1 78 594 Tm (Resumo executivo) Tj ET
@@ -52,54 +52,66 @@ BT /F2 8.5 Tf 0.370 0.430 0.500 rg 1 0 0 1 448 493.725 Tm (Alertas de qualidade)
 BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 439.225 Tm (IDENTIFICAÇÃO) Tj ET
 BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 193 439.225 Tm (REGISTRO A) Tj ET
 BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 378 439.225 Tm (REGISTRO B) Tj ET
-0.960 0.970 0.980 rg 40 400.225 515 28 re f
-BT /F2 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 411.225 Tm (Estação) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 411.225 Tm (SE MODELO - DADOS SINTÉTICOS) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 378 411.225 Tm (SE MODELO - DADOS SINTÉTICOS) Tj ET
-0.850 0.890 0.910 RG .6 w 40 400.225 m 555 400.225 l S
-1.000 1.000 1.000 rg 40 372.225 515 28 re f
-BT /F2 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 383.225 Tm (Equipamento) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 383.225 Tm (Relé demonstrativo A) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 378 383.225 Tm (Relé demonstrativo B) Tj ET
-0.850 0.890 0.910 RG .6 w 40 372.225 m 555 372.225 l S
-0.960 0.970 0.980 rg 40 344.225 515 28 re f
-BT /F2 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 355.225 Tm (Início do registro) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 355.225 Tm (19/10/2026,12:00:00.000000) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 378 355.225 Tm (19/10/2026,12:00:00.000000) Tj ET
-0.850 0.890 0.910 RG .6 w 40 344.225 m 555 344.225 l S
-1.000 1.000 1.000 rg 40 316.225 515 28 re f
-BT /F2 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 327.225 Tm (Trigger) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 327.225 Tm (19/10/2026,12:00:00.002000) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 378 327.225 Tm (19/10/2026,12:00:00.002000) Tj ET
-0.850 0.890 0.910 RG .6 w 40 316.225 m 555 316.225 l S
-0.960 0.970 0.980 rg 40 288.225 515 28 re f
-BT /F2 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 299.225 Tm (Formato / revisão) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 299.225 Tm (ASCII / 2001) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 378 299.225 Tm (ASCII / 2001) Tj ET
-0.850 0.890 0.910 RG .6 w 40 288.225 m 555 288.225 l S
-1.000 1.000 1.000 rg 40 260.225 515 28 re f
-BT /F2 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 271.225 Tm (Amostras / canais) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 271.225 Tm (5 / 4) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 378 271.225 Tm (5 / 4) Tj ET
-0.850 0.890 0.910 RG .6 w 40 260.225 m 555 260.225 l S
-0.960 0.970 0.980 rg 40 232.22500000000002 515 28 re f
-BT /F2 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 243.22500000000002 Tm (Perfil / versão) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 243.22500000000002 Tm (exemplo-sintetico-A / 1.0) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 378 243.22500000000002 Tm (exemplo-sintetico-B / 1.0) Tj ET
-0.850 0.890 0.910 RG .6 w 40 232.22500000000002 m 555 232.22500000000002 l S
-1.000 0.960 0.870 rg 40 166.675 515 51.55 re f
-BT /F1 9.5 Tf 0.570 0.320 0.040 rg 1 0 0 1 52 196.72500000000002 Tm (A: 3 canal\(is\) com classificação ou polaridade não confirmada. B: 3 canal\(is\) com classificação ou polaridade não) Tj ET
-BT /F1 9.5 Tf 0.570 0.320 0.040 rg 1 0 0 1 52 182.95000000000005 Tm (confirmada.) Tj ET
+0.960 0.970 0.980 rg 40 388.225 515 40 re f
+BT /F2 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 411.225 Tm (Objeto relacionado) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 411.225 Tm (LT 230 kV MODELO A - MODELO B) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 399.225 Tm (\(dados sinteticos\)) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 378 411.225 Tm (LT 230 kV MODELO A - MODELO B) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 378 399.225 Tm (\(dados sinteticos\)) Tj ET
+0.850 0.890 0.910 RG .6 w 40 388.225 m 555 388.225 l S
+1.000 1.000 1.000 rg 40 360.225 515 28 re f
+BT /F2 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 371.225 Tm (Tipo do objeto) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 371.225 Tm (LT) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 378 371.225 Tm (LT) Tj ET
+0.850 0.890 0.910 RG .6 w 40 360.225 m 555 360.225 l S
+0.960 0.970 0.980 rg 40 332.225 515 28 re f
+BT /F2 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 343.225 Tm (Estação) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 343.225 Tm (SE MODELO - DADOS SINTÉTICOS) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 378 343.225 Tm (SE MODELO - DADOS SINTÉTICOS) Tj ET
+0.850 0.890 0.910 RG .6 w 40 332.225 m 555 332.225 l S
+1.000 1.000 1.000 rg 40 304.225 515 28 re f
+BT /F2 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 315.225 Tm (Equipamento) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 315.225 Tm (Relé demonstrativo A) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 378 315.225 Tm (Relé demonstrativo B) Tj ET
+0.850 0.890 0.910 RG .6 w 40 304.225 m 555 304.225 l S
+0.960 0.970 0.980 rg 40 276.225 515 28 re f
+BT /F2 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 287.225 Tm (Início do registro) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 287.225 Tm (19/10/2026,12:00:00.000000) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 378 287.225 Tm (19/10/2026,12:00:00.000000) Tj ET
+0.850 0.890 0.910 RG .6 w 40 276.225 m 555 276.225 l S
+1.000 1.000 1.000 rg 40 248.22500000000002 515 28 re f
+BT /F2 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 259.225 Tm (Trigger) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 259.225 Tm (19/10/2026,12:00:00.002000) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 378 259.225 Tm (19/10/2026,12:00:00.002000) Tj ET
+0.850 0.890 0.910 RG .6 w 40 248.22500000000002 m 555 248.22500000000002 l S
+0.960 0.970 0.980 rg 40 220.22500000000002 515 28 re f
+BT /F2 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 231.22500000000002 Tm (Formato / revisão) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 231.22500000000002 Tm (ASCII / 2001) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 378 231.22500000000002 Tm (ASCII / 2001) Tj ET
+0.850 0.890 0.910 RG .6 w 40 220.22500000000002 m 555 220.22500000000002 l S
+1.000 1.000 1.000 rg 40 192.22500000000002 515 28 re f
+BT /F2 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 203.22500000000002 Tm (Amostras / canais) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 203.22500000000002 Tm (5 / 4) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 378 203.22500000000002 Tm (5 / 4) Tj ET
+0.850 0.890 0.910 RG .6 w 40 192.22500000000002 m 555 192.22500000000002 l S
+0.960 0.970 0.980 rg 40 164.22500000000002 515 28 re f
+BT /F2 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 175.22500000000002 Tm (Perfil / versão) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 175.22500000000002 Tm (exemplo-sintetico-A / 1.0) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 378 175.22500000000002 Tm (exemplo-sintetico-B / 1.0) Tj ET
+0.850 0.890 0.910 RG .6 w 40 164.22500000000002 m 555 164.22500000000002 l S
+1.000 0.960 0.870 rg 40 98.67500000000003 515 51.55 re f
+BT /F1 9.5 Tf 0.570 0.320 0.040 rg 1 0 0 1 52 128.72500000000002 Tm (A: 3 canal\(is\) com classificação ou polaridade não confirmada. B: 3 canal\(is\) com classificação ou polaridade não) Tj ET
+BT /F1 9.5 Tf 0.570 0.320 0.040 rg 1 0 0 1 52 114.95000000000005 Tm (confirmada.) Tj ET
 0.850 0.890 0.910 RG .6 w 40 43 m 555 43 l S
 BT /F1 8 Tf 0.370 0.430 0.500 rg 1 0 0 1 40 27 Tm (Oscilography | Relatório técnico digital) Tj ET
-BT /F1 8 Tf 1 0 0 1 462 27 Tm (Página 1 de 9) Tj ET
+BT /F1 8 Tf 1 0 0 1 462 27 Tm (Página 1 de 10) Tj ET
 endstream
 endobj
 8 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 9 0 R >>
 endobj
 9 0 obj
-<< /Length 6437 >>
+<< /Length 6438 >>
 stream
 BT /F2 11 Tf 0.055 0.100 0.170 rg 1 0 0 1 40 806 Tm (OSCILOGRAPHY) Tj ET
 BT /F1 8 Tf 0.370 0.430 0.500 rg 1 0 0 1 390.072 806 Tm (Comparação de registros · DEMONSTRAÇÃO) Tj ET
@@ -188,14 +200,14 @@ BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 403 146.42499999999995 Tm (desconhecido
 0.850 0.890 0.910 RG .6 w 40 135.42499999999995 m 555 135.42499999999995 l S
 0.850 0.890 0.910 RG .6 w 40 43 m 555 43 l S
 BT /F1 8 Tf 0.370 0.430 0.500 rg 1 0 0 1 40 27 Tm (Oscilography | Relatório técnico digital) Tj ET
-BT /F1 8 Tf 1 0 0 1 462 27 Tm (Página 2 de 9) Tj ET
+BT /F1 8 Tf 1 0 0 1 462 27 Tm (Página 2 de 10) Tj ET
 endstream
 endobj
 10 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 11 0 R >>
 endobj
 11 0 obj
-<< /Length 6815 >>
+<< /Length 6816 >>
 stream
 BT /F2 11 Tf 0.055 0.100 0.170 rg 1 0 0 1 40 806 Tm (OSCILOGRAPHY) Tj ET
 BT /F1 8 Tf 0.370 0.430 0.500 rg 1 0 0 1 390.072 806 Tm (Comparação de registros · DEMONSTRAÇÃO) Tj ET
@@ -288,14 +300,14 @@ BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 388 84.375 Tm (Sem nova ativação; já at
 0.850 0.890 0.910 RG .6 w 40 61.375 m 555 61.375 l S
 0.850 0.890 0.910 RG .6 w 40 43 m 555 43 l S
 BT /F1 8 Tf 0.370 0.430 0.500 rg 1 0 0 1 40 27 Tm (Oscilography | Relatório técnico digital) Tj ET
-BT /F1 8 Tf 1 0 0 1 462 27 Tm (Página 3 de 9) Tj ET
+BT /F1 8 Tf 1 0 0 1 462 27 Tm (Página 3 de 10) Tj ET
 endstream
 endobj
 12 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 13 0 R >>
 endobj
 13 0 obj
-<< /Length 5145 >>
+<< /Length 4345 >>
 stream
 BT /F2 11 Tf 0.055 0.100 0.170 rg 1 0 0 1 40 806 Tm (OSCILOGRAPHY) Tj ET
 BT /F1 8 Tf 0.370 0.430 0.500 rg 1 0 0 1 390.072 806 Tm (Comparação de registros · DEMONSTRAÇÃO) Tj ET
@@ -317,48 +329,37 @@ BT /F1 10 Tf 0.570 0.320 0.040 rg 1 0 0 1 52 511.5 Tm (apenas com essas binárias
 BT /F2 11 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 458 Tm (4) Tj ET
 BT /F2 16 Tf 0.055 0.100 0.170 rg 1 0 0 1 78 458 Tm (Qualidade e rastreabilidade) Tj ET
 BT /F1 9.5 Tf 0.370 0.430 0.500 rg 1 0 0 1 40 426.5 Tm (Identificação das fontes, do perfil aplicado e das limitações detectadas.) Tj ET
-BT /F2 11 Tf 0.000 0.420 0.360 rg 1 0 0 1 40 402.225 Tm (A | Qualidade do registro) Tj ET
-BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 377.77500000000003 Tm (· Estrutura e contagens do CFG) Tj ET
-BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 364.00000000000006 Tm (· Revisão e datas) Tj ET
-BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 350.225 Tm (· Taxas e limites de amostras) Tj ET
-BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 336.45000000000005 Tm (· Formato e integridade do DAT) Tj ET
-BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 322.675 Tm (· Estados digitais binários) Tj ET
-BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 308.9000000000001 Tm (· Sequência e tempos das amostras) Tj ET
-0.870 0.950 0.930 rg 40 257.85 515 37.775 re f
-BT /F1 9.5 Tf 0.000 0.420 0.360 rg 1 0 0 1 52 274.125 Tm (Nenhum alerta estrutural detectado. Isso não comprova a correção da lógica ou do perfil.) Tj ET
-0.055 0.100 0.170 rg 40 221.85000000000002 515 27 re f
-BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 232.85000000000002 Tm (FONTE / IDENTIFICADOR) Tj ET
-BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 193 232.85000000000002 Tm (VALOR) Tj ET
-0.960 0.970 0.980 rg 40 193.85000000000002 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 204.85000000000002 Tm (Arquivo CFG) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 204.85000000000002 Tm (sintetico-A.cfg) Tj ET
-0.850 0.890 0.910 RG .6 w 40 193.85000000000002 m 555 193.85000000000002 l S
-1.000 1.000 1.000 rg 40 165.85000000000002 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 176.85000000000002 Tm (SHA-256 CFG) Tj ET
-BT /F3 8 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 177.85000000000002 Tm (1f6589028f4b2ea422f02a3e98794bdb8c42821da3df27a5c4bde89656f2bdae) Tj ET
-0.850 0.890 0.910 RG .6 w 40 165.85000000000002 m 555 165.85000000000002 l S
-0.960 0.970 0.980 rg 40 137.85000000000002 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 148.85000000000002 Tm (Arquivo DAT) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 148.85000000000002 Tm (sintetico-A.dat) Tj ET
-0.850 0.890 0.910 RG .6 w 40 137.85000000000002 m 555 137.85000000000002 l S
-1.000 1.000 1.000 rg 40 109.85000000000002 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 120.85000000000002 Tm (SHA-256 DAT) Tj ET
-BT /F3 8 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 121.85000000000002 Tm (a3a0304d37d075d5cea087fd3b11d6087f45fa8a4455f48b87399fd98fac9890) Tj ET
-0.850 0.890 0.910 RG .6 w 40 109.85000000000002 m 555 109.85000000000002 l S
-0.960 0.970 0.980 rg 40 81.85000000000002 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 92.85000000000002 Tm (Perfil / versão) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 92.85000000000002 Tm (exemplo-sintetico-A / 1.0) Tj ET
-0.850 0.890 0.910 RG .6 w 40 81.85000000000002 m 555 81.85000000000002 l S
+BT /F2 11 Tf 0.000 0.420 0.360 rg 1 0 0 1 40 402.225 Tm (A | Objeto relacionado) Tj ET
+0.870 0.950 0.930 rg 40 348.77500000000003 515 38.5 re f
+BT /F2 10 Tf 0.000 0.420 0.360 rg 1 0 0 1 52 365.27500000000003 Tm (LT 230 kV MODELO A - MODELO B \(dados sinteticos\) | LT) Tj ET
+BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 330.27500000000003 Tm (Fonte: sintetico-a.hdr | Origem: Extraído de campo HDR. Evidência: Objeto protegido: LT 230 kV MODELO A - MODELO) Tj ET
+BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 316.5 Tm (B \(dados sinteticos\)) Tj ET
+BT /F2 11 Tf 0.000 0.420 0.360 rg 1 0 0 1 40 292.225 Tm (A | Qualidade do registro) Tj ET
+BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 267.775 Tm (· Estrutura e contagens do CFG) Tj ET
+BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 254 Tm (· Revisão e datas) Tj ET
+BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 240.22500000000002 Tm (· Taxas e limites de amostras) Tj ET
+BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 226.44999999999993 Tm (· Formato e integridade do DAT) Tj ET
+BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 212.67499999999995 Tm (· Estados digitais binários) Tj ET
+BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 198.89999999999998 Tm (· Sequência e tempos das amostras) Tj ET
+0.870 0.950 0.930 rg 40 147.85 515 37.775 re f
+BT /F1 9.5 Tf 0.000 0.420 0.360 rg 1 0 0 1 52 164.125 Tm (Nenhum alerta estrutural detectado. Isso não comprova a correção da lógica ou do perfil.) Tj ET
+0.055 0.100 0.170 rg 40 111.85000000000002 515 27 re f
+BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 122.85000000000002 Tm (FONTE / IDENTIFICADOR) Tj ET
+BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 193 122.85000000000002 Tm (VALOR) Tj ET
+0.960 0.970 0.980 rg 40 83.85000000000002 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 94.85000000000002 Tm (Arquivo CFG) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 94.85000000000002 Tm (sintetico-A.cfg) Tj ET
+0.850 0.890 0.910 RG .6 w 40 83.85000000000002 m 555 83.85000000000002 l S
 0.850 0.890 0.910 RG .6 w 40 43 m 555 43 l S
 BT /F1 8 Tf 0.370 0.430 0.500 rg 1 0 0 1 40 27 Tm (Oscilography | Relatório técnico digital) Tj ET
-BT /F1 8 Tf 1 0 0 1 462 27 Tm (Página 4 de 9) Tj ET
+BT /F1 8 Tf 1 0 0 1 462 27 Tm (Página 4 de 10) Tj ET
 endstream
 endobj
 14 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 15 0 R >>
 endobj
 15 0 obj
-<< /Length 5209 >>
+<< /Length 5396 >>
 stream
 BT /F2 11 Tf 0.055 0.100 0.170 rg 1 0 0 1 40 806 Tm (OSCILOGRAPHY) Tj ET
 BT /F1 8 Tf 0.370 0.430 0.500 rg 1 0 0 1 390.072 806 Tm (Comparação de registros · DEMONSTRAÇÃO) Tj ET
@@ -367,176 +368,183 @@ BT /F1 8 Tf 0.370 0.430 0.500 rg 1 0 0 1 390.072 806 Tm (Comparação de registros
 BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 750 Tm (FONTE / IDENTIFICADOR) Tj ET
 BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 193 750 Tm (VALOR) Tj ET
 1.000 1.000 1.000 rg 40 711 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 722 Tm (SHA-256 perfil) Tj ET
-BT /F3 8 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 723 Tm (f22312341cd00a20df34b650fff389ff6542b6f936d4752519ddc2197a6b755a) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 722 Tm (SHA-256 CFG) Tj ET
+BT /F3 8 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 723 Tm (1f6589028f4b2ea422f02a3e98794bdb8c42821da3df27a5c4bde89656f2bdae) Tj ET
 0.850 0.890 0.910 RG .6 w 40 711 m 555 711 l S
 0.960 0.970 0.980 rg 40 683 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 694 Tm (Fabricante / modelo) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 694 Tm (DEMONSTRAÇÃO / Equipamento fictício) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 694 Tm (Arquivo DAT) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 694 Tm (sintetico-A.dat) Tj ET
 0.850 0.890 0.910 RG .6 w 40 683 m 555 683 l S
 1.000 1.000 1.000 rg 40 655 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 666 Tm (Escopo) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 666 Tm (Estação: sem restrição; equipamento: sem restrição) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 666 Tm (SHA-256 DAT) Tj ET
+BT /F3 8 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 667 Tm (a3a0304d37d075d5cea087fd3b11d6087f45fa8a4455f48b87399fd98fac9890) Tj ET
 0.850 0.890 0.910 RG .6 w 40 655 m 555 655 l S
 0.960 0.970 0.980 rg 40 627 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 638 Tm (Fallback genérico) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 638 Tm (1.0) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 638 Tm (Arquivo HDR) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 638 Tm (sintetico-a.hdr) Tj ET
 0.850 0.890 0.910 RG .6 w 40 627 m 555 627 l S
-BT /F2 11 Tf 0.000 0.420 0.360 rg 1 0 0 1 40 602 Tm (B | Qualidade do registro) Tj ET
-BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 577.55 Tm (· Estrutura e contagens do CFG) Tj ET
-BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 563.7750000000001 Tm (· Revisão e datas) Tj ET
-BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 550 Tm (· Taxas e limites de amostras) Tj ET
-BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 536.225 Tm (· Formato e integridade do DAT) Tj ET
-BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 522.45 Tm (· Estados digitais binários) Tj ET
-BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 508.67499999999995 Tm (· Sequência e tempos das amostras) Tj ET
-0.870 0.950 0.930 rg 40 457.625 515 37.775 re f
-BT /F1 9.5 Tf 0.000 0.420 0.360 rg 1 0 0 1 52 473.9 Tm (Nenhum alerta estrutural detectado. Isso não comprova a correção da lógica ou do perfil.) Tj ET
-0.055 0.100 0.170 rg 40 421.625 515 27 re f
-BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 432.625 Tm (FONTE / IDENTIFICADOR) Tj ET
-BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 193 432.625 Tm (VALOR) Tj ET
-0.960 0.970 0.980 rg 40 393.625 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 404.625 Tm (Arquivo CFG) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 404.625 Tm (sintetico-B.cfg) Tj ET
-0.850 0.890 0.910 RG .6 w 40 393.625 m 555 393.625 l S
-1.000 1.000 1.000 rg 40 365.625 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 376.625 Tm (SHA-256 CFG) Tj ET
-BT /F3 8 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 377.625 Tm (f6eff461158f8e22bfb0c0a6c07f77f0c4e7c41387b39c76edef2229e30e22d0) Tj ET
-0.850 0.890 0.910 RG .6 w 40 365.625 m 555 365.625 l S
-0.960 0.970 0.980 rg 40 337.625 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 348.625 Tm (Arquivo DAT) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 348.625 Tm (sintetico-B.dat) Tj ET
-0.850 0.890 0.910 RG .6 w 40 337.625 m 555 337.625 l S
-1.000 1.000 1.000 rg 40 309.625 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 320.625 Tm (SHA-256 DAT) Tj ET
-BT /F3 8 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 321.625 Tm (eeca1b13ebc583b8cfe0576589cf2a76c038d18edfa34c3837c0dacecb5097c9) Tj ET
-0.850 0.890 0.910 RG .6 w 40 309.625 m 555 309.625 l S
-0.960 0.970 0.980 rg 40 281.625 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 292.625 Tm (Perfil / versão) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 292.625 Tm (exemplo-sintetico-B / 1.0) Tj ET
-0.850 0.890 0.910 RG .6 w 40 281.625 m 555 281.625 l S
-1.000 1.000 1.000 rg 40 253.625 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 264.625 Tm (SHA-256 perfil) Tj ET
-BT /F3 8 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 265.625 Tm (e5ae3e35ff738f5f8e32eb716c403d238f818276510d711c2c536c01281f653f) Tj ET
-0.850 0.890 0.910 RG .6 w 40 253.625 m 555 253.625 l S
-0.960 0.970 0.980 rg 40 225.625 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 236.625 Tm (Fabricante / modelo) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 236.625 Tm (DEMONSTRAÇÃO / Equipamento fictício) Tj ET
-0.850 0.890 0.910 RG .6 w 40 225.625 m 555 225.625 l S
-1.000 1.000 1.000 rg 40 197.625 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 208.625 Tm (Escopo) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 208.625 Tm (Estação: sem restrição; equipamento: sem restrição) Tj ET
-0.850 0.890 0.910 RG .6 w 40 197.625 m 555 197.625 l S
-0.960 0.970 0.980 rg 40 169.625 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 180.625 Tm (Fallback genérico) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 180.625 Tm (1.0) Tj ET
-0.850 0.890 0.910 RG .6 w 40 169.625 m 555 169.625 l S
+1.000 1.000 1.000 rg 40 599 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 610 Tm (SHA-256 HDR) Tj ET
+BT /F3 8 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 611 Tm (e2efb2572550d9874cd52ca4907a5932cf0a5e5dc8355a271a73e04969a1ae65) Tj ET
+0.850 0.890 0.910 RG .6 w 40 599 m 555 599 l S
+0.960 0.970 0.980 rg 40 571 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 582 Tm (Perfil / versão) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 582 Tm (exemplo-sintetico-A / 1.0) Tj ET
+0.850 0.890 0.910 RG .6 w 40 571 m 555 571 l S
+1.000 1.000 1.000 rg 40 543 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 554 Tm (SHA-256 perfil) Tj ET
+BT /F3 8 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 555 Tm (f22312341cd00a20df34b650fff389ff6542b6f936d4752519ddc2197a6b755a) Tj ET
+0.850 0.890 0.910 RG .6 w 40 543 m 555 543 l S
+0.960 0.970 0.980 rg 40 515 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 526 Tm (Fabricante / modelo) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 526 Tm (DEMONSTRAÇÃO / Equipamento fictício) Tj ET
+0.850 0.890 0.910 RG .6 w 40 515 m 555 515 l S
+1.000 1.000 1.000 rg 40 487 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 498 Tm (Escopo) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 498 Tm (Estação: sem restrição; equipamento: sem restrição) Tj ET
+0.850 0.890 0.910 RG .6 w 40 487 m 555 487 l S
+0.960 0.970 0.980 rg 40 459 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 470 Tm (Fallback genérico) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 470 Tm (1.0) Tj ET
+0.850 0.890 0.910 RG .6 w 40 459 m 555 459 l S
+BT /F2 11 Tf 0.000 0.420 0.360 rg 1 0 0 1 40 434 Tm (B | Objeto relacionado) Tj ET
+0.870 0.950 0.930 rg 40 380.55 515 38.5 re f
+BT /F2 10 Tf 0.000 0.420 0.360 rg 1 0 0 1 52 397.05 Tm (LT 230 kV MODELO A - MODELO B \(dados sinteticos\) | LT) Tj ET
+BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 362.05 Tm (Fonte: sintetico-b.hdr | Origem: Extraído de campo HDR. Evidência: Objeto protegido: LT 230 kV MODELO A - MODELO) Tj ET
+BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 348.27500000000003 Tm (B \(dados sinteticos\)) Tj ET
+BT /F2 11 Tf 0.000 0.420 0.360 rg 1 0 0 1 40 324 Tm (B | Qualidade do registro) Tj ET
+BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 299.54999999999995 Tm (· Estrutura e contagens do CFG) Tj ET
+BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 285.775 Tm (· Revisão e datas) Tj ET
+BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 272 Tm (· Taxas e limites de amostras) Tj ET
+BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 258.2249999999999 Tm (· Formato e integridade do DAT) Tj ET
+BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 244.44999999999993 Tm (· Estados digitais binários) Tj ET
+BT /F1 9.5 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 230.67499999999995 Tm (· Sequência e tempos das amostras) Tj ET
+0.870 0.950 0.930 rg 40 179.62499999999997 515 37.775 re f
+BT /F1 9.5 Tf 0.000 0.420 0.360 rg 1 0 0 1 52 195.89999999999998 Tm (Nenhum alerta estrutural detectado. Isso não comprova a correção da lógica ou do perfil.) Tj ET
+0.055 0.100 0.170 rg 40 143.625 515 27 re f
+BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 154.625 Tm (FONTE / IDENTIFICADOR) Tj ET
+BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 193 154.625 Tm (VALOR) Tj ET
+0.960 0.970 0.980 rg 40 115.625 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 126.625 Tm (Arquivo CFG) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 126.625 Tm (sintetico-B.cfg) Tj ET
+0.850 0.890 0.910 RG .6 w 40 115.625 m 555 115.625 l S
+1.000 1.000 1.000 rg 40 87.625 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 98.625 Tm (SHA-256 CFG) Tj ET
+BT /F3 8 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 99.625 Tm (f6eff461158f8e22bfb0c0a6c07f77f0c4e7c41387b39c76edef2229e30e22d0) Tj ET
+0.850 0.890 0.910 RG .6 w 40 87.625 m 555 87.625 l S
 0.850 0.890 0.910 RG .6 w 40 43 m 555 43 l S
 BT /F1 8 Tf 0.370 0.430 0.500 rg 1 0 0 1 40 27 Tm (Oscilography | Relatório técnico digital) Tj ET
-BT /F1 8 Tf 1 0 0 1 462 27 Tm (Página 5 de 9) Tj ET
+BT /F1 8 Tf 1 0 0 1 462 27 Tm (Página 5 de 10) Tj ET
 endstream
 endobj
 16 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 17 0 R >>
 endobj
 17 0 obj
-<< /Length 5449 >>
+<< /Length 6053 >>
 stream
 BT /F2 11 Tf 0.055 0.100 0.170 rg 1 0 0 1 40 806 Tm (OSCILOGRAPHY) Tj ET
 BT /F1 8 Tf 0.370 0.430 0.500 rg 1 0 0 1 390.072 806 Tm (Comparação de registros · DEMONSTRAÇÃO) Tj ET
 0.850 0.890 0.910 RG .6 w 40 788 m 555 788 l S
-0.000 0.420 0.360 rg 40 729 27 25 re f
-BT /F2 11 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 738 Tm (5) Tj ET
-BT /F2 16 Tf 0.055 0.100 0.170 rg 1 0 0 1 78 738 Tm (Anexo técnico por canal) Tj ET
-BT /F1 9.5 Tf 0.370 0.430 0.500 rg 1 0 0 1 40 706.5 Tm (Relação completa, incluindo canais sem nova ativação e classificações não confirmadas.) Tj ET
-BT /F2 11 Tf 0.000 0.420 0.360 rg 1 0 0 1 40 682.225 Tm (A | 4 canais digitais) Tj ET
-0.960 0.970 0.980 rg 40 627.3249999999999 515 39.95 re f
-BT /F2 11 Tf 0.055 0.100 0.170 rg 1 0 0 1 52 644.275 Tm (50P_START | Fase: - | Canal 1) Tj ET
-0.055 0.100 0.170 rg 40 596.325 515 27 re f
-BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 607.325 Tm (EVIDÊNCIA / INTERPRETAÇÃO) Tj ET
-BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 193 607.325 Tm (DETALHAMENTO) Tj ET
-0.960 0.970 0.980 rg 40 568.325 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 579.325 Tm (Estados observados) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 579.325 Tm (Inicial: 0; final: 0; normal CFG: 0) Tj ET
-0.850 0.890 0.910 RG .6 w 40 568.325 m 555 568.325 l S
-1.000 1.000 1.000 rg 40 540.325 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 551.325 Tm (Ativação aplicada) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 551.325 Tm (1 ativação\(ões\); ativo em 1; não ativo no início) Tj ET
-0.850 0.890 0.910 RG .6 w 40 540.325 m 555 540.325 l S
-0.960 0.970 0.980 rg 40 512.325 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 523.325 Tm (Classificação) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 523.325 Tm (SUGESTÃO | partida / ANSI 50) Tj ET
-0.850 0.890 0.910 RG .6 w 40 512.325 m 555 512.325 l S
-1.000 1.000 1.000 rg 40 484.32500000000005 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 495.325 Tm (Regra / perfil) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 495.325 Tm (partida-exemplo | exemplo-sintetico-A v1.0) Tj ET
-0.850 0.890 0.910 RG .6 w 40 484.325 m 555 484.325 l S
-0.960 0.970 0.980 rg 40 456.325 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 467.325 Tm (Justificativa) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 467.325 Tm (Sugestão textual; conferir a lógica do relé.) Tj ET
-0.850 0.890 0.910 RG .6 w 40 456.325 m 555 456.325 l S
-1.000 1.000 1.000 rg 40 428.325 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 439.325 Tm (Responsável) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 439.325 Tm (Não informado) Tj ET
-0.850 0.890 0.910 RG .6 w 40 428.325 m 555 428.325 l S
-0.960 0.970 0.980 rg 40 400.325 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 411.325 Tm (Equivalência) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 411.325 Tm (Nenhuma) Tj ET
-0.850 0.890 0.910 RG .6 w 40 400.325 m 555 400.325 l S
-0.960 0.970 0.980 rg 40 346.375 515 39.95 re f
-BT /F2 11 Tf 0.055 0.100 0.170 rg 1 0 0 1 52 363.325 Tm (TRIP_GERAL | Fase: - | Canal 2) Tj ET
-0.055 0.100 0.170 rg 40 315.375 515 27 re f
-BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 326.375 Tm (EVIDÊNCIA / INTERPRETAÇÃO) Tj ET
-BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 193 326.375 Tm (DETALHAMENTO) Tj ET
-0.960 0.970 0.980 rg 40 287.375 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 298.375 Tm (Estados observados) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 298.375 Tm (Inicial: 0; final: 0; normal CFG: 0) Tj ET
-0.850 0.890 0.910 RG .6 w 40 287.375 m 555 287.375 l S
-1.000 1.000 1.000 rg 40 259.375 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 270.375 Tm (Ativação aplicada) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 270.375 Tm (1 ativação\(ões\); ativo em 1; não ativo no início) Tj ET
-0.850 0.890 0.910 RG .6 w 40 259.375 m 555 259.375 l S
-0.960 0.970 0.980 rg 40 231.375 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 242.375 Tm (Classificação) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 242.375 Tm (REVISÃO MANUAL | disparo) Tj ET
-0.850 0.890 0.910 RG .6 w 40 231.375 m 555 231.375 l S
-1.000 1.000 1.000 rg 40 203.375 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 214.375 Tm (Regra / perfil) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 214.375 Tm (trip-exemplo | exemplo-sintetico-A v1.0) Tj ET
-0.850 0.890 0.910 RG .6 w 40 203.375 m 555 203.375 l S
-0.960 0.970 0.980 rg 40 175.375 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 186.375 Tm (Justificativa) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 186.375 Tm (Regra fictícia para demonstrar rastreabilidade; não usar em equipamento real.) Tj ET
-0.850 0.890 0.910 RG .6 w 40 175.375 m 555 175.375 l S
-1.000 1.000 1.000 rg 40 147.375 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 158.375 Tm (Responsável) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 158.375 Tm (Responsável fictício - demonstração) Tj ET
-0.850 0.890 0.910 RG .6 w 40 147.375 m 555 147.375 l S
-0.960 0.970 0.980 rg 40 119.375 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 130.375 Tm (Equivalência) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 130.375 Tm (ordem_geral_disparo) Tj ET
-0.850 0.890 0.910 RG .6 w 40 119.375 m 555 119.375 l S
+0.055 0.100 0.170 rg 40 739 515 27 re f
+BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 750 Tm (FONTE / IDENTIFICADOR) Tj ET
+BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 193 750 Tm (VALOR) Tj ET
+0.960 0.970 0.980 rg 40 711 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 722 Tm (Arquivo DAT) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 722 Tm (sintetico-B.dat) Tj ET
+0.850 0.890 0.910 RG .6 w 40 711 m 555 711 l S
+1.000 1.000 1.000 rg 40 683 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 694 Tm (SHA-256 DAT) Tj ET
+BT /F3 8 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 695 Tm (eeca1b13ebc583b8cfe0576589cf2a76c038d18edfa34c3837c0dacecb5097c9) Tj ET
+0.850 0.890 0.910 RG .6 w 40 683 m 555 683 l S
+0.960 0.970 0.980 rg 40 655 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 666 Tm (Arquivo HDR) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 666 Tm (sintetico-b.hdr) Tj ET
+0.850 0.890 0.910 RG .6 w 40 655 m 555 655 l S
+1.000 1.000 1.000 rg 40 627 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 638 Tm (SHA-256 HDR) Tj ET
+BT /F3 8 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 639 Tm (e2efb2572550d9874cd52ca4907a5932cf0a5e5dc8355a271a73e04969a1ae65) Tj ET
+0.850 0.890 0.910 RG .6 w 40 627 m 555 627 l S
+0.960 0.970 0.980 rg 40 599 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 610 Tm (Perfil / versão) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 610 Tm (exemplo-sintetico-B / 1.0) Tj ET
+0.850 0.890 0.910 RG .6 w 40 599 m 555 599 l S
+1.000 1.000 1.000 rg 40 571 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 582 Tm (SHA-256 perfil) Tj ET
+BT /F3 8 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 583 Tm (e5ae3e35ff738f5f8e32eb716c403d238f818276510d711c2c536c01281f653f) Tj ET
+0.850 0.890 0.910 RG .6 w 40 571 m 555 571 l S
+0.960 0.970 0.980 rg 40 543 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 554 Tm (Fabricante / modelo) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 554 Tm (DEMONSTRAÇÃO / Equipamento fictício) Tj ET
+0.850 0.890 0.910 RG .6 w 40 543 m 555 543 l S
+1.000 1.000 1.000 rg 40 515 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 526 Tm (Escopo) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 526 Tm (Estação: sem restrição; equipamento: sem restrição) Tj ET
+0.850 0.890 0.910 RG .6 w 40 515 m 555 515 l S
+0.960 0.970 0.980 rg 40 487 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 498 Tm (Fallback genérico) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 498 Tm (1.0) Tj ET
+0.850 0.890 0.910 RG .6 w 40 487 m 555 487 l S
+0.000 0.420 0.360 rg 40 436 27 25 re f
+BT /F2 11 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 445 Tm (5) Tj ET
+BT /F2 16 Tf 0.055 0.100 0.170 rg 1 0 0 1 78 445 Tm (Anexo técnico por canal) Tj ET
+BT /F1 9.5 Tf 0.370 0.430 0.500 rg 1 0 0 1 40 413.5 Tm (Relação completa, incluindo canais sem nova ativação e classificações não confirmadas.) Tj ET
+BT /F2 11 Tf 0.000 0.420 0.360 rg 1 0 0 1 40 389.225 Tm (A | 4 canais digitais) Tj ET
+0.960 0.970 0.980 rg 40 334.32500000000005 515 39.95 re f
+BT /F2 11 Tf 0.055 0.100 0.170 rg 1 0 0 1 52 351.27500000000003 Tm (50P_START | Fase: - | Canal 1) Tj ET
+0.055 0.100 0.170 rg 40 303.32500000000005 515 27 re f
+BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 314.32500000000005 Tm (EVIDÊNCIA / INTERPRETAÇÃO) Tj ET
+BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 193 314.32500000000005 Tm (DETALHAMENTO) Tj ET
+0.960 0.970 0.980 rg 40 275.32500000000005 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 286.32500000000005 Tm (Estados observados) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 286.32500000000005 Tm (Inicial: 0; final: 0; normal CFG: 0) Tj ET
+0.850 0.890 0.910 RG .6 w 40 275.32500000000005 m 555 275.32500000000005 l S
+1.000 1.000 1.000 rg 40 247.32500000000005 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 258.32500000000005 Tm (Ativação aplicada) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 258.32500000000005 Tm (1 ativação\(ões\); ativo em 1; não ativo no início) Tj ET
+0.850 0.890 0.910 RG .6 w 40 247.32500000000005 m 555 247.32500000000005 l S
+0.960 0.970 0.980 rg 40 219.32500000000005 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 230.32500000000005 Tm (Classificação) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 230.32500000000005 Tm (SUGESTÃO | partida / ANSI 50) Tj ET
+0.850 0.890 0.910 RG .6 w 40 219.32500000000005 m 555 219.32500000000005 l S
+1.000 1.000 1.000 rg 40 191.32500000000005 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 202.32500000000005 Tm (Regra / perfil) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 202.32500000000005 Tm (partida-exemplo | exemplo-sintetico-A v1.0) Tj ET
+0.850 0.890 0.910 RG .6 w 40 191.32500000000005 m 555 191.32500000000005 l S
+0.960 0.970 0.980 rg 40 163.32500000000005 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 174.32500000000005 Tm (Justificativa) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 174.32500000000005 Tm (Sugestão textual; conferir a lógica do relé.) Tj ET
+0.850 0.890 0.910 RG .6 w 40 163.32500000000005 m 555 163.32500000000005 l S
+1.000 1.000 1.000 rg 40 135.32500000000005 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 146.32500000000005 Tm (Responsável) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 146.32500000000005 Tm (Não informado) Tj ET
+0.850 0.890 0.910 RG .6 w 40 135.32500000000005 m 555 135.32500000000005 l S
+0.960 0.970 0.980 rg 40 107.32500000000005 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 118.32500000000005 Tm (Equivalência) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 118.32500000000005 Tm (Nenhuma) Tj ET
+0.850 0.890 0.910 RG .6 w 40 107.32500000000005 m 555 107.32500000000005 l S
 0.850 0.890 0.910 RG .6 w 40 43 m 555 43 l S
 BT /F1 8 Tf 0.370 0.430 0.500 rg 1 0 0 1 40 27 Tm (Oscilography | Relatório técnico digital) Tj ET
-BT /F1 8 Tf 1 0 0 1 462 27 Tm (Página 6 de 9) Tj ET
+BT /F1 8 Tf 1 0 0 1 462 27 Tm (Página 6 de 10) Tj ET
 endstream
 endobj
 18 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 19 0 R >>
 endobj
 19 0 obj
-<< /Length 5790 >>
+<< /Length 6111 >>
 stream
 BT /F2 11 Tf 0.055 0.100 0.170 rg 1 0 0 1 40 806 Tm (OSCILOGRAPHY) Tj ET
 BT /F1 8 Tf 0.370 0.430 0.500 rg 1 0 0 1 390.072 806 Tm (Comparação de registros · DEMONSTRAÇÃO) Tj ET
 0.850 0.890 0.910 RG .6 w 40 788 m 555 788 l S
 0.960 0.970 0.980 rg 40 726.05 515 39.95 re f
-BT /F2 11 Tf 0.055 0.100 0.170 rg 1 0 0 1 52 743 Tm (52_ABERTO | Fase: - | Canal 3) Tj ET
+BT /F2 11 Tf 0.055 0.100 0.170 rg 1 0 0 1 52 743 Tm (TRIP_GERAL | Fase: - | Canal 2) Tj ET
 0.055 0.100 0.170 rg 40 695.05 515 27 re f
 BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 706.05 Tm (EVIDÊNCIA / INTERPRETAÇÃO) Tj ET
 BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 193 706.05 Tm (DETALHAMENTO) Tj ET
 0.960 0.970 0.980 rg 40 667.05 515 28 re f
 BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 678.05 Tm (Estados observados) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 678.05 Tm (Inicial: 0; final: 1; normal CFG: 0) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 678.05 Tm (Inicial: 0; final: 0; normal CFG: 0) Tj ET
 0.850 0.890 0.910 RG .6 w 40 667.05 m 555 667.05 l S
 1.000 1.000 1.000 rg 40 639.05 515 28 re f
 BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 650.05 Tm (Ativação aplicada) Tj ET
@@ -544,48 +552,48 @@ BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 650.05 Tm (1 ativação\(ões\); ativo
 0.850 0.890 0.910 RG .6 w 40 639.05 m 555 639.05 l S
 0.960 0.970 0.980 rg 40 611.05 515 28 re f
 BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 622.05 Tm (Classificação) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 622.05 Tm (NÃO CLASSIFICADO | desconhecido) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 622.05 Tm (REVISÃO MANUAL | disparo) Tj ET
 0.850 0.890 0.910 RG .6 w 40 611.05 m 555 611.05 l S
 1.000 1.000 1.000 rg 40 583.05 515 28 re f
 BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 594.05 Tm (Regra / perfil) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 594.05 Tm (nenhuma | generico v1.0) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 594.05 Tm (trip-exemplo | exemplo-sintetico-A v1.0) Tj ET
 0.850 0.890 0.910 RG .6 w 40 583.05 m 555 583.05 l S
 0.960 0.970 0.980 rg 40 555.05 515 28 re f
 BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 566.05 Tm (Justificativa) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 566.05 Tm (Nenhuma regra aplicável; estado ativo 1 é uma hipótese padrão.) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 566.05 Tm (Regra fictícia para demonstrar rastreabilidade; não usar em equipamento real.) Tj ET
 0.850 0.890 0.910 RG .6 w 40 555.05 m 555 555.05 l S
 1.000 1.000 1.000 rg 40 527.05 515 28 re f
 BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 538.05 Tm (Responsável) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 538.05 Tm (Não informado) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 538.05 Tm (Responsável fictício - demonstração) Tj ET
 0.850 0.890 0.910 RG .6 w 40 527.05 m 555 527.05 l S
 0.960 0.970 0.980 rg 40 499.04999999999995 515 28 re f
 BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 510.04999999999995 Tm (Equivalência) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 510.04999999999995 Tm (Nenhuma) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 510.04999999999995 Tm (ordem_geral_disparo) Tj ET
 0.850 0.890 0.910 RG .6 w 40 499.05 m 555 499.05 l S
 0.960 0.970 0.980 rg 40 445.1 515 39.95 re f
-BT /F2 11 Tf 0.055 0.100 0.170 rg 1 0 0 1 52 462.05 Tm (ALARME | Fase: - | Canal 4) Tj ET
+BT /F2 11 Tf 0.055 0.100 0.170 rg 1 0 0 1 52 462.05 Tm (52_ABERTO | Fase: - | Canal 3) Tj ET
 0.055 0.100 0.170 rg 40 414.1 515 27 re f
 BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 425.1 Tm (EVIDÊNCIA / INTERPRETAÇÃO) Tj ET
 BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 193 425.1 Tm (DETALHAMENTO) Tj ET
 0.960 0.970 0.980 rg 40 386.1 515 28 re f
 BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 397.1 Tm (Estados observados) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 397.1 Tm (Inicial: 1; final: 1; normal CFG: 0) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 397.1 Tm (Inicial: 0; final: 1; normal CFG: 0) Tj ET
 0.850 0.890 0.910 RG .6 w 40 386.1 m 555 386.1 l S
 1.000 1.000 1.000 rg 40 358.1 515 28 re f
 BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 369.1 Tm (Ativação aplicada) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 369.1 Tm (0 ativação\(ões\); ativo em 1; já ativo no início) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 369.1 Tm (1 ativação\(ões\); ativo em 1; não ativo no início) Tj ET
 0.850 0.890 0.910 RG .6 w 40 358.1 m 555 358.1 l S
 0.960 0.970 0.980 rg 40 330.1 515 28 re f
 BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 341.1 Tm (Classificação) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 341.1 Tm (SUGESTÃO | alarme) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 341.1 Tm (NÃO CLASSIFICADO | desconhecido) Tj ET
 0.850 0.890 0.910 RG .6 w 40 330.1 m 555 330.1 l S
 1.000 1.000 1.000 rg 40 302.1 515 28 re f
 BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 313.1 Tm (Regra / perfil) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 313.1 Tm (generic-ALARME | generico v1.0) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 313.1 Tm (nenhuma | generico v1.0) Tj ET
 0.850 0.890 0.910 RG .6 w 40 302.1 m 555 302.1 l S
 0.960 0.970 0.980 rg 40 274.1 515 28 re f
 BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 285.1 Tm (Justificativa) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 285.1 Tm (Identificação textual conhecida; conferir a lógica e a polaridade do relé.) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 285.1 Tm (Nenhuma regra aplicável; estado ativo 1 é uma hipótese padrão.) Tj ET
 0.850 0.890 0.910 RG .6 w 40 274.1 m 555 274.1 l S
 1.000 1.000 1.000 rg 40 246.10000000000002 515 28 re f
 BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 257.1 Tm (Responsável) Tj ET
@@ -595,26 +603,29 @@ BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 257.1 Tm (Não informado) Tj ET
 BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 229.10000000000002 Tm (Equivalência) Tj ET
 BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 229.10000000000002 Tm (Nenhuma) Tj ET
 0.850 0.890 0.910 RG .6 w 40 218.10000000000002 m 555 218.10000000000002 l S
-BT /F2 11 Tf 0.000 0.420 0.360 rg 1 0 0 1 40 193.10000000000002 Tm (B | 4 canais digitais) Tj ET
-0.960 0.970 0.980 rg 40 138.2 515 39.95 re f
-BT /F2 11 Tf 0.055 0.100 0.170 rg 1 0 0 1 52 155.14999999999998 Tm (50P_START | Fase: - | Canal 1) Tj ET
-0.055 0.100 0.170 rg 40 107.19999999999993 515 27 re f
-BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 118.19999999999993 Tm (EVIDÊNCIA / INTERPRETAÇÃO) Tj ET
-BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 193 118.19999999999993 Tm (DETALHAMENTO) Tj ET
-0.960 0.970 0.980 rg 40 79.19999999999993 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 90.19999999999993 Tm (Estados observados) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 90.19999999999993 Tm (Inicial: 0; final: 0; normal CFG: 0) Tj ET
-0.850 0.890 0.910 RG .6 w 40 79.19999999999993 m 555 79.19999999999993 l S
+0.960 0.970 0.980 rg 40 164.15000000000003 515 39.95 re f
+BT /F2 11 Tf 0.055 0.100 0.170 rg 1 0 0 1 52 181.10000000000002 Tm (ALARME | Fase: - | Canal 4) Tj ET
+0.055 0.100 0.170 rg 40 133.14999999999998 515 27 re f
+BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 144.14999999999998 Tm (EVIDÊNCIA / INTERPRETAÇÃO) Tj ET
+BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 193 144.14999999999998 Tm (DETALHAMENTO) Tj ET
+0.960 0.970 0.980 rg 40 105.14999999999998 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 116.14999999999998 Tm (Estados observados) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 116.14999999999998 Tm (Inicial: 1; final: 1; normal CFG: 0) Tj ET
+0.850 0.890 0.910 RG .6 w 40 105.14999999999998 m 555 105.14999999999998 l S
+1.000 1.000 1.000 rg 40 77.14999999999998 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 88.14999999999998 Tm (Ativação aplicada) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 88.14999999999998 Tm (0 ativação\(ões\); ativo em 1; já ativo no início) Tj ET
+0.850 0.890 0.910 RG .6 w 40 77.14999999999998 m 555 77.14999999999998 l S
 0.850 0.890 0.910 RG .6 w 40 43 m 555 43 l S
 BT /F1 8 Tf 0.370 0.430 0.500 rg 1 0 0 1 40 27 Tm (Oscilography | Relatório técnico digital) Tj ET
-BT /F1 8 Tf 1 0 0 1 462 27 Tm (Página 7 de 9) Tj ET
+BT /F1 8 Tf 1 0 0 1 462 27 Tm (Página 7 de 10) Tj ET
 endstream
 endobj
 20 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 21 0 R >>
 endobj
 21 0 obj
-<< /Length 6580 >>
+<< /Length 6254 >>
 stream
 BT /F2 11 Tf 0.055 0.100 0.170 rg 1 0 0 1 40 806 Tm (OSCILOGRAPHY) Tj ET
 BT /F1 8 Tf 0.370 0.430 0.500 rg 1 0 0 1 390.072 806 Tm (Comparação de registros · DEMONSTRAÇÃO) Tj ET
@@ -622,98 +633,95 @@ BT /F1 8 Tf 0.370 0.430 0.500 rg 1 0 0 1 390.072 806 Tm (Comparação de registros
 0.055 0.100 0.170 rg 40 739 515 27 re f
 BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 750 Tm (EVIDÊNCIA / INTERPRETAÇÃO) Tj ET
 BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 193 750 Tm (DETALHAMENTO) Tj ET
-1.000 1.000 1.000 rg 40 711 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 722 Tm (Ativação aplicada) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 722 Tm (1 ativação\(ões\); ativo em 1; não ativo no início) Tj ET
+0.960 0.970 0.980 rg 40 711 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 722 Tm (Classificação) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 722 Tm (SUGESTÃO | alarme) Tj ET
 0.850 0.890 0.910 RG .6 w 40 711 m 555 711 l S
-0.960 0.970 0.980 rg 40 683 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 694 Tm (Classificação) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 694 Tm (SUGESTÃO | partida / ANSI 50) Tj ET
+1.000 1.000 1.000 rg 40 683 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 694 Tm (Regra / perfil) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 694 Tm (generic-ALARME | generico v1.0) Tj ET
 0.850 0.890 0.910 RG .6 w 40 683 m 555 683 l S
-1.000 1.000 1.000 rg 40 655 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 666 Tm (Regra / perfil) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 666 Tm (partida-exemplo | exemplo-sintetico-B v1.0) Tj ET
+0.960 0.970 0.980 rg 40 655 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 666 Tm (Justificativa) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 666 Tm (Identificação textual conhecida; conferir a lógica e a polaridade do relé.) Tj ET
 0.850 0.890 0.910 RG .6 w 40 655 m 555 655 l S
-0.960 0.970 0.980 rg 40 627 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 638 Tm (Justificativa) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 638 Tm (Sugestão textual; conferir a lógica do relé.) Tj ET
+1.000 1.000 1.000 rg 40 627 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 638 Tm (Responsável) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 638 Tm (Não informado) Tj ET
 0.850 0.890 0.910 RG .6 w 40 627 m 555 627 l S
-1.000 1.000 1.000 rg 40 599 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 610 Tm (Responsável) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 610 Tm (Não informado) Tj ET
+0.960 0.970 0.980 rg 40 599 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 610 Tm (Equivalência) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 610 Tm (Nenhuma) Tj ET
 0.850 0.890 0.910 RG .6 w 40 599 m 555 599 l S
-0.960 0.970 0.980 rg 40 571 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 582 Tm (Equivalência) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 582 Tm (Nenhuma) Tj ET
-0.850 0.890 0.910 RG .6 w 40 571 m 555 571 l S
-0.960 0.970 0.980 rg 40 517.05 515 39.95 re f
-BT /F2 11 Tf 0.055 0.100 0.170 rg 1 0 0 1 52 534 Tm (TRIP_GERAL | Fase: - | Canal 2) Tj ET
-0.055 0.100 0.170 rg 40 486.04999999999995 515 27 re f
-BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 497.05 Tm (EVIDÊNCIA / INTERPRETAÇÃO) Tj ET
-BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 193 497.05 Tm (DETALHAMENTO) Tj ET
-0.960 0.970 0.980 rg 40 458.05 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 469.05 Tm (Estados observados) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 469.05 Tm (Inicial: 0; final: 0; normal CFG: 0) Tj ET
-0.850 0.890 0.910 RG .6 w 40 458.05 m 555 458.05 l S
-1.000 1.000 1.000 rg 40 430.05 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 441.05 Tm (Ativação aplicada) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 441.05 Tm (1 ativação\(ões\); ativo em 1; não ativo no início) Tj ET
-0.850 0.890 0.910 RG .6 w 40 430.05 m 555 430.05 l S
-0.960 0.970 0.980 rg 40 402.05 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 413.05 Tm (Classificação) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 413.05 Tm (REVISÃO MANUAL | disparo) Tj ET
-0.850 0.890 0.910 RG .6 w 40 402.05 m 555 402.05 l S
-1.000 1.000 1.000 rg 40 374.05 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 385.05 Tm (Regra / perfil) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 385.05 Tm (trip-exemplo | exemplo-sintetico-B v1.0) Tj ET
-0.850 0.890 0.910 RG .6 w 40 374.05 m 555 374.05 l S
-0.960 0.970 0.980 rg 40 346.05 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 357.05 Tm (Justificativa) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 357.05 Tm (Regra fictícia para demonstrar rastreabilidade; não usar em equipamento real.) Tj ET
-0.850 0.890 0.910 RG .6 w 40 346.05 m 555 346.05 l S
-1.000 1.000 1.000 rg 40 318.05 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 329.05 Tm (Responsável) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 329.05 Tm (Responsável fictício - demonstração) Tj ET
-0.850 0.890 0.910 RG .6 w 40 318.04999999999995 m 555 318.04999999999995 l S
-0.960 0.970 0.980 rg 40 290.04999999999995 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 301.04999999999995 Tm (Equivalência) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 301.04999999999995 Tm (ordem_geral_disparo) Tj ET
-0.850 0.890 0.910 RG .6 w 40 290.04999999999995 m 555 290.04999999999995 l S
-0.960 0.970 0.980 rg 40 236.09999999999997 515 39.95 re f
-BT /F2 11 Tf 0.055 0.100 0.170 rg 1 0 0 1 52 253.04999999999995 Tm (52_ABERTO | Fase: - | Canal 3) Tj ET
-0.055 0.100 0.170 rg 40 205.0999999999999 515 27 re f
-BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 216.0999999999999 Tm (EVIDÊNCIA / INTERPRETAÇÃO) Tj ET
-BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 193 216.0999999999999 Tm (DETALHAMENTO) Tj ET
-0.960 0.970 0.980 rg 40 177.0999999999999 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 188.0999999999999 Tm (Estados observados) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 188.0999999999999 Tm (Inicial: 0; final: 0; normal CFG: 0) Tj ET
-0.850 0.890 0.910 RG .6 w 40 177.0999999999999 m 555 177.0999999999999 l S
-1.000 1.000 1.000 rg 40 149.0999999999999 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 160.0999999999999 Tm (Ativação aplicada) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 160.0999999999999 Tm (0 ativação\(ões\); ativo em 1; não ativo no início) Tj ET
-0.850 0.890 0.910 RG .6 w 40 149.0999999999999 m 555 149.0999999999999 l S
-0.960 0.970 0.980 rg 40 121.09999999999991 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 132.0999999999999 Tm (Classificação) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 132.0999999999999 Tm (NÃO CLASSIFICADO | desconhecido) Tj ET
-0.850 0.890 0.910 RG .6 w 40 121.09999999999991 m 555 121.09999999999991 l S
-1.000 1.000 1.000 rg 40 93.09999999999991 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 104.09999999999991 Tm (Regra / perfil) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 104.09999999999991 Tm (nenhuma | generico v1.0) Tj ET
-0.850 0.890 0.910 RG .6 w 40 93.09999999999991 m 555 93.09999999999991 l S
-0.960 0.970 0.980 rg 40 65.09999999999991 515 28 re f
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 76.09999999999991 Tm (Justificativa) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 76.09999999999991 Tm (Nenhuma regra aplicável; estado ativo 1 é uma hipótese padrão.) Tj ET
-0.850 0.890 0.910 RG .6 w 40 65.09999999999991 m 555 65.09999999999991 l S
+BT /F2 11 Tf 0.000 0.420 0.360 rg 1 0 0 1 40 574 Tm (B | 4 canais digitais) Tj ET
+0.960 0.970 0.980 rg 40 519.0999999999999 515 39.95 re f
+BT /F2 11 Tf 0.055 0.100 0.170 rg 1 0 0 1 52 536.05 Tm (50P_START | Fase: - | Canal 1) Tj ET
+0.055 0.100 0.170 rg 40 488.1 515 27 re f
+BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 499.1 Tm (EVIDÊNCIA / INTERPRETAÇÃO) Tj ET
+BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 193 499.1 Tm (DETALHAMENTO) Tj ET
+0.960 0.970 0.980 rg 40 460.1 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 471.1 Tm (Estados observados) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 471.1 Tm (Inicial: 0; final: 0; normal CFG: 0) Tj ET
+0.850 0.890 0.910 RG .6 w 40 460.1 m 555 460.1 l S
+1.000 1.000 1.000 rg 40 432.1 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 443.1 Tm (Ativação aplicada) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 443.1 Tm (1 ativação\(ões\); ativo em 1; não ativo no início) Tj ET
+0.850 0.890 0.910 RG .6 w 40 432.1 m 555 432.1 l S
+0.960 0.970 0.980 rg 40 404.1 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 415.1 Tm (Classificação) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 415.1 Tm (SUGESTÃO | partida / ANSI 50) Tj ET
+0.850 0.890 0.910 RG .6 w 40 404.1 m 555 404.1 l S
+1.000 1.000 1.000 rg 40 376.1 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 387.1 Tm (Regra / perfil) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 387.1 Tm (partida-exemplo | exemplo-sintetico-B v1.0) Tj ET
+0.850 0.890 0.910 RG .6 w 40 376.1 m 555 376.1 l S
+0.960 0.970 0.980 rg 40 348.1 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 359.1 Tm (Justificativa) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 359.1 Tm (Sugestão textual; conferir a lógica do relé.) Tj ET
+0.850 0.890 0.910 RG .6 w 40 348.1 m 555 348.1 l S
+1.000 1.000 1.000 rg 40 320.1 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 331.1 Tm (Responsável) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 331.1 Tm (Não informado) Tj ET
+0.850 0.890 0.910 RG .6 w 40 320.1 m 555 320.1 l S
+0.960 0.970 0.980 rg 40 292.1 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 303.1 Tm (Equivalência) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 303.1 Tm (Nenhuma) Tj ET
+0.850 0.890 0.910 RG .6 w 40 292.1 m 555 292.1 l S
+0.960 0.970 0.980 rg 40 238.15000000000003 515 39.95 re f
+BT /F2 11 Tf 0.055 0.100 0.170 rg 1 0 0 1 52 255.10000000000002 Tm (TRIP_GERAL | Fase: - | Canal 2) Tj ET
+0.055 0.100 0.170 rg 40 207.14999999999998 515 27 re f
+BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 218.14999999999998 Tm (EVIDÊNCIA / INTERPRETAÇÃO) Tj ET
+BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 193 218.14999999999998 Tm (DETALHAMENTO) Tj ET
+0.960 0.970 0.980 rg 40 179.14999999999998 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 190.14999999999998 Tm (Estados observados) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 190.14999999999998 Tm (Inicial: 0; final: 0; normal CFG: 0) Tj ET
+0.850 0.890 0.910 RG .6 w 40 179.14999999999998 m 555 179.14999999999998 l S
+1.000 1.000 1.000 rg 40 151.14999999999998 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 162.14999999999998 Tm (Ativação aplicada) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 162.14999999999998 Tm (1 ativação\(ões\); ativo em 1; não ativo no início) Tj ET
+0.850 0.890 0.910 RG .6 w 40 151.14999999999998 m 555 151.14999999999998 l S
+0.960 0.970 0.980 rg 40 123.14999999999998 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 134.14999999999998 Tm (Classificação) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 134.14999999999998 Tm (REVISÃO MANUAL | disparo) Tj ET
+0.850 0.890 0.910 RG .6 w 40 123.14999999999998 m 555 123.14999999999998 l S
+1.000 1.000 1.000 rg 40 95.14999999999998 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 106.14999999999998 Tm (Regra / perfil) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 106.14999999999998 Tm (trip-exemplo | exemplo-sintetico-B v1.0) Tj ET
+0.850 0.890 0.910 RG .6 w 40 95.14999999999998 m 555 95.14999999999998 l S
+0.960 0.970 0.980 rg 40 67.14999999999998 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 78.14999999999998 Tm (Justificativa) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 78.14999999999998 Tm (Regra fictícia para demonstrar rastreabilidade; não usar em equipamento real.) Tj ET
+0.850 0.890 0.910 RG .6 w 40 67.14999999999998 m 555 67.14999999999998 l S
 0.850 0.890 0.910 RG .6 w 40 43 m 555 43 l S
 BT /F1 8 Tf 0.370 0.430 0.500 rg 1 0 0 1 40 27 Tm (Oscilography | Relatório técnico digital) Tj ET
-BT /F1 8 Tf 1 0 0 1 462 27 Tm (Página 8 de 9) Tj ET
+BT /F1 8 Tf 1 0 0 1 462 27 Tm (Página 8 de 10) Tj ET
 endstream
 endobj
 22 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 23 0 R >>
 endobj
 23 0 obj
-<< /Length 5690 >>
+<< /Length 5858 >>
 stream
 BT /F2 11 Tf 0.055 0.100 0.170 rg 1 0 0 1 40 806 Tm (OSCILOGRAPHY) Tj ET
 BT /F1 8 Tf 0.370 0.430 0.500 rg 1 0 0 1 390.072 806 Tm (Comparação de registros · DEMONSTRAÇÃO) Tj ET
@@ -723,36 +731,36 @@ BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 750 Tm (EVIDÊNCIA / INTERPRETAÇÃO) T
 BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 193 750 Tm (DETALHAMENTO) Tj ET
 1.000 1.000 1.000 rg 40 711 515 28 re f
 BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 722 Tm (Responsável) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 722 Tm (Não informado) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 722 Tm (Responsável fictício - demonstração) Tj ET
 0.850 0.890 0.910 RG .6 w 40 711 m 555 711 l S
 0.960 0.970 0.980 rg 40 683 515 28 re f
 BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 694 Tm (Equivalência) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 694 Tm (Nenhuma) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 694 Tm (ordem_geral_disparo) Tj ET
 0.850 0.890 0.910 RG .6 w 40 683 m 555 683 l S
 0.960 0.970 0.980 rg 40 629.05 515 39.95 re f
-BT /F2 11 Tf 0.055 0.100 0.170 rg 1 0 0 1 52 646 Tm (ALARME | Fase: - | Canal 4) Tj ET
+BT /F2 11 Tf 0.055 0.100 0.170 rg 1 0 0 1 52 646 Tm (52_ABERTO | Fase: - | Canal 3) Tj ET
 0.055 0.100 0.170 rg 40 598.05 515 27 re f
 BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 609.05 Tm (EVIDÊNCIA / INTERPRETAÇÃO) Tj ET
 BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 193 609.05 Tm (DETALHAMENTO) Tj ET
 0.960 0.970 0.980 rg 40 570.05 515 28 re f
 BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 581.05 Tm (Estados observados) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 581.05 Tm (Inicial: 1; final: 1; normal CFG: 0) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 581.05 Tm (Inicial: 0; final: 0; normal CFG: 0) Tj ET
 0.850 0.890 0.910 RG .6 w 40 570.05 m 555 570.05 l S
 1.000 1.000 1.000 rg 40 542.05 515 28 re f
 BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 553.05 Tm (Ativação aplicada) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 553.05 Tm (0 ativação\(ões\); ativo em 1; já ativo no início) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 553.05 Tm (0 ativação\(ões\); ativo em 1; não ativo no início) Tj ET
 0.850 0.890 0.910 RG .6 w 40 542.05 m 555 542.05 l S
 0.960 0.970 0.980 rg 40 514.05 515 28 re f
 BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 525.05 Tm (Classificação) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 525.05 Tm (SUGESTÃO | alarme) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 525.05 Tm (NÃO CLASSIFICADO | desconhecido) Tj ET
 0.850 0.890 0.910 RG .6 w 40 514.05 m 555 514.05 l S
 1.000 1.000 1.000 rg 40 486.04999999999995 515 28 re f
 BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 497.05 Tm (Regra / perfil) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 497.05 Tm (generic-ALARME | generico v1.0) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 497.05 Tm (nenhuma | generico v1.0) Tj ET
 0.850 0.890 0.910 RG .6 w 40 486.05 m 555 486.05 l S
 0.960 0.970 0.980 rg 40 458.05 515 28 re f
 BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 469.05 Tm (Justificativa) Tj ET
-BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 469.05 Tm (Identificação textual conhecida; conferir a lógica e a polaridade do relé.) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 469.05 Tm (Nenhuma regra aplicável; estado ativo 1 é uma hipótese padrão.) Tj ET
 0.850 0.890 0.910 RG .6 w 40 458.05 m 555 458.05 l S
 1.000 1.000 1.000 rg 40 430.05 515 28 re f
 BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 441.05 Tm (Responsável) Tj ET
@@ -762,88 +770,137 @@ BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 441.05 Tm (Não informado) Tj ET
 BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 413.05 Tm (Equivalência) Tj ET
 BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 413.05 Tm (Nenhuma) Tj ET
 0.850 0.890 0.910 RG .6 w 40 402.05 m 555 402.05 l S
-0.000 0.420 0.360 rg 40 351.05 27 25 re f
-BT /F2 11 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 360.05 Tm (6) Tj ET
-BT /F2 16 Tf 0.055 0.100 0.170 rg 1 0 0 1 78 360.05 Tm (Limites e recomendações) Tj ET
-BT /F1 10 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 328.05 Tm (1. Ativação significa entrada no estado ativo da regra: 0 para 1 ou 1 para 0. Sinais ativos na primeira amostra são) Tj ET
-BT /F1 10 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 313.54999999999995 Tm (listados separadamente. Sem regra, estado ativo 1 é uma hipótese padrão. Estado normal no CFG não define) Tj ET
-BT /F1 10 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 299.04999999999995 Tm (automaticamente a polaridade.) Tj ET
-1.000 0.960 0.870 rg 40 232.54999999999995 515 53 re f
-BT /F1 10 Tf 0.570 0.320 0.040 rg 1 0 0 1 52 263.54999999999995 Tm (2. As identificações são extraídas dos arquivos; contatos, alarmes e lógicas também podem estar presentes.) Tj ET
-BT /F1 10 Tf 0.570 0.320 0.040 rg 1 0 0 1 52 249.04999999999995 Tm (A identificação de uma binária não comprova disparo de proteção ou causa da falta.) Tj ET
-BT /F1 10 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 213.54999999999995 Tm (3. Fabricante/modelo são metadados declarados, sem identificação automática. Regras confirmadas representam a) Tj ET
-BT /F1 10 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 199.04999999999995 Tm (declaração do responsável, não validação independente da engenharia do relé.) Tj ET
-BT /F1 10 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 175.54999999999995 Tm (4. A conclusão se limita aos canais e à janela de cada registro. Pulsos entre amostras e eventos anteriores não) Tj ET
-BT /F1 10 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 161.04999999999995 Tm (podem ser determinados. O relatório inclui todos os canais, independentemente dos filtros da tela.) Tj ET
-BT /F1 10 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 137.54999999999995 Tm (5. Revisar alertas, classificações sugeridas, polaridades e ambiguidades. Conferir a lógica do equipamento e os) Tj ET
-BT /F1 10 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 123.04999999999995 Tm (documentos de referência. Análise de correntes/tensões ainda não está implementada.) Tj ET
-BT /F1 10 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 99.54999999999995 Tm (6. Caracteres fora do alfabeto ocidental são representados por códigos U+XXXX; nomes originais e perfis) Tj ET
-BT /F1 10 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 85.04999999999995 Tm (completos permanecem no JSON.) Tj ET
+0.960 0.970 0.980 rg 40 348.1 515 39.95 re f
+BT /F2 11 Tf 0.055 0.100 0.170 rg 1 0 0 1 52 365.05 Tm (ALARME | Fase: - | Canal 4) Tj ET
+0.055 0.100 0.170 rg 40 317.1 515 27 re f
+BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 328.1 Tm (EVIDÊNCIA / INTERPRETAÇÃO) Tj ET
+BT /F2 8 Tf 1.000 1.000 1.000 rg 1 0 0 1 193 328.1 Tm (DETALHAMENTO) Tj ET
+0.960 0.970 0.980 rg 40 289.1 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 300.1 Tm (Estados observados) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 300.1 Tm (Inicial: 1; final: 1; normal CFG: 0) Tj ET
+0.850 0.890 0.910 RG .6 w 40 289.1 m 555 289.1 l S
+1.000 1.000 1.000 rg 40 261.1 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 272.1 Tm (Ativação aplicada) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 272.1 Tm (0 ativação\(ões\); ativo em 1; já ativo no início) Tj ET
+0.850 0.890 0.910 RG .6 w 40 261.1 m 555 261.1 l S
+0.960 0.970 0.980 rg 40 233.10000000000002 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 244.10000000000002 Tm (Classificação) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 244.10000000000002 Tm (SUGESTÃO | alarme) Tj ET
+0.850 0.890 0.910 RG .6 w 40 233.10000000000002 m 555 233.10000000000002 l S
+1.000 1.000 1.000 rg 40 205.10000000000002 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 216.10000000000002 Tm (Regra / perfil) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 216.10000000000002 Tm (generic-ALARME | generico v1.0) Tj ET
+0.850 0.890 0.910 RG .6 w 40 205.10000000000002 m 555 205.10000000000002 l S
+0.960 0.970 0.980 rg 40 177.10000000000002 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 188.10000000000002 Tm (Justificativa) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 188.10000000000002 Tm (Identificação textual conhecida; conferir a lógica e a polaridade do relé.) Tj ET
+0.850 0.890 0.910 RG .6 w 40 177.10000000000002 m 555 177.10000000000002 l S
+1.000 1.000 1.000 rg 40 149.10000000000002 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 160.10000000000002 Tm (Responsável) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 160.10000000000002 Tm (Não informado) Tj ET
+0.850 0.890 0.910 RG .6 w 40 149.10000000000002 m 555 149.10000000000002 l S
+0.960 0.970 0.980 rg 40 121.10000000000002 515 28 re f
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 48 132.10000000000002 Tm (Equivalência) Tj ET
+BT /F1 9 Tf 0.130 0.180 0.240 rg 1 0 0 1 193 132.10000000000002 Tm (Nenhuma) Tj ET
+0.850 0.890 0.910 RG .6 w 40 121.10000000000002 m 555 121.10000000000002 l S
 0.850 0.890 0.910 RG .6 w 40 43 m 555 43 l S
 BT /F1 8 Tf 0.370 0.430 0.500 rg 1 0 0 1 40 27 Tm (Oscilography | Relatório técnico digital) Tj ET
-BT /F1 8 Tf 1 0 0 1 462 27 Tm (Página 9 de 9) Tj ET
+BT /F1 8 Tf 1 0 0 1 462 27 Tm (Página 9 de 10) Tj ET
 endstream
 endobj
 24 0 obj
-<< /Type /Outlines /First 25 0 R /Last 30 0 R /Count 6 >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 25 0 R >>
 endobj
 25 0 obj
-<< /Title (1. Resumo executivo) /Parent 24 0 R /Next 26 0 R /Dest [6 0 R /XYZ null 610 null] >>
+<< /Length 2608 >>
+stream
+BT /F2 11 Tf 0.055 0.100 0.170 rg 1 0 0 1 40 806 Tm (OSCILOGRAPHY) Tj ET
+BT /F1 8 Tf 0.370 0.430 0.500 rg 1 0 0 1 390.072 806 Tm (Comparação de registros · DEMONSTRAÇÃO) Tj ET
+0.850 0.890 0.910 RG .6 w 40 788 m 555 788 l S
+0.000 0.420 0.360 rg 40 729 27 25 re f
+BT /F2 11 Tf 1.000 1.000 1.000 rg 1 0 0 1 48 738 Tm (6) Tj ET
+BT /F2 16 Tf 0.055 0.100 0.170 rg 1 0 0 1 78 738 Tm (Limites e recomendações) Tj ET
+BT /F1 10 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 706 Tm (1. Ativação significa entrada no estado ativo da regra: 0 para 1 ou 1 para 0. Sinais ativos na primeira amostra são) Tj ET
+BT /F1 10 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 691.5 Tm (listados separadamente. Sem regra, estado ativo 1 é uma hipótese padrão. Estado normal no CFG não define) Tj ET
+BT /F1 10 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 677 Tm (automaticamente a polaridade.) Tj ET
+1.000 0.960 0.870 rg 40 610.5 515 53 re f
+BT /F1 10 Tf 0.570 0.320 0.040 rg 1 0 0 1 52 641.5 Tm (2. As identificações são extraídas dos arquivos; contatos, alarmes e lógicas também podem estar presentes.) Tj ET
+BT /F1 10 Tf 0.570 0.320 0.040 rg 1 0 0 1 52 627 Tm (A identificação de uma binária não comprova disparo de proteção ou causa da falta.) Tj ET
+BT /F1 10 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 591.5 Tm (3. Fabricante/modelo são metadados declarados, sem identificação automática. Regras confirmadas representam a) Tj ET
+BT /F1 10 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 577 Tm (declaração do responsável, não validação independente da engenharia do relé.) Tj ET
+BT /F1 10 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 553.5 Tm (4. A conclusão se limita aos canais e à janela de cada registro. Pulsos entre amostras e eventos anteriores não) Tj ET
+BT /F1 10 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 539 Tm (podem ser determinados. O relatório inclui todos os canais, independentemente dos filtros da tela.) Tj ET
+BT /F1 10 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 515.5 Tm (5. Revisar alertas, classificações sugeridas, polaridades e ambiguidades. Conferir a lógica do equipamento e os) Tj ET
+BT /F1 10 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 501 Tm (documentos de referência. Análise de correntes/tensões ainda não está implementada.) Tj ET
+BT /F1 10 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 477.5 Tm (6. Caracteres fora do alfabeto ocidental são representados por códigos U+XXXX; nomes originais e perfis) Tj ET
+BT /F1 10 Tf 0.130 0.180 0.240 rg 1 0 0 1 40 463 Tm (completos permanecem no JSON.) Tj ET
+0.850 0.890 0.910 RG .6 w 40 43 m 555 43 l S
+BT /F1 8 Tf 0.370 0.430 0.500 rg 1 0 0 1 40 27 Tm (Oscilography | Relatório técnico digital) Tj ET
+BT /F1 8 Tf 1 0 0 1 462 27 Tm (Página 10 de 10) Tj ET
+endstream
 endobj
 26 0 obj
-<< /Title (2. Evidências observadas) /Parent 24 0 R /Prev 25 0 R /Next 27 0 R /Dest [8 0 R /XYZ null 754 null] >>
+<< /Type /Outlines /First 27 0 R /Last 32 0 R /Count 6 >>
 endobj
 27 0 obj
-<< /Title (3. Conclusão e interpretação) /Parent 24 0 R /Prev 26 0 R /Next 28 0 R /Dest [10 0 R /XYZ null 754 null] >>
+<< /Title (1. Resumo executivo) /Parent 26 0 R /Next 28 0 R /Dest [6 0 R /XYZ null 610 null] >>
 endobj
 28 0 obj
-<< /Title (4. Qualidade e rastreabilidade) /Parent 24 0 R /Prev 27 0 R /Next 29 0 R /Dest [12 0 R /XYZ null 474 null] >>
+<< /Title (2. Evidências observadas) /Parent 26 0 R /Prev 27 0 R /Next 29 0 R /Dest [8 0 R /XYZ null 754 null] >>
 endobj
 29 0 obj
-<< /Title (5. Anexo técnico por canal) /Parent 24 0 R /Prev 28 0 R /Next 30 0 R /Dest [16 0 R /XYZ null 754 null] >>
+<< /Title (3. Conclusão e interpretação) /Parent 26 0 R /Prev 28 0 R /Next 30 0 R /Dest [10 0 R /XYZ null 754 null] >>
 endobj
 30 0 obj
-<< /Title (6. Limites e recomendações) /Parent 24 0 R /Prev 29 0 R /Dest [22 0 R /XYZ null 376.05 null] >>
+<< /Title (4. Qualidade e rastreabilidade) /Parent 26 0 R /Prev 29 0 R /Next 31 0 R /Dest [12 0 R /XYZ null 474 null] >>
 endobj
 31 0 obj
+<< /Title (5. Anexo técnico por canal) /Parent 26 0 R /Prev 30 0 R /Next 32 0 R /Dest [16 0 R /XYZ null 461 null] >>
+endobj
+32 0 obj
+<< /Title (6. Limites e recomendações) /Parent 26 0 R /Prev 31 0 R /Dest [24 0 R /XYZ null 754 null] >>
+endobj
+33 0 obj
 << /Title (Comparação de registros · DEMONSTRAÇÃO) /Author (Oscilography) /Subject (Análise de canais digitais COMTRADE) >>
 endobj
 xref
-0 32
+0 34
 0000000000 65535 f 
 0000000009 00000 n 
 0000000075 00000 n 
-0000000187 00000 n 
-0000000284 00000 n 
-0000000386 00000 n 
-0000000481 00000 n 
-0000000627 00000 n 
-0000005836 00000 n 
-0000005982 00000 n 
-0000012471 00000 n 
-0000012619 00000 n 
-0000019487 00000 n 
-0000019635 00000 n 
-0000024833 00000 n 
-0000024981 00000 n 
-0000030243 00000 n 
-0000030391 00000 n 
-0000035893 00000 n 
-0000036041 00000 n 
-0000041884 00000 n 
-0000042032 00000 n 
-0000048665 00000 n 
-0000048813 00000 n 
-0000054556 00000 n 
-0000054630 00000 n 
-0000054742 00000 n 
-0000054872 00000 n 
-0000055007 00000 n 
-0000055144 00000 n 
-0000055277 00000 n 
-0000055400 00000 n 
+0000000195 00000 n 
+0000000292 00000 n 
+0000000394 00000 n 
+0000000489 00000 n 
+0000000635 00000 n 
+0000006870 00000 n 
+0000007016 00000 n 
+0000013506 00000 n 
+0000013654 00000 n 
+0000020523 00000 n 
+0000020671 00000 n 
+0000025069 00000 n 
+0000025217 00000 n 
+0000030666 00000 n 
+0000030814 00000 n 
+0000036920 00000 n 
+0000037068 00000 n 
+0000043232 00000 n 
+0000043380 00000 n 
+0000049687 00000 n 
+0000049835 00000 n 
+0000055746 00000 n 
+0000055894 00000 n 
+0000058555 00000 n 
+0000058629 00000 n 
+0000058741 00000 n 
+0000058871 00000 n 
+0000059006 00000 n 
+0000059143 00000 n 
+0000059276 00000 n 
+0000059396 00000 n 
 trailer
-<< /Size 32 /Root 1 0 R /Info 31 0 R >>
+<< /Size 34 /Root 1 0 R /Info 33 0 R >>
 startxref
-55540
+59536
 %%EOF

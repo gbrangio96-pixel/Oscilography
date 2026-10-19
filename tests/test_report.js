@@ -65,3 +65,10 @@ test('comparação diagramada preserva exclusividades, nomes originais e ausênc
   assert.ok(text.replace(/\s+/g,' ').includes('Não são comparados horários'));
   assert.ok(!text.includes('Δt'));
 });
+
+test('objeto opcional aparece no resumo e mantém evidência e hash do HDR',()=>{
+  const r={...record([ch('50',[1])]),object:{name:'LT 230 kV São José - Modelo',type:'LT',status:'extracted',source:'a.hdr',evidence:'Objeto protegido: LT 230 kV São José - Modelo',candidates:[]},hdr:{available:true,warnings:[]},files:{hdr_name:'a.hdr',hdr_sha256:'hdr-hash'}};
+  const doc=createReportLayout(r,false);
+  const text=doc.pages.flatMap(p=>p.text).map(t=>t.s).join(' ');
+  for(const value of ['LT 230 kV São José - Modelo','Objeto relacionado','Objeto protegido:','SHA-256 HDR','hdr-hash'])assert.ok(text.includes(value),value);
+});

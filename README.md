@@ -33,6 +33,14 @@ Selecione **Comparar dois registros** e carregue os pares CFG/DAT de A e B. A ta
 
 A associação usa nome/fase originais ou equivalências explícitas confirmadas nos perfis de interpretação. Identificações repetidas, aliases em conflito e regras conflitantes são apresentados como ambíguos. Horários não influenciam a comparação. Ativações respeitam a polaridade configurada no perfil, incluindo sinais ativos em 0.
 
+## HDR opcional e objeto relacionado
+
+Você pode enviar um `.hdr` separado para cada registro. Quando houver seção HDR no CFF ou um HDR de mesmo nome-base/pasta no ZIP, a leitura é automática. Sem HDR, a análise segue normalmente.
+
+A aplicação procura o nome do objeto protegido (LT, transformador, banco de capacitores/reatores etc.) em campos explícitos como “Objeto protegido” e “Protected object”. Menções em texto livre são sugestões. Múltiplos candidatos ficam ambíguos, sem selecionar arbitrariamente. O nome original e a linha de evidência são preservados; a classificação do tipo depende do texto disponível, sem inferir tensões, potência ou identificação ausentes.
+
+O objeto aparece na interface, no resumo do PDF e na rastreabilidade, com nome/hash do HDR. É possível revisar manualmente a identificação na interface, informando responsável e justificativa; a extração original permanece no JSON. O texto do HDR não altera as funções de proteção nem as polaridades dos canais. O upload separado de HDR tem limite de 2 MB.
+
 ## Perfis e classificação das binárias
 
 Abra **Perfis de interpretação** para importar, exportar, editar ou salvar perfis no navegador. Há um perfil independente para A e para B. O botão **Revisar classificação** preenche automaticamente o nome/fase do canal a partir do CFG; você só revisa o significado e a polaridade. Perfis específicos têm precedência sobre as sugestões genéricas. Nomes desconhecidos permanecem não classificados.

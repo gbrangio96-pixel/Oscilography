@@ -7,11 +7,13 @@ import zipfile
 
 from comtrade_reader import analyze, decode_text, text_rows
 
+from hdr_reader import attach_hdr
+
 LIMIT = 32 * 1024 * 1024
 HEADER = re.compile(rb'---\s*file\s+type:\s*(CFG|HDR|INF|DAT)(?:\s+(ASCII|BINARY32|BINARY|FLOAT32)(?:\s*:\s*(\d+))?)?\s*---', re.I)
 
 
-def split_cff(data):
+def split_cff(data, include_hdr=False):
     stream = io.BytesIO(data.removeprefix(b'\xef\xbb\xbf'))
     sections = {}
     current = None
@@ -46,7 +48,8 @@ def split_cff(data):
             raise ValueError('CFF contém conteúdo fora das seções declaradas.')
     if not sections.get('CFG') or not sections.get('DAT'):
         raise ValueError('CFF deve conter seções CFG e DAT não vazias.')
-    return bytes(sections['CFG']), bytes(sections['DAT']), dat_format
+    parts = (bytes(sections['CFG']), bytes(sections['DAT']), dat_format)
+    return parts + (bytes(sections['HDR']) if 'HDR' in sections else None,) if include_hdr else parts
 
 
 def join_segments(parts, cfg_data=None):
@@ -77,11 +80,12 @@ def analyze_container(data, name, profile=None):
         raise ValueError('Arquivo de entrada excede 32 MB.')
     suffix = PurePosixPath(name.lower()).suffix
     if suffix == '.cff':
-        cfg, dat, dat_format = split_cff(data)
+        cfg, dat, dat_format, hdr = split_cff(data, include_hdr=True)
         result = analyze(cfg, dat, profile)
         if dat_format and dat_format != result['format']:
             raise ValueError('Formato do DAT no marcador CFF difere do declarado no CFG.')
         result['files'].update(cfg_name=name + ' / CFG', dat_name=name + ' / DAT')
+        attach_hdr(result, hdr, name + ' / HDR' if hdr is not None else '')
     elif suffix == '.zip':
         with zipfile.ZipFile(io.BytesIO(data)) as archive:
             entries = [e for e in archive.infolist() if not e.is_dir() and not e.filename.startswith('__MACOSX/')]
@@ -105,6 +109,10 @@ def analyze_container(data, name, profile=None):
                 result = analyze(cfg_data, join_segments(raw_parts, cfg_data), profile)
                 result['files']['dat_segments'] = [dict(name=n,sha256=hashlib.sha256(d).hexdigest()) for n,d in raw_parts]
                 result['files'].update(cfg_name=definition.filename, dat_name=', '.join(sorted(e.filename for e in parts)))
+                headers = [e for e in entries if PurePosixPath(e.filename).with_suffix('').as_posix().casefold() == base.as_posix().casefold() and e.filename.lower().endswith('.hdr')]
+                if len(headers) > 1:
+                    raise ValueError('ZIP tem mais de um HDR para o mesmo registro.')
+                attach_hdr(result, archive.read(headers[0]) if headers else None, headers[0].filename if headers else '')
     else:
         raise ValueError('Arquivo único deve ser .cff ou .zip; para .cfg selecione também o DAT.')
     result['files']['container_name'] = name

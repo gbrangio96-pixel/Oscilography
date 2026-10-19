@@ -1,1 +1,457 @@
-{"demonstration": true, "a": {"station": "SE MODELO - DADOS SINTÉTICOS", "device": "Relé demonstrativo A", "format": "ASCII", "frequency": 60.0, "start": "19/10/2026,12:00:00.000000", "trigger": "19/10/2026,12:00:00.002000", "samples": 5, "duration": 0.004, "channels": [{"number": 1, "name": "50P_START", "phase": "", "normal": "0", "initial": 0, "final": 0, "rises": [0.001], "falls": [0.003], "active_samples": 2, "classification": {"category": "partida", "function": "50", "canonical": "", "active_state": 1, "status": "suggested", "rule_id": "partida-exemplo", "profile_id": "exemplo-sintetico-A", "profile_version": "1.0", "reason": "Sugestão textual; conferir a lógica do relé.", "reviewer": "", "candidates": ["partida-exemplo"]}, "activations": [0.001], "returns": [0.003], "initial_active": false, "final_active": false, "asserted_samples": 2}, {"number": 2, "name": "TRIP_GERAL", "phase": "", "normal": "0", "initial": 0, "final": 0, "rises": [0.002], "falls": [0.004], "active_samples": 2, "classification": {"category": "disparo", "function": "", "canonical": "ordem_geral_disparo", "active_state": 1, "status": "manual", "rule_id": "trip-exemplo", "profile_id": "exemplo-sintetico-A", "profile_version": "1.0", "reason": "Regra fictícia para demonstrar rastreabilidade; não usar em equipamento real.", "reviewer": "Responsável fictício - demonstração", "candidates": ["trip-exemplo"]}, "activations": [0.002], "returns": [0.004], "initial_active": false, "final_active": false, "asserted_samples": 2}, {"number": 3, "name": "52_ABERTO", "phase": "", "normal": "0", "initial": 0, "final": 1, "rises": [0.003], "falls": [], "active_samples": 2, "classification": {"category": "desconhecido", "function": "", "canonical": "", "active_state": 1, "status": "unclassified", "rule_id": "", "profile_id": "generico", "profile_version": "1.0", "reason": "Nenhuma regra aplicável; estado ativo 1 é uma hipótese padrão.", "reviewer": "", "candidates": []}, "activations": [0.003], "returns": [], "initial_active": false, "final_active": true, "asserted_samples": 2}, {"number": 4, "name": "ALARME", "phase": "", "normal": "0", "initial": 1, "final": 1, "rises": [], "falls": [], "active_samples": 5, "classification": {"category": "alarme", "function": "", "canonical": "", "active_state": 1, "status": "suggested", "rule_id": "generic-ALARME", "profile_id": "generico", "profile_version": "1.0", "reason": "Identificação textual conhecida; conferir a lógica e a polaridade do relé.", "reviewer": "", "candidates": ["generic-ALARME"]}, "activations": [], "returns": [], "initial_active": true, "final_active": true, "asserted_samples": 5}], "revision": "2001", "revision_declared": "2001", "revision_mode": "standard", "files": {"cfg_sha256": "1f6589028f4b2ea422f02a3e98794bdb8c42821da3df27a5c4bde89656f2bdae", "dat_sha256": "a3a0304d37d075d5cea087fd3b11d6087f45fa8a4455f48b87399fd98fac9890", "cfg_name": "sintetico-A.cfg", "dat_name": "sintetico-A.dat"}, "validation": {"warnings": [], "checks": ["Estrutura e contagens do CFG", "Revisão e datas", "Taxas e limites de amostras", "Formato e integridade do DAT", "Estados digitais binários", "Sequência e tempos das amostras"]}, "profile": {"id": "exemplo-sintetico-A", "version": "1.0", "manufacturer": "DEMONSTRAÇÃO", "model": "Equipamento fictício", "station": "", "device": "", "sha256": "f22312341cd00a20df34b650fff389ff6542b6f936d4752519ddc2197a6b755a", "rules": [{"id": "partida-exemplo", "match": "50P_START", "category": "partida", "function": "50", "status": "suggested", "active_state": 1, "reason": "Sugestão textual; conferir a lógica do relé."}, {"id": "trip-exemplo", "match": "TRIP_GERAL", "category": "disparo", "function": "", "status": "manual", "active_state": 1, "canonical": "ordem_geral_disparo", "reviewer": "Responsável fictício - demonstração", "reason": "Regra fictícia para demonstrar rastreabilidade; não usar em equipamento real."}], "generic_fallback_version": "1.0"}}, "b": {"station": "SE MODELO - DADOS SINTÉTICOS", "device": "Relé demonstrativo B", "format": "ASCII", "frequency": 60.0, "start": "19/10/2026,12:00:00.000000", "trigger": "19/10/2026,12:00:00.002000", "samples": 5, "duration": 0.004, "channels": [{"number": 1, "name": "50P_START", "phase": "", "normal": "0", "initial": 0, "final": 0, "rises": [0.001], "falls": [0.003], "active_samples": 2, "classification": {"category": "partida", "function": "50", "canonical": "", "active_state": 1, "status": "suggested", "rule_id": "partida-exemplo", "profile_id": "exemplo-sintetico-B", "profile_version": "1.0", "reason": "Sugestão textual; conferir a lógica do relé.", "reviewer": "", "candidates": ["partida-exemplo"]}, "activations": [0.001], "returns": [0.003], "initial_active": false, "final_active": false, "asserted_samples": 2}, {"number": 2, "name": "TRIP_GERAL", "phase": "", "normal": "0", "initial": 0, "final": 0, "rises": [0.002], "falls": [0.004], "active_samples": 2, "classification": {"category": "disparo", "function": "", "canonical": "ordem_geral_disparo", "active_state": 1, "status": "manual", "rule_id": "trip-exemplo", "profile_id": "exemplo-sintetico-B", "profile_version": "1.0", "reason": "Regra fictícia para demonstrar rastreabilidade; não usar em equipamento real.", "reviewer": "Responsável fictício - demonstração", "candidates": ["trip-exemplo"]}, "activations": [0.002], "returns": [0.004], "initial_active": false, "final_active": false, "asserted_samples": 2}, {"number": 3, "name": "52_ABERTO", "phase": "", "normal": "0", "initial": 0, "final": 0, "rises": [], "falls": [], "active_samples": 0, "classification": {"category": "desconhecido", "function": "", "canonical": "", "active_state": 1, "status": "unclassified", "rule_id": "", "profile_id": "generico", "profile_version": "1.0", "reason": "Nenhuma regra aplicável; estado ativo 1 é uma hipótese padrão.", "reviewer": "", "candidates": []}, "activations": [], "returns": [], "initial_active": false, "final_active": false, "asserted_samples": 0}, {"number": 4, "name": "ALARME", "phase": "", "normal": "0", "initial": 1, "final": 1, "rises": [], "falls": [], "active_samples": 5, "classification": {"category": "alarme", "function": "", "canonical": "", "active_state": 1, "status": "suggested", "rule_id": "generic-ALARME", "profile_id": "generico", "profile_version": "1.0", "reason": "Identificação textual conhecida; conferir a lógica e a polaridade do relé.", "reviewer": "", "candidates": ["generic-ALARME"]}, "activations": [], "returns": [], "initial_active": true, "final_active": true, "asserted_samples": 5}], "revision": "2001", "revision_declared": "2001", "revision_mode": "standard", "files": {"cfg_sha256": "f6eff461158f8e22bfb0c0a6c07f77f0c4e7c41387b39c76edef2229e30e22d0", "dat_sha256": "eeca1b13ebc583b8cfe0576589cf2a76c038d18edfa34c3837c0dacecb5097c9", "cfg_name": "sintetico-B.cfg", "dat_name": "sintetico-B.dat"}, "validation": {"warnings": [], "checks": ["Estrutura e contagens do CFG", "Revisão e datas", "Taxas e limites de amostras", "Formato e integridade do DAT", "Estados digitais binários", "Sequência e tempos das amostras"]}, "profile": {"id": "exemplo-sintetico-B", "version": "1.0", "manufacturer": "DEMONSTRAÇÃO", "model": "Equipamento fictício", "station": "", "device": "", "sha256": "e5ae3e35ff738f5f8e32eb716c403d238f818276510d711c2c536c01281f653f", "rules": [{"id": "partida-exemplo", "match": "50P_START", "category": "partida", "function": "50", "status": "suggested", "active_state": 1, "reason": "Sugestão textual; conferir a lógica do relé."}, {"id": "trip-exemplo", "match": "TRIP_GERAL", "category": "disparo", "function": "", "status": "manual", "active_state": 1, "canonical": "ordem_geral_disparo", "reviewer": "Responsável fictício - demonstração", "reason": "Regra fictícia para demonstrar rastreabilidade; não usar em equipamento real."}], "generic_fallback_version": "1.0"}}}
+{
+  "demonstration": true,
+  "a": {
+    "station": "SE MODELO - DADOS SINTÉTICOS",
+    "device": "Relé demonstrativo A",
+    "format": "ASCII",
+    "frequency": 60.0,
+    "start": "19/10/2026,12:00:00.000000",
+    "trigger": "19/10/2026,12:00:00.002000",
+    "samples": 5,
+    "duration": 0.004,
+    "channels": [
+      {
+        "number": 1,
+        "name": "50P_START",
+        "phase": "",
+        "normal": "0",
+        "initial": 0,
+        "final": 0,
+        "rises": [
+          0.001
+        ],
+        "falls": [
+          0.003
+        ],
+        "active_samples": 2,
+        "classification": {
+          "category": "partida",
+          "function": "50",
+          "canonical": "",
+          "active_state": 1,
+          "status": "suggested",
+          "rule_id": "partida-exemplo",
+          "profile_id": "exemplo-sintetico-A",
+          "profile_version": "1.0",
+          "reason": "Sugestão textual; conferir a lógica do relé.",
+          "reviewer": "",
+          "candidates": [
+            "partida-exemplo"
+          ]
+        },
+        "activations": [
+          0.001
+        ],
+        "returns": [
+          0.003
+        ],
+        "initial_active": false,
+        "final_active": false,
+        "asserted_samples": 2
+      },
+      {
+        "number": 2,
+        "name": "TRIP_GERAL",
+        "phase": "",
+        "normal": "0",
+        "initial": 0,
+        "final": 0,
+        "rises": [
+          0.002
+        ],
+        "falls": [
+          0.004
+        ],
+        "active_samples": 2,
+        "classification": {
+          "category": "disparo",
+          "function": "",
+          "canonical": "ordem_geral_disparo",
+          "active_state": 1,
+          "status": "manual",
+          "rule_id": "trip-exemplo",
+          "profile_id": "exemplo-sintetico-A",
+          "profile_version": "1.0",
+          "reason": "Regra fictícia para demonstrar rastreabilidade; não usar em equipamento real.",
+          "reviewer": "Responsável fictício - demonstração",
+          "candidates": [
+            "trip-exemplo"
+          ]
+        },
+        "activations": [
+          0.002
+        ],
+        "returns": [
+          0.004
+        ],
+        "initial_active": false,
+        "final_active": false,
+        "asserted_samples": 2
+      },
+      {
+        "number": 3,
+        "name": "52_ABERTO",
+        "phase": "",
+        "normal": "0",
+        "initial": 0,
+        "final": 1,
+        "rises": [
+          0.003
+        ],
+        "falls": [],
+        "active_samples": 2,
+        "classification": {
+          "category": "desconhecido",
+          "function": "",
+          "canonical": "",
+          "active_state": 1,
+          "status": "unclassified",
+          "rule_id": "",
+          "profile_id": "generico",
+          "profile_version": "1.0",
+          "reason": "Nenhuma regra aplicável; estado ativo 1 é uma hipótese padrão.",
+          "reviewer": "",
+          "candidates": []
+        },
+        "activations": [
+          0.003
+        ],
+        "returns": [],
+        "initial_active": false,
+        "final_active": true,
+        "asserted_samples": 2
+      },
+      {
+        "number": 4,
+        "name": "ALARME",
+        "phase": "",
+        "normal": "0",
+        "initial": 1,
+        "final": 1,
+        "rises": [],
+        "falls": [],
+        "active_samples": 5,
+        "classification": {
+          "category": "alarme",
+          "function": "",
+          "canonical": "",
+          "active_state": 1,
+          "status": "suggested",
+          "rule_id": "generic-ALARME",
+          "profile_id": "generico",
+          "profile_version": "1.0",
+          "reason": "Identificação textual conhecida; conferir a lógica e a polaridade do relé.",
+          "reviewer": "",
+          "candidates": [
+            "generic-ALARME"
+          ]
+        },
+        "activations": [],
+        "returns": [],
+        "initial_active": true,
+        "final_active": true,
+        "asserted_samples": 5
+      }
+    ],
+    "revision": "2001",
+    "revision_declared": "2001",
+    "revision_mode": "standard",
+    "files": {
+      "cfg_sha256": "1f6589028f4b2ea422f02a3e98794bdb8c42821da3df27a5c4bde89656f2bdae",
+      "dat_sha256": "a3a0304d37d075d5cea087fd3b11d6087f45fa8a4455f48b87399fd98fac9890",
+      "cfg_name": "sintetico-A.cfg",
+      "dat_name": "sintetico-A.dat",
+      "hdr_name": "sintetico-a.hdr",
+      "hdr_sha256": "e2efb2572550d9874cd52ca4907a5932cf0a5e5dc8355a271a73e04969a1ae65"
+    },
+    "validation": {
+      "warnings": [],
+      "checks": [
+        "Estrutura e contagens do CFG",
+        "Revisão e datas",
+        "Taxas e limites de amostras",
+        "Formato e integridade do DAT",
+        "Estados digitais binários",
+        "Sequência e tempos das amostras"
+      ]
+    },
+    "profile": {
+      "id": "exemplo-sintetico-A",
+      "version": "1.0",
+      "manufacturer": "DEMONSTRAÇÃO",
+      "model": "Equipamento fictício",
+      "station": "",
+      "device": "",
+      "sha256": "f22312341cd00a20df34b650fff389ff6542b6f936d4752519ddc2197a6b755a",
+      "rules": [
+        {
+          "id": "partida-exemplo",
+          "match": "50P_START",
+          "category": "partida",
+          "function": "50",
+          "status": "suggested",
+          "active_state": 1,
+          "reason": "Sugestão textual; conferir a lógica do relé."
+        },
+        {
+          "id": "trip-exemplo",
+          "match": "TRIP_GERAL",
+          "category": "disparo",
+          "function": "",
+          "status": "manual",
+          "active_state": 1,
+          "canonical": "ordem_geral_disparo",
+          "reviewer": "Responsável fictício - demonstração",
+          "reason": "Regra fictícia para demonstrar rastreabilidade; não usar em equipamento real."
+        }
+      ],
+      "generic_fallback_version": "1.0"
+    },
+    "object": {
+      "name": "LT 230 kV MODELO A - MODELO B (dados sinteticos)",
+      "type": "LT",
+      "status": "extracted",
+      "source": "sintetico-a.hdr",
+      "evidence": "Objeto protegido: LT 230 kV MODELO A - MODELO B (dados sinteticos)",
+      "candidates": [
+        {
+          "name": "LT 230 kV MODELO A - MODELO B (dados sinteticos)",
+          "type": "LT",
+          "evidence": "Objeto protegido: LT 230 kV MODELO A - MODELO B (dados sinteticos)"
+        }
+      ]
+    },
+    "hdr": {
+      "available": true,
+      "name": "sintetico-a.hdr",
+      "text": "Objeto protegido: LT 230 kV MODELO A - MODELO B (dados sinteticos)\n",
+      "encoding": "utf-8-sig",
+      "warnings": []
+    }
+  },
+  "b": {
+    "station": "SE MODELO - DADOS SINTÉTICOS",
+    "device": "Relé demonstrativo B",
+    "format": "ASCII",
+    "frequency": 60.0,
+    "start": "19/10/2026,12:00:00.000000",
+    "trigger": "19/10/2026,12:00:00.002000",
+    "samples": 5,
+    "duration": 0.004,
+    "channels": [
+      {
+        "number": 1,
+        "name": "50P_START",
+        "phase": "",
+        "normal": "0",
+        "initial": 0,
+        "final": 0,
+        "rises": [
+          0.001
+        ],
+        "falls": [
+          0.003
+        ],
+        "active_samples": 2,
+        "classification": {
+          "category": "partida",
+          "function": "50",
+          "canonical": "",
+          "active_state": 1,
+          "status": "suggested",
+          "rule_id": "partida-exemplo",
+          "profile_id": "exemplo-sintetico-B",
+          "profile_version": "1.0",
+          "reason": "Sugestão textual; conferir a lógica do relé.",
+          "reviewer": "",
+          "candidates": [
+            "partida-exemplo"
+          ]
+        },
+        "activations": [
+          0.001
+        ],
+        "returns": [
+          0.003
+        ],
+        "initial_active": false,
+        "final_active": false,
+        "asserted_samples": 2
+      },
+      {
+        "number": 2,
+        "name": "TRIP_GERAL",
+        "phase": "",
+        "normal": "0",
+        "initial": 0,
+        "final": 0,
+        "rises": [
+          0.002
+        ],
+        "falls": [
+          0.004
+        ],
+        "active_samples": 2,
+        "classification": {
+          "category": "disparo",
+          "function": "",
+          "canonical": "ordem_geral_disparo",
+          "active_state": 1,
+          "status": "manual",
+          "rule_id": "trip-exemplo",
+          "profile_id": "exemplo-sintetico-B",
+          "profile_version": "1.0",
+          "reason": "Regra fictícia para demonstrar rastreabilidade; não usar em equipamento real.",
+          "reviewer": "Responsável fictício - demonstração",
+          "candidates": [
+            "trip-exemplo"
+          ]
+        },
+        "activations": [
+          0.002
+        ],
+        "returns": [
+          0.004
+        ],
+        "initial_active": false,
+        "final_active": false,
+        "asserted_samples": 2
+      },
+      {
+        "number": 3,
+        "name": "52_ABERTO",
+        "phase": "",
+        "normal": "0",
+        "initial": 0,
+        "final": 0,
+        "rises": [],
+        "falls": [],
+        "active_samples": 0,
+        "classification": {
+          "category": "desconhecido",
+          "function": "",
+          "canonical": "",
+          "active_state": 1,
+          "status": "unclassified",
+          "rule_id": "",
+          "profile_id": "generico",
+          "profile_version": "1.0",
+          "reason": "Nenhuma regra aplicável; estado ativo 1 é uma hipótese padrão.",
+          "reviewer": "",
+          "candidates": []
+        },
+        "activations": [],
+        "returns": [],
+        "initial_active": false,
+        "final_active": false,
+        "asserted_samples": 0
+      },
+      {
+        "number": 4,
+        "name": "ALARME",
+        "phase": "",
+        "normal": "0",
+        "initial": 1,
+        "final": 1,
+        "rises": [],
+        "falls": [],
+        "active_samples": 5,
+        "classification": {
+          "category": "alarme",
+          "function": "",
+          "canonical": "",
+          "active_state": 1,
+          "status": "suggested",
+          "rule_id": "generic-ALARME",
+          "profile_id": "generico",
+          "profile_version": "1.0",
+          "reason": "Identificação textual conhecida; conferir a lógica e a polaridade do relé.",
+          "reviewer": "",
+          "candidates": [
+            "generic-ALARME"
+          ]
+        },
+        "activations": [],
+        "returns": [],
+        "initial_active": true,
+        "final_active": true,
+        "asserted_samples": 5
+      }
+    ],
+    "revision": "2001",
+    "revision_declared": "2001",
+    "revision_mode": "standard",
+    "files": {
+      "cfg_sha256": "f6eff461158f8e22bfb0c0a6c07f77f0c4e7c41387b39c76edef2229e30e22d0",
+      "dat_sha256": "eeca1b13ebc583b8cfe0576589cf2a76c038d18edfa34c3837c0dacecb5097c9",
+      "cfg_name": "sintetico-B.cfg",
+      "dat_name": "sintetico-B.dat",
+      "hdr_name": "sintetico-b.hdr",
+      "hdr_sha256": "e2efb2572550d9874cd52ca4907a5932cf0a5e5dc8355a271a73e04969a1ae65"
+    },
+    "validation": {
+      "warnings": [],
+      "checks": [
+        "Estrutura e contagens do CFG",
+        "Revisão e datas",
+        "Taxas e limites de amostras",
+        "Formato e integridade do DAT",
+        "Estados digitais binários",
+        "Sequência e tempos das amostras"
+      ]
+    },
+    "profile": {
+      "id": "exemplo-sintetico-B",
+      "version": "1.0",
+      "manufacturer": "DEMONSTRAÇÃO",
+      "model": "Equipamento fictício",
+      "station": "",
+      "device": "",
+      "sha256": "e5ae3e35ff738f5f8e32eb716c403d238f818276510d711c2c536c01281f653f",
+      "rules": [
+        {
+          "id": "partida-exemplo",
+          "match": "50P_START",
+          "category": "partida",
+          "function": "50",
+          "status": "suggested",
+          "active_state": 1,
+          "reason": "Sugestão textual; conferir a lógica do relé."
+        },
+        {
+          "id": "trip-exemplo",
+          "match": "TRIP_GERAL",
+          "category": "disparo",
+          "function": "",
+          "status": "manual",
+          "active_state": 1,
+          "canonical": "ordem_geral_disparo",
+          "reviewer": "Responsável fictício - demonstração",
+          "reason": "Regra fictícia para demonstrar rastreabilidade; não usar em equipamento real."
+        }
+      ],
+      "generic_fallback_version": "1.0"
+    },
+    "object": {
+      "name": "LT 230 kV MODELO A - MODELO B (dados sinteticos)",
+      "type": "LT",
+      "status": "extracted",
+      "source": "sintetico-b.hdr",
+      "evidence": "Objeto protegido: LT 230 kV MODELO A - MODELO B (dados sinteticos)",
+      "candidates": [
+        {
+          "name": "LT 230 kV MODELO A - MODELO B (dados sinteticos)",
+          "type": "LT",
+          "evidence": "Objeto protegido: LT 230 kV MODELO A - MODELO B (dados sinteticos)"
+        }
+      ]
+    },
+    "hdr": {
+      "available": true,
+      "name": "sintetico-b.hdr",
+      "text": "Objeto protegido: LT 230 kV MODELO A - MODELO B (dados sinteticos)\n",
+      "encoding": "utf-8-sig",
+      "warnings": []
+    }
+  }
+}

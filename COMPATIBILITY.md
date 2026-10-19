@@ -41,8 +41,9 @@ registros sintéticos e não estabelece conformidade com todo exportador existen
   O pacote é lido em memória, sem extrair arquivos no servidor.
 
 Limite de 32 MB por entrada, incluindo o tamanho descompactado do ZIP. Um ZIP pode
-ter até 1000 arquivos. HDR/INF podem acompanhar o registro, mas seu texto não é
-usado para inferir funções ou alterar a interpretação dos canais digitais.
+ter até 1000 arquivos. A seção HDR e o arquivo HDR de mesmo nome-base/pasta são lidos opcionalmente para
+identificar o objeto relacionado. HDR/INF não são usados para inferir funções
+de proteção ou alterar polaridades dos canais digitais.
 
 ## Variações de exportadores
 

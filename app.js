@@ -4,7 +4,7 @@ async function b64(file){let bytes=new Uint8Array(await file.arrayBuffer()),s=''
 const acts=channelActivations, initial=channelInitialActive;
 const origins={suggested:'Sugestão automática',confirmed:'Perfil confirmado',manual:'Revisão manual',unclassified:'Não classificado',conflict:'Conflito de regras'};
 function classificationHtml(c){const cl=c.classification;if(!cl)return '';return `<b>${esc(cl.category)}${cl.function?' · ANSI '+esc(cl.function):''}</b><small>${esc(origins[cl.status])} · Estado ativo: ${cl.active_state}</small><small>Regra: ${esc(cl.rule_id||'nenhuma')} · Perfil ${esc(cl.profile_id)} v${esc(cl.profile_version)}</small><small>${esc(cl.reason)}</small>${cl.reviewer?`<small>Responsável: ${esc(cl.reviewer)}</small>`:''}${cl.canonical?`<small>Equivalência: ${esc(cl.canonical)}</small>`:''}`}
-function qualityHtml(r,label=''){return `<h3>${esc(label)} · Qualidade e rastreabilidade</h3><p>Perfil ${esc(r.profile.id)} v${esc(r.profile.version)} · Revisão ${esc(r.revision)} (${esc(r.revision_mode||'standard')}) · ${r.validation.checks.length} verificações estruturais concluídas.</p>${r.validation.warnings.length?'<ul class="warning">'+r.validation.warnings.map(w=>`<li>${esc(w)}</li>`).join('')+'</ul>':'<p>Sem alertas estruturais detectados. Isso não comprova a correção da lógica ou da polaridade do relé.</p>'}<p>${r.channels.filter(c=>['unclassified','conflict','suggested'].includes(c.classification.status)).length} canais com interpretação ou polaridade não confirmada.</p><details><summary>Arquivos e hashes SHA-256</summary><p>${esc(r.files.cfg_name)}<br>${esc(r.files.cfg_sha256)}<br>${esc(r.files.dat_name)}<br>${esc(r.files.dat_sha256)}${r.files.container_name?`<br>Contêiner: ${esc(r.files.container_name)}<br>${esc(r.files.container_sha256)}`:''}${(r.files.dat_segments||[]).map(p=>`<br>Segmento: ${esc(p.name)}<br>${esc(p.sha256)}`).join('')}<br>Perfil: ${esc(r.profile.sha256)}</p></details>`}
+function qualityHtml(r,label=''){return objectHtml(r,label==='B'?'B':'A')+`<h3>${esc(label)} · Qualidade e rastreabilidade</h3><p>Perfil ${esc(r.profile.id)} v${esc(r.profile.version)} · Revisão ${esc(r.revision)} (${esc(r.revision_mode||'standard')}) · ${r.validation.checks.length} verificações estruturais concluídas.</p>${r.validation.warnings.length?'<ul class="warning">'+r.validation.warnings.map(w=>`<li>${esc(w)}</li>`).join('')+'</ul>':'<p>Sem alertas estruturais detectados. Isso não comprova a correção da lógica ou da polaridade do relé.</p>'}<p>${r.channels.filter(c=>['unclassified','conflict','suggested'].includes(c.classification.status)).length} canais com interpretação ou polaridade não confirmada.</p><details><summary>Arquivos e hashes SHA-256</summary><p>${esc(r.files.cfg_name)}<br>${esc(r.files.cfg_sha256)}<br>${esc(r.files.dat_name)}<br>${esc(r.files.dat_sha256)}${r.files.container_name?`<br>Contêiner: ${esc(r.files.container_name)}<br>${esc(r.files.container_sha256)}`:''}${(r.files.dat_segments||[]).map(p=>`<br>Segmento: ${esc(p.name)}<br>${esc(p.sha256)}`).join('')}<br>Perfil: ${esc(r.profile.sha256)}</p></details>`}
 function render(){const list=result.channels.filter(c=>el('filter').value==='all'||(el('filter').value==='rises'?acts(c).length:channelActiveSamples(c)));el('channels').innerHTML=list.map(c=>`<tr><td><b>${esc(c.name||'(sem identificação no CFG)')}</b><small>#${c.number} ${esc(c.phase)} · Normal CFG: ${esc(c.normal??'não informado')}</small></td><td>${c.initial} → ${c.final}${initial(c)?' <small>Já ativo no início</small>':''}</td><td class="tag">${acts(c).length}<small>Entrada no estado ${c.classification.active_state}</small></td><td>${classificationHtml(c)}${reviewButton(c,'A')}<small>Transições observadas (s): ${acts(c).map(t=>t.toFixed(6)).join(' · ')||'nenhuma'}</small></td><td>${c.returns.map(t=>t.toFixed(6)).join(' · ')||'—'}</td></tr>`).join('');el('empty').hidden=!!list.length}
 
 let comparison;
@@ -27,7 +27,7 @@ function updateInputs(){
     el(second).required=enabled&&!single;el(second).disabled=!enabled||single;
   }
 }
-for(const id of ['cfg','dat','cfgB','datB'])el(id).onchange=()=>{resetResults();updateInputs()};
+for(const id of ['cfg','dat','cfgB','datB','hdrA','hdrB'])el(id).onchange=()=>{resetResults();updateInputs()};
 async function analyzeFiles(cfg,parts,label,side){
   if(!cfg)throw Error(`${label}: selecione o CFG, CFF ou ZIP.`);
   const single=/\.(cff|zip)$/i.test(cfg.name);
@@ -35,6 +35,7 @@ async function analyzeFiles(cfg,parts,label,side){
   if(cfg.size+(single?0:[...parts].reduce((sum,f)=>sum+f.size,0))>32*1024*1024)throw Error(`${label}: entrada deve ter até 32 MB.`);
   const profile=readProfile(side);
   const payload=single?{source:await b64(cfg),source_name:cfg.name,profile}:{cfg:await b64(cfg),cfg_name:cfg.name,dat_files:await Promise.all([...parts].map(async f=>({name:f.name,data:await b64(f)}))),profile};
+  const hdr=el('hdr'+side).files[0];if(hdr){if(hdr.size>2*1024*1024)throw Error('HDR deve ter até 2 MB.');payload.hdr=await b64(hdr);payload.hdr_name=hdr.name}
   const response=await fetch('/analyze',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
   const data=await response.json();if(!response.ok)throw Error(`${label}: ${data.error}`);return data;
 }
@@ -112,4 +113,17 @@ document.addEventListener('click',event=>{
   const details=el('profileEditors').closest('details');details.open=true;
   el('ruleName').scrollIntoView({behavior:'smooth',block:'center'});
   profileMessage('Identificação original preenchida a partir do CFG. Revise a interpretação, informe responsável/justificativa e adicione a regra.');
+});
+
+function objectHtml(r,side='A'){const obj=r.object||{};return `<div class="panel"><h3>Objeto relacionado</h3><p><b>${esc(obj.name||'Não identificado')}</b> · ${esc(obj.type||'Não determinado')}</p><p>${obj.status==='manual'?'Identificação revisada manualmente':obj.status==='extracted'?'Extraído de campo do HDR':obj.status==='suggested'?'Sugestão a partir do texto do HDR':obj.status==='ambiguous'?'Identificação ambígua no HDR':'Sem identificação disponível'}${obj.source?' · '+esc(obj.source):''}</p>${obj.evidence?`<blockquote>${esc(obj.evidence)}</blockquote>`:''}${obj.candidates?.length>1?'<ul>'+obj.candidates.map(c=>`<li>${esc(c.name)} · ${esc(c.evidence)}</li>`).join('')+'</ul>':''}${r.hdr?.warnings?.map(w=>`<p class="warning">${esc(w)}</p>`).join('')||''}${r.hdr?.available?`<details><summary>Revisar identificação do objeto</summary><label>Nome <input id="objectName${side}" type="text" value="${esc(obj.name)}" maxlength="500"></label><label>Tipo <input id="objectType${side}" type="text" value="${esc(obj.type)}" maxlength="100"></label><label>Responsável <input id="objectReviewer${side}" type="text" maxlength="200"></label><label>Justificativa <input id="objectReason${side}" type="text" maxlength="500"></label><button type="button" data-object-review="${side}">Aplicar revisão</button><p id="objectMessage${side}"></p></details><details><summary>Texto original do HDR</summary><pre style="white-space:pre-wrap;overflow-wrap:anywhere">${esc(r.hdr.text)}</pre></details>`:'<p>HDR não fornecido (opcional).</p>'}</div>`}
+
+document.addEventListener('click',event=>{
+  const button=event.target.closest('[data-object-review]');if(!button)return;
+  const side=button.dataset.objectReview,record=comparison?comparison[side.toLowerCase()]:result;
+  if(!record?.hdr?.available)return;
+  const name=el('objectName'+side).value.trim(),type=el('objectType'+side).value.trim(),reviewer=el('objectReviewer'+side).value.trim(),reason=el('objectReason'+side).value.trim();
+  if(!name||!reviewer||!reason){el('objectMessage'+side).textContent='Informe nome, responsável e justificativa.';return}
+  const detected=record.object.detected||JSON.parse(JSON.stringify(record.object));
+  record.object={...record.object,detected,name,type:type||'Não determinado',status:'manual',reviewer,reason,evidence:(detected.evidence||'Texto original preservado no HDR')+' | Revisão por '+reviewer+': '+reason};
+  if(comparison)el('qualityComparison').innerHTML=qualityHtml(comparison.a,'A')+qualityHtml(comparison.b,'B');else el('qualitySingle').innerHTML=qualityHtml(result,'Registro');
 });

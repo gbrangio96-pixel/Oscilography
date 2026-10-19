@@ -4,6 +4,7 @@
   const name=c=>`${c.name||'(sem identificação)'} | Fase: ${c.phase||'-'} | Canal ${c.number}`;
   const acts=c=>c.activations||c.rises;
   const initial=c=>c.initial_active??Boolean(c.initial);
+  const objectOrigins={extracted:'Extraído de campo HDR',suggested:'Sugestão do texto HDR',ambiguous:'Ambíguo',manual:'Revisão manual',not_identified:'Não identificado'};
   const origins={suggested:'SUGESTÃO',confirmed:'PERFIL CONFIRMADO',manual:'REVISÃO MANUAL',unclassified:'NÃO CLASSIFICADO',conflict:'CONFLITO'};
   function reportLines(data,compare){
     const generated=new Intl.DateTimeFormat('pt-BR',{dateStyle:'short',timeStyle:'medium',timeZone:'America/Sao_Paulo'}).format(new Date());
@@ -13,8 +14,9 @@
     for(const [label,r] of records){
       lines.push(`${label}: ${r.station} | Equipamento: ${r.device}`,`Início: ${r.start} | Trigger: ${r.trigger}`,`${r.samples} amostras | ${r.format} | Revisão ${r.revision||'-'} | ${r.channels.length} canais digitais`,`${r.channels.filter(c=>acts(c).length).length} canais ativados durante o registro; ${r.channels.filter(initial).length} já ativos na primeira amostra.`);
       const uncertain=r.channels.filter(c=>!['confirmed','manual'].includes(c.classification?.status));
-      lines.push(`${uncertain.length} canais com classificação ou polaridade não confirmada.`,`${r.validation?.warnings.length||0} alertas de qualidade.`, '');
+      lines.push(`${uncertain.length} canais com classificação ou polaridade não confirmada.`,`${(r.validation?.warnings.length||0)+(r.hdr?.warnings?.length||0)} alertas de qualidade.`, '');
     }
+    for(const [label,r] of records){if(r.object?.name)lines.push(`${label} - Objeto relacionado: ${r.object.name} | Tipo: ${r.object.type}`,`Fonte: ${r.object.source} | Origem: ${objectOrigins[r.object.status]||r.object.status}`,`Evidência HDR: ${r.object.evidence}`);else lines.push(`${label} - Objeto relacionado: não identificado (HDR opcional).`)}
     lines.push('2. EVIDÊNCIAS OBSERVADAS');
     for(const [label,r] of records){
       lines.push(`${label} - CANAIS ATIVADOS (entrada no estado ativo configurado):`);
@@ -83,7 +85,7 @@
     const semantic=reportLines(data,compare);
     const count=r=>r.channels.filter(c=>acts(c).length).length;
     const uncertain=r=>r.channels.filter(c=>!['confirmed','manual'].includes(c.classification?.status)).length;
-    const warnings=records.reduce((n,[_,r])=>n+(r.validation?.warnings.length||0),0);
+    const warnings=records.reduce((n,[_,r])=>n+(r.validation?.warnings.length||0)+(r.hdr?.warnings?.length||0),0);
     const rows=compare?root.compareRecords(data.a,data.b):[];
     const origin=c=>origins[c.classification?.status]||'NÃO CLASSIFICADO';
     const originColor=c=>['confirmed','manual'].includes(c.classification?.status)?C.teal:c.classification?.status==='conflict'?C.red:C.amber;
@@ -103,7 +105,7 @@
     const metrics=compare?[[count(data.a),'Ativados em A'],[count(data.b),'Ativados em B'],[rows.filter(c=>['only_a','only_b'].includes(c.status)).length,'Ativações exclusivas'],[warnings,'Alertas de qualidade']]:[[count(data),'Canais ativados'],[data.channels.filter(initial).length,'Já ativos no início'],[uncertain(data),'Não confirmados'],[warnings,'Alertas de qualidade']];
     metrics.forEach(([value,label],i)=>{const x=40+i*132;doc.rect(x,doc.y,119,76,C.pale);doc.rect(x,doc.y,119,3,i===3&&warnings?C.warning:C.mint);doc.text(x+12,doc.y+10,String(value),27,'F2',i===3&&warnings?C.amber:C.teal);wrap(label,96,8.5,'F2').forEach((line,j)=>doc.text(x+12,doc.y+47+j*11,line,8.5,'F2',C.muted))});
     doc.y+=94;
-    const fields=[['Estação',r=>r.station],['Equipamento',r=>r.device],['Início do registro',r=>r.start],['Trigger',r=>r.trigger],['Formato / revisão',r=>`${r.format} / ${r.revision||'não informada'}`],['Amostras / canais',r=>`${r.samples} / ${r.channels.length}`],['Perfil / versão',r=>r.profile?`${r.profile.id} / ${r.profile.version}`:'Não informado']];
+    const fields=[['Objeto relacionado',r=>r.object?.name||'Não identificado'],['Tipo do objeto',r=>r.object?.type||'Não determinado'],['Estação',r=>r.station],['Equipamento',r=>r.device],['Início do registro',r=>r.start],['Trigger',r=>r.trigger],['Formato / revisão',r=>`${r.format} / ${r.revision||'não informada'}`],['Amostras / canais',r=>`${r.samples} / ${r.channels.length}`],['Perfil / versão',r=>r.profile?`${r.profile.id} / ${r.profile.version}`:'Não informado']];
     doc.table(compare?['IDENTIFICAÇÃO','REGISTRO A','REGISTRO B']:['IDENTIFICAÇÃO','REGISTRO'],fields.map(([label,get])=>[{text:label,font:'F2'},...records.map(([_,r])=>get(r)||'Não informado')]),compare?[145,185,185]:[145,370]);
     doc.paragraph(records.map(([label,r])=>`${label}: ${uncertain(r)} canal(is) com classificação ou polaridade não confirmada.`).join(' '),{background:records.some(([_,r])=>uncertain(r))?C.warning:C.mint,fill:records.some(([_,r])=>uncertain(r))?C.amber:C.teal,size:9.5});
 
@@ -135,12 +137,17 @@
 
     doc.section('4','Qualidade e rastreabilidade','Identificação das fontes, do perfil aplicado e das limitações detectadas.');
     for(const [label,r] of records){
+      doc.subtitle(`${label} | Objeto relacionado`);
+      if(r.object?.name){doc.paragraph(`${r.object.name} | ${r.object.type}`,{font:'F2',background:C.mint,fill:C.teal});doc.paragraph(`Fonte: ${r.object.source} | Origem: ${objectOrigins[r.object.status]||r.object.status}. Evidência: ${r.object.evidence}`,{size:9.5})}else doc.paragraph(r.object?.status==='ambiguous'?'HDR contém múltiplos candidatos; objeto não selecionado.':'Objeto não identificado; HDR é opcional.',{size:9.5});
+      if(r.object?.candidates?.length>1)doc.table(['CANDIDATO','EVIDÊNCIA HDR'],r.object.candidates.map(c=>[c.name,c.evidence]),[215,300]);
+      for(const warning of r.hdr?.warnings||[])doc.paragraph(warning,{background:C.warning,fill:C.amber,size:9});
       doc.subtitle(`${label} | Qualidade do registro`);
       doc.paragraph((r.validation?.checks||['Verificações indisponíveis nesta análise.']).map(s=>'· '+s).join('\n'),{size:9.5});
       const alerts=r.validation?.warnings||[];
       doc.paragraph(alerts.length?alerts.map(s=>'ALERTA · '+s).join('\n'):'Nenhum alerta estrutural detectado. Isso não comprova a correção da lógica ou do perfil.',{background:alerts.length?C.warning:C.mint,fill:alerts.length?C.amber:C.teal,size:9.5});
       const sources=[];
       if(r.files){sources.push(['Arquivo CFG',r.files.cfg_name||'Não informado'],['SHA-256 CFG',r.files.cfg_sha256||'Não informado'],['Arquivo DAT',r.files.dat_name||'Não informado'],['SHA-256 DAT',r.files.dat_sha256||'Não informado']);if(r.files.container_name)sources.push(['Contêiner',r.files.container_name],['SHA-256 contêiner',r.files.container_sha256]);for(const part of r.files.dat_segments||[])sources.push(['Segmento',part.name],['SHA-256 segmento',part.sha256])}
+      if(r.files?.hdr_name)sources.push(['Arquivo HDR',r.files.hdr_name],['SHA-256 HDR',r.files.hdr_sha256]);
       if(r.profile)sources.push(['Perfil / versão',`${r.profile.id} / ${r.profile.version}`],['SHA-256 perfil',r.profile.sha256||'Não informado'],['Fabricante / modelo',`${r.profile.manufacturer||'Não informado'} / ${r.profile.model||'Não informado'}`],['Escopo',`Estação: ${r.profile.station||'sem restrição'}; equipamento: ${r.profile.device||'sem restrição'}`],['Fallback genérico',r.profile.generic_fallback_version||'Não informado']);
       if(sources.length)doc.table(['FONTE / IDENTIFICADOR','VALOR'],sources.map(([label,value])=>[label,{text:value,font:label.startsWith('SHA-256')?'F3':'F1',size:label.startsWith('SHA-256')?8:9}]),[145,370]);
     }

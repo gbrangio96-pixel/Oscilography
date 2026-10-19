@@ -3,6 +3,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from comtrade_reader import analyze
 from profiles import generic_profile
+from hdr_reader import attach_hdr
 from containers import analyze_container, join_segments
 
 class Handler(BaseHTTPRequestHandler):
@@ -58,6 +59,15 @@ class Handler(BaseHTTPRequestHandler):
                     import hashlib
                     result['files']['dat_segments'] = [dict(name=n,sha256=hashlib.sha256(d).hexdigest()) for n,d in parts]
                 result['files'].update(cfg_name=str(payload.get('cfg_name', 'registro.cfg'))[:250], dat_name=dat_name[:1000])
+            if 'hdr' in payload:
+                hdr_data = base64.b64decode(payload['hdr'], validate=True)
+                if len(hdr_data) > 2 * 1024 * 1024:
+                    raise ValueError('HDR opcional deve ter até 2 MB.')
+                if result.get('hdr', {}).get('available'):
+                    raise ValueError('Já existe HDR no contêiner; remova o HDR separado para evitar fontes conflitantes.')
+                attach_hdr(result, hdr_data, str(payload.get('hdr_name', 'registro.hdr'))[:250])
+            elif 'hdr' not in result:
+                attach_hdr(result)
             body, code = json.dumps(result, ensure_ascii=False).encode(), 200
         except Exception as exc:
             body, code = json.dumps({'error': f'Não foi possível ler o COMTRADE: {exc}'}, ensure_ascii=False).encode(), 400
