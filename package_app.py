@@ -4,7 +4,7 @@ from zipfile import ZipFile, ZIP_DEFLATED
 
 ROOT = Path(__file__).resolve().parent
 FILES = ['README.md', 'PROFILES.md', 'COMPATIBILITY.md', '.gitignore', 'server.py', 'comtrade_reader.py',
-         'measurements.py', 'profiles.py', 'hdr_reader.py', 'containers.py', 'comparison.js', 'report.js', 'pdf_layout.js', 'analog_plot.js', 'app.js', 'index.html', 'package_app.py']
+         'ansi_analysis.py', 'ansi_catalog.json', 'ansi_ui.js', 'measurements.py', 'profiles.py', 'hdr_reader.py', 'containers.py', 'comparison.js', 'report.js', 'pdf_layout.js', 'analog_plot.js', 'app.js', 'index.html', 'package_app.py']
 
 
 if __name__ == '__main__':

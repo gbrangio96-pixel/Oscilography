@@ -70,7 +70,14 @@
           }
         ],
         "total_active_duration": 0.08,
-        "duration_estimated": false
+        "duration_estimated": false,
+        "ansi_functions": [
+          {
+            "code": "50",
+            "name": "Sobrecorrente instantânea",
+            "catalogued": true
+          }
+        ]
       },
       {
         "number": 2,
@@ -132,7 +139,8 @@
           }
         ],
         "total_active_duration": 0.07,
-        "duration_estimated": false
+        "duration_estimated": false,
+        "ansi_functions": []
       },
       {
         "number": 3,
@@ -160,7 +168,7 @@
           "status": "unclassified",
           "rule_id": "",
           "profile_id": "generico",
-          "profile_version": "1.0",
+          "profile_version": "1.1",
           "reason": "Nenhuma regra aplicável; estado ativo 1 é uma hipótese padrão.",
           "reviewer": "",
           "candidates": []
@@ -184,7 +192,8 @@
           }
         ],
         "total_active_duration": 0.09000000000000001,
-        "duration_estimated": false
+        "duration_estimated": false,
+        "ansi_functions": []
       },
       {
         "number": 4,
@@ -205,7 +214,7 @@
           "status": "suggested",
           "rule_id": "generic-ALARME",
           "profile_id": "generico",
-          "profile_version": "1.0",
+          "profile_version": "1.1",
           "reason": "Identificação textual conhecida; conferir a lógica e a polaridade do relé.",
           "reviewer": "",
           "candidates": [
@@ -229,7 +238,8 @@
           }
         ],
         "total_active_duration": 0.2,
-        "duration_estimated": false
+        "duration_estimated": false,
+        "ansi_functions": []
       }
     ],
     "first_time": 0.0,
@@ -1943,7 +1953,7 @@
           "reason": "Regra fictícia para demonstrar rastreabilidade; não usar em equipamento real."
         }
       ],
-      "generic_fallback_version": "1.0"
+      "generic_fallback_version": "1.1"
     },
     "object": {
       "name": "LT 230 kV MODELO A - MODELO B (dados sinteticos)",
@@ -1965,6 +1975,95 @@
       "text": "ObjectID: LT 230 kV MODELO A - MODELO B (dados sinteticos)\n",
       "encoding": "utf-8-sig",
       "warnings": []
+    },
+    "ansi": {
+      "catalog_version": "1.0",
+      "functions": [
+        {
+          "code": "50",
+          "name": "Sobrecorrente instantânea",
+          "catalogued": true,
+          "activated": true,
+          "activation_count": 1,
+          "channels": [
+            {
+              "number": 1,
+              "name": "50P_START",
+              "phase": "",
+              "category": "partida",
+              "status": "suggested"
+            }
+          ],
+          "first_activation": 0.05
+        }
+      ],
+      "timeline": [
+        {
+          "order": 1,
+          "time": 0.05,
+          "codes": [
+            "50"
+          ],
+          "names": [
+            "Sobrecorrente instantânea"
+          ],
+          "channel_number": 1,
+          "channel_name": "50P_START",
+          "phase": "",
+          "category": "partida",
+          "status": "suggested",
+          "simultaneous": false
+        },
+        {
+          "order": 2,
+          "time": 0.07,
+          "codes": [],
+          "names": [],
+          "channel_number": 2,
+          "channel_name": "TRIP_GERAL",
+          "phase": "",
+          "category": "disparo",
+          "status": "manual",
+          "simultaneous": false
+        },
+        {
+          "order": 3,
+          "time": 0.11,
+          "codes": [],
+          "names": [],
+          "channel_number": 3,
+          "channel_name": "52_ABERTO",
+          "phase": "",
+          "category": "desconhecido",
+          "status": "unclassified",
+          "simultaneous": false
+        }
+      ],
+      "initial_active": [],
+      "unmapped_channels": [
+        {
+          "number": 2,
+          "name": "TRIP_GERAL",
+          "reason": "Sem código ou nome de função associado no perfil.",
+          "activated": true,
+          "status": "manual"
+        },
+        {
+          "number": 3,
+          "name": "52_ABERTO",
+          "reason": "Sem código ou nome de função associado no perfil.",
+          "activated": true,
+          "status": "unclassified"
+        },
+        {
+          "number": 4,
+          "name": "ALARME",
+          "reason": "Sem código ou nome de função associado no perfil.",
+          "activated": false,
+          "status": "suggested"
+        }
+      ],
+      "note": "Funções associadas a sinais digitais pelo perfil; não identifica a função responsável pelo trip. Sinais já ativos no início ficam separados. A ordem usa o tempo do DAT dentro de cada registro; eventos com o mesmo timestamp compartilham ordem, sem precedência inferida. Múltiplos códigos no mesmo sinal são associações, não comprovação de atuação independente de cada função. Códigos fora do catálogo são declarações personalizadas."
     }
   },
   "b": {
@@ -2037,7 +2136,14 @@
           }
         ],
         "total_active_duration": 0.08,
-        "duration_estimated": false
+        "duration_estimated": false,
+        "ansi_functions": [
+          {
+            "code": "50",
+            "name": "Sobrecorrente instantânea",
+            "catalogued": true
+          }
+        ]
       },
       {
         "number": 2,
@@ -2099,7 +2205,8 @@
           }
         ],
         "total_active_duration": 0.07,
-        "duration_estimated": false
+        "duration_estimated": false,
+        "ansi_functions": []
       },
       {
         "number": 3,
@@ -2120,7 +2227,7 @@
           "status": "unclassified",
           "rule_id": "",
           "profile_id": "generico",
-          "profile_version": "1.0",
+          "profile_version": "1.1",
           "reason": "Nenhuma regra aplicável; estado ativo 1 é uma hipótese padrão.",
           "reviewer": "",
           "candidates": []
@@ -2132,7 +2239,8 @@
         "asserted_samples": 0,
         "active_intervals": [],
         "total_active_duration": 0.0,
-        "duration_estimated": false
+        "duration_estimated": false,
+        "ansi_functions": []
       },
       {
         "number": 4,
@@ -2153,7 +2261,7 @@
           "status": "suggested",
           "rule_id": "generic-ALARME",
           "profile_id": "generico",
-          "profile_version": "1.0",
+          "profile_version": "1.1",
           "reason": "Identificação textual conhecida; conferir a lógica e a polaridade do relé.",
           "reviewer": "",
           "candidates": [
@@ -2177,7 +2285,8 @@
           }
         ],
         "total_active_duration": 0.2,
-        "duration_estimated": false
+        "duration_estimated": false,
+        "ansi_functions": []
       }
     ],
     "first_time": 0.0,
@@ -3891,7 +4000,7 @@
           "reason": "Regra fictícia para demonstrar rastreabilidade; não usar em equipamento real."
         }
       ],
-      "generic_fallback_version": "1.0"
+      "generic_fallback_version": "1.1"
     },
     "object": {
       "name": "LT 230 kV MODELO A - MODELO B (dados sinteticos)",
@@ -3913,6 +4022,83 @@
       "text": "ObjectID: LT 230 kV MODELO A - MODELO B (dados sinteticos)\n",
       "encoding": "utf-8-sig",
       "warnings": []
+    },
+    "ansi": {
+      "catalog_version": "1.0",
+      "functions": [
+        {
+          "code": "50",
+          "name": "Sobrecorrente instantânea",
+          "catalogued": true,
+          "activated": true,
+          "activation_count": 1,
+          "channels": [
+            {
+              "number": 1,
+              "name": "50P_START",
+              "phase": "",
+              "category": "partida",
+              "status": "suggested"
+            }
+          ],
+          "first_activation": 0.05
+        }
+      ],
+      "timeline": [
+        {
+          "order": 1,
+          "time": 0.05,
+          "codes": [
+            "50"
+          ],
+          "names": [
+            "Sobrecorrente instantânea"
+          ],
+          "channel_number": 1,
+          "channel_name": "50P_START",
+          "phase": "",
+          "category": "partida",
+          "status": "suggested",
+          "simultaneous": false
+        },
+        {
+          "order": 2,
+          "time": 0.07,
+          "codes": [],
+          "names": [],
+          "channel_number": 2,
+          "channel_name": "TRIP_GERAL",
+          "phase": "",
+          "category": "disparo",
+          "status": "manual",
+          "simultaneous": false
+        }
+      ],
+      "initial_active": [],
+      "unmapped_channels": [
+        {
+          "number": 2,
+          "name": "TRIP_GERAL",
+          "reason": "Sem código ou nome de função associado no perfil.",
+          "activated": true,
+          "status": "manual"
+        },
+        {
+          "number": 3,
+          "name": "52_ABERTO",
+          "reason": "Sem código ou nome de função associado no perfil.",
+          "activated": false,
+          "status": "unclassified"
+        },
+        {
+          "number": 4,
+          "name": "ALARME",
+          "reason": "Sem código ou nome de função associado no perfil.",
+          "activated": false,
+          "status": "suggested"
+        }
+      ],
+      "note": "Funções associadas a sinais digitais pelo perfil; não identifica a função responsável pelo trip. Sinais já ativos no início ficam separados. A ordem usa o tempo do DAT dentro de cada registro; eventos com o mesmo timestamp compartilham ordem, sem precedência inferida. Múltiplos códigos no mesmo sinal são associações, não comprovação de atuação independente de cada função. Códigos fora do catálogo são declarações personalizadas."
     }
   }
 }

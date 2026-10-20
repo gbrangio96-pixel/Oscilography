@@ -54,3 +54,11 @@ test('conflito de regras impede equivalência e comparação definitiva',()=>{
   const row=compare([classified('TRIP','','conflict')],[channel('TRIP',[1])])[0];
   assert.equal(row.status,'ambiguous');
 });
+
+test('equivalência usa códigos ANSI normalizados quando o perfil declara nome ou código',()=>{
+  const a={...classified('OUT','trip','confirmed',{function:'Sobrecorrente instantânea'}),ansi_functions:[{code:'50',name:'Sobrecorrente instantânea'}]};
+  const b={...classified('TRIP','trip','manual',{function:'50'}),ansi_functions:[{code:'50',name:'Sobrecorrente instantânea'}]};
+  assert.equal(compare([a],[b])[0].status,'both');
+  a.ansi_functions.push({code:'51'});b.ansi_functions=[{code:'51'},{code:'50'}];
+  assert.equal(compare([a],[b])[0].status,'both');
+});

@@ -6,6 +6,14 @@
   const initial=c=>c.initial_active??Boolean(c.initial);
   const objectOrigins={extracted:'Extraído de campo HDR',suggested:'Sugestão do texto HDR',ambiguous:'Ambíguo',manual:'Revisão manual',not_identified:'Não identificado'};
   const origins={suggested:'SUGESTÃO',confirmed:'PERFIL CONFIRMADO',manual:'REVISÃO MANUAL',unclassified:'NÃO CLASSIFICADO',conflict:'CONFLITO'};
+  const ansiTime=value=>{if(!Number.isFinite(value))return 'não disponível';for(const digits of [6,9,12]){const formatted=value.toFixed(digits);if(Number(formatted)===value)return formatted+' s'}return value.toString()+' s'};
+  const ansiOrigin=status=>origins[status]||'NÃO CLASSIFICADO';
+  const ansiChannel=channel=>`#${channel.number} ${channel.name||'(sem identificação)'} | ${channel.category||'desconhecido'} | ${ansiOrigin(channel.status)}`;
+  const ansiFunctionText=fn=>!fn?'Função não identificada neste registro.':`ANSI ${fn.code} · ${fn.name||'Nome não cadastrado'}\n${fn.activated?'Sinal associado ativado':'Sem nova ativação observada'} | ${fn.activation_count||0} ocorrência(s)\nPrimeira ativação: ${Number.isFinite(fn.first_activation)?ansiTime(fn.first_activation):'não observada'}\n${(fn.channels||[]).map(ansiChannel).join('\n')}`;
+  const ansiEventText=event=>!event?'Sem ocorrência nesta posição da sequência.':`Ordem ${event.order}${event.simultaneous?' · SIMULTÂNEO':''} | ${ansiTime(event.time)}\n${event.codes?.length?'ANSI '+event.codes.join(' / '):'ANSI não identificado'}${event.names?.length?' · '+event.names.join(' / '):''}\n#${event.channel_number} ${event.channel_name||'(sem identificação)'} | Fase: ${event.phase||'-'}\n${event.category||'desconhecido'} | ${ansiOrigin(event.status)}`;
+  const ansiInitialText=event=>!event?'Sem sinal já ativo nesta posição.':`ANSI ${event.code} · ${event.name||'Nome não cadastrado'}\n#${event.channel_number} ${event.channel_name||'(sem identificação)'}\n${ansiOrigin(event.status)} | Já ativo no início; momento da ativação não observado.`;
+  const ansiNotice='Os códigos representam funções associadas aos sinais digitais. Uma ativação não identifica automaticamente a função responsável pelo trip. Um sinal com vários códigos não confirma independentemente a atuação de cada função. Sugestões permanecem distintas de associações confirmadas.';
+  const ansiTimeNotice='Tempos em segundos na referência do DAT de cada registro. A ordem é interna a cada oscilografia; empates indicam ativações no mesmo timestamp, sem ordem resolvida entre elas. Sinais já ativos na primeira amostra não recebem uma ativação artificial em t=0.';
   function reportLines(data,compare){
     const generated=new Intl.DateTimeFormat('pt-BR',{dateStyle:'short',timeStyle:'medium',timeZone:'America/Sao_Paulo'}).format(new Date());
     const lines=['OSCILOGRAPHY | Análise digital v2.0',compare?'RELATÓRIO DE COMPARAÇÃO DE CANAIS DIGITAIS':'RELATÓRIO DE ANÁLISE DE CANAIS DIGITAIS',`Emitido em ${generated} (America/Sao_Paulo)`,''];
@@ -24,6 +32,20 @@
       lines.push(...(activated.length?activated.map(c=>`${name(c)} | ${acts(c).length} ativação(ões)`):['Nenhum canal apresentou nova ativação.']));
       const already=r.channels.filter(initial);
       lines.push(`${label} - JÁ ATIVOS NO INÍCIO:`,...(already.length?already.map(name):['Nenhum.']), '');
+    }
+    if(records.some(([_,r])=>r.ansi)){
+      lines.push('FUNÇÕES ANSI ASSOCIADAS E SEQUÊNCIA DE ATIVAÇÕES',ansiNotice,ansiTimeNotice);
+      for(const [label,r] of records){
+        if(!r.ansi){lines.push(`${label}: análise ANSI não disponível nesta versão do registro.`);continue}
+        lines.push(`${label} | Catálogo de referência: ${r.ansi.catalog_version||'versão não informada'}`,'FUNÇÕES ANSI IDENTIFICADAS:');
+        lines.push(...((r.ansi.functions||[]).length?r.ansi.functions.map(ansiFunctionText):['Nenhuma associação ANSI identificada.']));
+        lines.push(`${label} | SEQUÊNCIA DE NOVAS ATIVAÇÕES:`);
+        lines.push(...((r.ansi.timeline||[]).length?r.ansi.timeline.map(ansiEventText):['Nenhuma nova ativação na sequência ANSI.']));
+        lines.push(`${label} | ANSI JÁ ATIVOS NO INÍCIO:`);
+        lines.push(...((r.ansi.initial_active||[]).length?r.ansi.initial_active.map(ansiInitialText):['Nenhum sinal ANSI já ativo identificado.']));
+        lines.push(`${label} | CANAIS SEM ASSOCIAÇÃO ANSI:`);
+        lines.push(...((r.ansi.unmapped_channels||[]).length?r.ansi.unmapped_channels.map(c=>`#${c.number} ${c.name} | ${c.reason||'Sem código associado'}`):['Nenhum.']),'');
+      }
     }
     lines.push('3. CONCLUSÃO AUTOMÁTICA E INTERPRETAÇÃO');
     if(compare){
@@ -121,6 +143,60 @@
       doc.subtitle(`${label} | Já ativos na primeira amostra`);
       if(already.length)doc.table(['CANAL ORIGINAL','CLASSIFICAÇÃO','EVIDÊNCIA'],already.map(c=>[name(c),category(c),`Estado inicial: ${c.initial}\nJá ativo no início; instante anterior desconhecido.`]),[215,140,160]);
       else doc.paragraph('Nenhum canal já ativo no início.',{fill:C.muted});
+    }
+
+    if(records.some(([_,r])=>r.ansi)){
+      doc.subtitle('Funções ANSI associadas aos canais');
+      doc.paragraph(ansiNotice,{background:C.warning,fill:C.amber,size:9.5});
+      const versions=records.map(([label,r])=>`${label}: ${r.ansi?.catalog_version||'análise ANSI não disponível'}`).join(' | ');
+      doc.paragraph('Catálogo de referência · '+versions,{size:9,fill:C.muted});
+      if(compare){
+        const allCodes=[...new Set(records.flatMap(([_,r])=>(r.ansi?.functions||[]).map(fn=>fn.code)))].sort((a,b)=>String(a).localeCompare(String(b),'pt-BR',{numeric:true}));
+        if(allCodes.length)doc.table(['OSCILOGRAFIA A','OSCILOGRAFIA B'],allCodes.map(code=>records.map(([_,r])=>ansiFunctionText((r.ansi?.functions||[]).find(fn=>fn.code===code)))),[257.5,257.5]);
+        else doc.paragraph('Nenhuma associação ANSI identificada nos registros.',{fill:C.muted});
+      }else{
+        const functions=data.ansi?.functions||[];
+        if(functions.length)doc.table(['CÓDIGO / NOME ANSI','SINAIS / ORIGEM','ATIVAÇÃO OBSERVADA'],functions.map(fn=>[
+          {text:`${fn.code} · ${fn.name||'Nome não cadastrado'}`,font:'F2'},
+          (fn.channels||[]).map(ansiChannel).join('\n'),
+          `${fn.activated?'Sinal associado ativado':'Sem nova ativação'}\n${fn.activation_count||0} ocorrência(s)\nPrimeira: ${Number.isFinite(fn.first_activation)?ansiTime(fn.first_activation):'não observada'}`]),[160,200,155]);
+        else doc.paragraph('Nenhuma associação ANSI identificada.',{fill:C.muted});
+      }
+      doc.subtitle('Sequência de ativações por registro');
+      doc.paragraph(ansiTimeNotice,{size:9.5,fill:C.muted});
+      if(compare){
+        doc.paragraph('As linhas abaixo colocam as sequências lado a lado pela posição de apresentação. Elas não estabelecem correspondência entre eventos de A e B, alinhamento de relógios ou diferenças de horário.',{size:9,background:C.mint,fill:C.teal});
+        const events=records.map(([_,r])=>r.ansi?.timeline||[]),length=Math.max(...events.map(list=>list.length));
+        if(length)doc.table(['OSCILOGRAFIA A','OSCILOGRAFIA B'],Array.from({length},(_,i)=>events.map(list=>ansiEventText(list[i]))),[257.5,257.5]);
+        else doc.paragraph('Nenhuma nova ativação na sequência ANSI.',{fill:C.muted});
+      }else{
+        const events=data.ansi?.timeline||[];
+        if(events.length)doc.table(['ORDEM / TEMPO DAT','ANSI / SINAL ORIGINAL','CATEGORIA / ORIGEM'],events.map(event=>[
+          `${event.order}${event.simultaneous?' · SIMULTÂNEO':''}\n${ansiTime(event.time)}`,
+          `${event.codes?.length?'ANSI '+event.codes.join(' / '):'ANSI não identificado'}${event.names?.length?' · '+event.names.join(' / '):''}\n#${event.channel_number} ${event.channel_name||'(sem identificação)'}\nFase: ${event.phase||'-'}`,
+          `${event.category||'desconhecido'}\n${ansiOrigin(event.status)}`]),[105,265,145]);
+        else doc.paragraph('Nenhuma nova ativação na sequência ANSI.',{fill:C.muted});
+      }
+      doc.subtitle('Funções associadas a sinais já ativos no início');
+      if(compare){
+        const initial=records.map(([_,r])=>r.ansi?.initial_active||[]),length=Math.max(...initial.map(list=>list.length));
+        if(length)doc.table(['OSCILOGRAFIA A','OSCILOGRAFIA B'],Array.from({length},(_,i)=>initial.map(list=>ansiInitialText(list[i]))),[257.5,257.5]);
+        else doc.paragraph('Nenhum sinal ANSI já ativo identificado.',{fill:C.muted});
+      }else{
+        const initial=data.ansi?.initial_active||[];
+        if(initial.length)doc.table(['ANSI / SINAL ORIGINAL','EVIDÊNCIA'],initial.map(event=>[
+          `ANSI ${event.code} · ${event.name||'Nome não cadastrado'}\n#${event.channel_number} ${event.channel_name||'(sem identificação)'}`,
+          `${ansiOrigin(event.status)}\nJá ativo no início; momento da ativação não observado.`]),[290,225]);
+        else doc.paragraph('Nenhum sinal ANSI já ativo identificado.',{fill:C.muted});
+      }
+      if(records.some(([_,r])=>r.ansi?.unmapped_channels?.length)){
+        doc.subtitle('Canais sem associação ANSI');
+        doc.paragraph('A ausência de código não exclui a ativação do canal da análise digital. A associação pode ser revisada no perfil.',{size:9,fill:C.muted});
+        if(compare){
+          const missing=records.map(([_,r])=>r.ansi?.unmapped_channels||[]),length=Math.max(...missing.map(list=>list.length));
+          doc.table(['OSCILOGRAFIA A','OSCILOGRAFIA B'],Array.from({length},(_,i)=>missing.map(list=>list[i]?`#${list[i].number} ${list[i].name}\n${list[i].reason||'Sem código associado'}`:'Nenhum canal nesta posição.')),[257.5,257.5]);
+        }else doc.table(['CANAL ORIGINAL','MOTIVO'],data.ansi.unmapped_channels.map(c=>[`#${c.number} ${c.name}`,c.reason||'Sem código associado']),[245,270]);
+      }
     }
 
     // Estatísticas globais e gráficos próprios de cada registro; sem alinhar relógios A/B.

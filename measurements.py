@@ -18,7 +18,8 @@ class AnalogChannel:
             if self.meta[key] is not None and not math.isfinite(self.meta[key]):
                 self.meta[key] = None
         self.count = self.missing = 0
-        self.mean = self.norm = 0.0
+        self.mean = 0.0
+        self.rms_scale = self.rms_ssq = 0.0
         self.minimum = self.maximum = None
         self.points = []
 
@@ -31,8 +32,15 @@ class AnalogChannel:
         else:
             self.count += 1
             self.mean = self.mean * ((self.count - 1) / self.count) + value / self.count
-            # Soma de quadrados escalada evita overflow para sinais usuais.
-            self.norm = math.hypot(self.norm, value)
+            # Mantém soma de quadrados normalizada, sem formar uma norma total
+            # que possa transbordar antes da divisão pelo número de amostras.
+            magnitude = abs(value)
+            if magnitude:
+                if magnitude > self.rms_scale:
+                    self.rms_ssq = 1 + self.rms_ssq * (self.rms_scale / magnitude) ** 2
+                    self.rms_scale = magnitude
+                else:
+                    self.rms_ssq += (magnitude / self.rms_scale) ** 2
             self.minimum = value if self.minimum is None else min(self.minimum, value)
             self.maximum = value if self.maximum is None else max(self.maximum, value)
         self.points.append([time + self.skew / 1_000_000, value, gap])
@@ -41,15 +49,33 @@ class AnalogChannel:
         # Envelope min/max por bloco: mantém picos e pontos de ruptura, não interpola lacunas.
         width = max(1, math.ceil(len(self.points) / max(1, limit // 4)))
         plot = []
+        breaks = 0
+        previous_break_count = None
         for start in range(0, len(self.points), width):
             block = self.points[start:start + width]
-            if any(p[1] is None or p[2] for p in block):
-                # Bloco incompleto é omitido do traço para não criar continuidade falsa.
-                plot.append([block[0][0], None])
-                continue
-            chosen = sorted({0, len(block)-1, min(range(len(block)),key=lambda i:block[i][1]), max(range(len(block)),key=lambda i:block[i][1])})
-            plot.extend([block[i][0], block[i][1]] for i in chosen)
-        rms = self.norm / math.sqrt(self.count) if self.count else None
+            prefix = []
+            local_breaks = 0
+            valid = []
+            for i, point in enumerate(block):
+                if point[1] is None or point[2]:
+                    local_breaks += 1
+                prefix.append(local_breaks)
+                if point[1] is not None:
+                    valid.append(i)
+            if valid:
+                # Preserva os extremos de valores válidos mesmo em blocos com lacunas.
+                chosen = sorted({valid[0], valid[-1], min(valid,key=lambda i:block[i][1]), max(valid,key=lambda i:block[i][1])})
+                for i in chosen:
+                    current_break_count = breaks + prefix[i]
+                    if previous_break_count is not None and current_break_count > previous_break_count:
+                        plot.append([block[i][0], None])
+                    plot.append([block[i][0], block[i][1]])
+                    previous_break_count = current_break_count
+            breaks += local_breaks
+        # Até ~limit pontos de envelope, mais até um separador por ponto válido.
+        # Muitas lacunas podem elevar a saída a 2*limit; nunca se conectam trechos
+        # separados apenas para cumprir um limite visual.
+        rms = self.rms_scale * math.sqrt(min(1.0, self.rms_ssq / self.count)) if self.count else None
         return dict(**self.meta, valid_samples=self.count, missing_samples=self.missing,
                     minimum=self.minimum, maximum=self.maximum, peak=max(abs(self.minimum),abs(self.maximum)) if self.count else None,
                     mean=self.mean if self.count else None, rms=rms if rms is not None and math.isfinite(rms) else None,

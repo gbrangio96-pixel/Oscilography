@@ -26,6 +26,15 @@ def zipped(files):
 
 
 class CompatibilityTests(unittest.TestCase):
+    def test_legacy_ascii_99999_is_not_a_missing_value(self):
+        definition=b'S,R\n1,1A,0D\n1,IA,A,,A,1,0,0,-100000,100000\n60\n1\n1000,2\n01/01/1991,00:00:00\n01/01/1991,00:00:00\nASCII\n'
+        data=b'1,0,99999\n2,1000,1\n'
+        legacy=analyze(definition,data)['analog_channels'][0]
+        self.assertEqual(legacy['valid_samples'],2)
+        self.assertEqual(legacy['maximum'],99999)
+        modern=analyze(definition.replace(b'S,R\n',b'S,R,1999\n'),data)['analog_channels'][0]
+        self.assertEqual(modern['missing_samples'],1)
+
     def test_revision_format_matrix(self):
         for revision in ('1991','1999','2001','2013'):
             for fmt in ('ASCII','BINARY','BINARY32','FLOAT32'):

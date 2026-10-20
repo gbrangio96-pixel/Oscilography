@@ -2,7 +2,7 @@
 
 Nenhum perfil de fabricante é selecionado automaticamente. O CFG identifica estação,
 equipamento e canais, mas não garante identificação de modelo, firmware ou lógica.
-O perfil genérico só sugere classificações para uma lista curta de nomes conhecidos.
+O perfil genérico sugere classificações para nomes conhecidos e padrões exatos de código + ação (como 50P_TRIP), sempre sem confirmação automática.
 Termos desconhecidos permanecem não classificados. Sem regra de polaridade, assume-se
 estado ativo 1 e essa hipótese é indicada na análise e no PDF.
 
@@ -109,3 +109,9 @@ duplicados, tempos reconstruídos/repetidos e conflitos de regras geram alertas.
 Dois arquivos diferentes com estrutura compatível podem passar pela validação:
 a ferramenta não comprova que CFG e DAT vieram da mesma ocorrência. Confira sua origem.
 Correntes/tensões têm estatísticas descritivas e gráficos; causalidade elétrica não é determinada automaticamente.
+
+## Codificação ANSI e cronologia
+
+Use o catálogo da interface para consultar e preencher `function`. Um nome exato do catálogo é convertido para seu código na análise ANSI; os valores originais da regra e do canal permanecem preservados. Expressões como `50/51` geram associações múltiplas para o mesmo sinal, com esse limite explícito no relatório. Não significam que houve duas atuações independentes.
+
+A cronologia mostra todas as entradas no estado ativo configurado, incluindo sinais sem associação ANSI no filtro correspondente. Ordena eventos por timestamp, agrupa empates e não inventa eventos para os sinais já ativos no início. A ordem de exibição dos canais em um empate não estabelece precedência. Sugestões, regras confirmadas e revisões manuais continuam distinguíveis.

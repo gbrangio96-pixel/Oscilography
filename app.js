@@ -18,7 +18,7 @@ function renderComparison(){
 }
 function download(data,name){const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
 function durationHtml(c){return `<small><b>Tempo ativo observado: ${((c.total_active_duration||0)*1000).toFixed(3)} ms</b>${c.duration_estimated?' · estimado com lacunas':''}</small><details><summary>Intervalos ativos</summary>${(c.active_intervals||[]).map(i=>`<small>${(i.observed_duration*1000).toFixed(3)} ms · ${i.start.toFixed(6)} a ${i.end.toFixed(6)} s${i.left_censored?' · Já ativo no início':''}${i.right_censored?' · Ativo no fim':''}${i.gap_affected?' · Lacuna de amostras':''}</small>`).join('')||'Nenhum intervalo ativo.'}</details>`}
-function resetResults(){el('analogResults').hidden=true;el('results').hidden=true;el('comparison').hidden=true;el('error').textContent='';result=undefined;comparison=undefined}
+function resetResults(){el('qualitySingle').innerHTML='';el('qualityComparison').innerHTML='';el('ansiResults').hidden=true;el('analogResults').hidden=true;el('results').hidden=true;el('comparison').hidden=true;el('error').textContent='';result=undefined;comparison=undefined}
 function updateMode(){const compare=el('mode').value==='compare';el('second').hidden=!compare;for(const id of ['cfgB','datB']){el(id).disabled=!compare;el(id).required=compare}el('run').textContent=compare?'Comparar oscilografias →':'Analisar oscilografia →';resetResults()}
 el('mode').onchange=()=>{updateMode();updateInputs()};
 function updateInputs(){
@@ -51,11 +51,11 @@ el('form').onsubmit=async e=>{
       el('compareMeta').innerHTML=[['A',a],['B',b]].map(([label,r])=>`<div><b>Oscilografia ${label}: ${esc(r.station)} · ${esc(r.device)}</b><br>Início: ${esc(r.start)} · Trigger: ${esc(r.trigger)}<br>${r.samples} amostras · ${r.duration.toFixed(6)} s · ${esc(r.format)}</div>`).join('');
       el('compareStats').innerHTML=[['a','A',a],['b','B',b]].map(([key,label,r])=>`<div class="stat"><strong>${r.channels.filter(c=>acts(c).length).length}</strong>Canais com ativação em ${label}</div>`).join('')+`<div class="stat"><strong>${comparison.channels.filter(c=>['only_a','only_b'].includes(c.status)).length}</strong>Canais com ativação exclusiva</div>`;
       el('qualityComparison').innerHTML=qualityHtml(a,'A')+qualityHtml(b,'B');
-      renderComparison();el('comparison').hidden=false;renderAnalogs([['A',a],['B',b]]);
+      renderComparison();el('comparison').hidden=false;renderAnalogs([['A',a],['B',b]]);renderAnsi([['A',a],['B',b]]);
     }else{
       result=a;el('qualitySingle').innerHTML=qualityHtml(a,'Registro');
       el('meta').innerHTML=`<h2>${esc(result.station)} <small>· ${esc(result.device)}</small></h2><p>Início: ${esc(result.start)} · Trigger: ${esc(result.trigger)}<br>${result.samples} amostras · ${result.duration.toFixed(6)} s · ${esc(result.format)}</p>`;
-      el('stats').innerHTML=[[result.channels.filter(c=>acts(c).length).length,'Canais com ativação'],[result.channels.filter(c=>initial(c)).length,'Já ativos no início'],[result.channels.length,'Canais digitais']].map(([n,s])=>`<div class="stat"><strong>${n}</strong>${s}</div>`).join('');render();el('results').hidden=false;renderAnalogs([['A',a]]);
+      el('stats').innerHTML=[[result.channels.filter(c=>acts(c).length).length,'Canais com ativação'],[result.channels.filter(c=>initial(c)).length,'Já ativos no início'],[result.channels.length,'Canais digitais']].map(([n,s])=>`<div class="stat"><strong>${n}</strong>${s}</div>`).join('');render();el('results').hidden=false;renderAnalogs([['A',a]]);renderAnsi([['A',a]]);
     }
   }catch(err){resetResults();el('error').textContent=err.message}
   finally{controls.forEach((c,i)=>c.disabled=disabled[i]);el('run').textContent=compare?'Comparar oscilografias →':'Analisar oscilografia →'}
@@ -128,3 +128,5 @@ document.addEventListener('click',event=>{
   record.object={...record.object,detected,name,type:type||'Não determinado',status:'manual',reviewer,reason,evidence:(detected.evidence||'Texto original preservado no HDR')+' | Revisão por '+reviewer+': '+reason};
   if(comparison)el('qualityComparison').innerHTML=qualityHtml(comparison.a,'A')+qualityHtml(comparison.b,'B');else el('qualitySingle').innerHTML=qualityHtml(result,'Registro');
 });
+
+initAnsiCatalog();

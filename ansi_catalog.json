@@ -1,0 +1,247 @@
+{
+  "version": "1.0",
+  "title": "Catálogo de referência de funções e designações ANSI usuais",
+  "notice": "Lista de referência de uso comum, não reprodução completa da norma nem certificação de nomenclaturas de fabricantes. Sufixos e associações devem ser conferidos nos perfis. Ativação de sinal não prova causalidade de trip.",
+  "entries": [
+    {
+      "code": "21",
+      "name": "Proteção de distância",
+      "description": "Proteção por impedância aparente; zonas e características dependem da parametrização."
+    },
+    {
+      "code": "24",
+      "name": "Sobre-excitação V/Hz",
+      "description": "Supervisão de volts por hertz; não equivale por si só a uma medição de sobretensão."
+    },
+    {
+      "code": "25",
+      "name": "Verificação de sincronismo",
+      "description": "Verifica condições de sincronização antes de fechamento, conforme lógica do equipamento."
+    },
+    {
+      "code": "27",
+      "name": "Subtensão",
+      "description": "Detecção de tensão abaixo do ajuste."
+    },
+    {
+      "code": "32",
+      "name": "Potência direcional",
+      "description": "Supervisão do sentido e valor da potência ativa, conforme aplicação."
+    },
+    {
+      "code": "37",
+      "name": "Subcorrente ou subpotência",
+      "description": "Função de corrente ou potência abaixo de um ajuste; conferir a aplicação do relé."
+    },
+    {
+      "code": "40",
+      "name": "Perda de excitação",
+      "description": "Proteção usualmente aplicada a geradores, conforme característica de ajuste."
+    },
+    {
+      "code": "46",
+      "name": "Desequilíbrio de corrente / sequência negativa",
+      "description": "Supervisão de desequilíbrio ou componente de sequência negativa de corrente."
+    },
+    {
+      "code": "47",
+      "name": "Sequência de fases / desequilíbrio de tensão",
+      "description": "Supervisão da sequência ou desequilíbrio de tensões."
+    },
+    {
+      "code": "48",
+      "name": "Sequência incompleta",
+      "description": "Supervisão de uma sequência de operação que não se completou no tempo previsto."
+    },
+    {
+      "code": "49",
+      "name": "Proteção térmica",
+      "description": "Proteção térmica de máquinas ou transformadores conforme modelo do equipamento."
+    },
+    {
+      "code": "50",
+      "name": "Sobrecorrente instantânea",
+      "description": "Elemento de sobrecorrente sem retardo intencional; estágio e fase precisam ser conferidos no perfil."
+    },
+    {
+      "code": "50P",
+      "name": "Sobrecorrente instantânea de fase",
+      "description": "Sufixo P é uma convenção usual de fase; confirmar nomenclatura do fabricante."
+    },
+    {
+      "code": "50N",
+      "name": "Sobrecorrente instantânea de neutro",
+      "description": "Sufixo N é uma convenção usual; a origem da corrente depende da aplicação."
+    },
+    {
+      "code": "50G",
+      "name": "Sobrecorrente instantânea de terra",
+      "description": "Sufixo G é uma convenção usual de terra; confirmar a medição e a aplicação."
+    },
+    {
+      "code": "50BF",
+      "name": "Falha de disjuntor",
+      "description": "Designação usual de breaker failure; a lógica pode incluir temporizadores e supervisões adicionais."
+    },
+    {
+      "code": "51",
+      "name": "Sobrecorrente temporizada",
+      "description": "Elemento de sobrecorrente com característica de tempo definida ou inversa."
+    },
+    {
+      "code": "51P",
+      "name": "Sobrecorrente temporizada de fase",
+      "description": "Sufixo P é uma convenção usual de fase; confirmar nomenclatura do fabricante."
+    },
+    {
+      "code": "51N",
+      "name": "Sobrecorrente temporizada de neutro",
+      "description": "Sufixo N é uma convenção usual; confirmar a origem da corrente."
+    },
+    {
+      "code": "51G",
+      "name": "Sobrecorrente temporizada de terra",
+      "description": "Sufixo G é uma convenção usual de terra; confirmar a medição e a aplicação."
+    },
+    {
+      "code": "52",
+      "name": "Disjuntor de corrente alternada",
+      "description": "Número de dispositivo associado ao disjuntor; um contato 52a/52b não identifica função originadora do trip."
+    },
+    {
+      "code": "59",
+      "name": "Sobretensão",
+      "description": "Detecção de tensão acima do ajuste."
+    },
+    {
+      "code": "59N",
+      "name": "Sobretensão residual / neutro",
+      "description": "Designação usual para supervisão de tensão residual ou de neutro; confirmar a medição."
+    },
+    {
+      "code": "60",
+      "name": "Balanço de tensão ou corrente",
+      "description": "Supervisão de diferença/balanço entre grandezas de tensão ou corrente."
+    },
+    {
+      "code": "62",
+      "name": "Temporização de parada ou abertura",
+      "description": "Temporizador com aplicação dependente da lógica do equipamento."
+    },
+    {
+      "code": "63",
+      "name": "Pressão / fluxo / gás",
+      "description": "Dispositivo de supervisão de pressão, fluxo ou gás, conforme aplicação."
+    },
+    {
+      "code": "64",
+      "name": "Detecção de terra",
+      "description": "Detecção de falha à terra; princípio de medição depende do equipamento."
+    },
+    {
+      "code": "64REF",
+      "name": "Falta à terra restrita",
+      "description": "Designação usual REF; alguns fabricantes utilizam outras codificações, que precisam de perfil explícito."
+    },
+    {
+      "code": "67",
+      "name": "Sobrecorrente direcional",
+      "description": "Elemento de sobrecorrente com supervisão de direção."
+    },
+    {
+      "code": "67N",
+      "name": "Sobrecorrente direcional de neutro",
+      "description": "Designação usual; polarização e origem da corrente dependem do relé."
+    },
+    {
+      "code": "67G",
+      "name": "Sobrecorrente direcional de terra",
+      "description": "Designação usual; confirmar medição, polarização e nomenclatura."
+    },
+    {
+      "code": "68",
+      "name": "Bloqueio",
+      "description": "Função de bloqueio; pode ser aplicada a oscilações ou intertravamentos conforme lógica."
+    },
+    {
+      "code": "74",
+      "name": "Alarme",
+      "description": "Dispositivo de alarme ou sinalização, conforme aplicação."
+    },
+    {
+      "code": "78",
+      "name": "Ângulo de fase / perda de sincronismo",
+      "description": "Função de ângulo de fase ou perda de sincronismo conforme a aplicação."
+    },
+    {
+      "code": "79",
+      "name": "Religamento automático",
+      "description": "Função de religamento; estados de ciclo, bloqueio e sucesso são sinais distintos."
+    },
+    {
+      "code": "81",
+      "name": "Frequência",
+      "description": "Função de frequência; subfrequência, sobrefrequência e taxa de variação devem ser distinguidas no perfil."
+    },
+    {
+      "code": "81U",
+      "name": "Subfrequência",
+      "description": "Sufixo U é uma convenção usual para frequência abaixo do ajuste."
+    },
+    {
+      "code": "81O",
+      "name": "Sobrefrequência",
+      "description": "Sufixo O é uma convenção usual para frequência acima do ajuste."
+    },
+    {
+      "code": "81R",
+      "name": "Taxa de variação de frequência",
+      "description": "Designação usual ROCOF; conferir a nomenclatura do fabricante."
+    },
+    {
+      "code": "85",
+      "name": "Teleproteção / comunicação de proteção",
+      "description": "Sinais de transmissão, recepção, permissivo ou bloqueio devem ser distinguidos pela lógica."
+    },
+    {
+      "code": "86",
+      "name": "Bloqueio com retenção / lockout",
+      "description": "Dispositivo de bloqueio com retenção conforme aplicação; não identifica sozinho a origem do disparo."
+    },
+    {
+      "code": "87",
+      "name": "Proteção diferencial",
+      "description": "Princípio diferencial; objeto e zona protegidos dependem da configuração."
+    },
+    {
+      "code": "87T",
+      "name": "Diferencial de transformador",
+      "description": "Sufixo T é uma convenção usual; validar o objeto protegido."
+    },
+    {
+      "code": "87L",
+      "name": "Diferencial de linha",
+      "description": "Sufixo L é uma convenção usual; validar o objeto protegido."
+    },
+    {
+      "code": "87B",
+      "name": "Diferencial de barras",
+      "description": "Sufixo B é uma convenção usual; validar a zona de barras."
+    },
+    {
+      "code": "87G",
+      "name": "Diferencial de gerador",
+      "description": "Sufixo G é uma convenção usual; validar o objeto protegido."
+    },
+    {
+      "code": "87M",
+      "name": "Diferencial de motor",
+      "description": "Sufixo M é uma convenção usual; validar o objeto protegido."
+    },
+    {
+      "code": "94",
+      "name": "Relé de disparo",
+      "description": "Dispositivo/relé de disparo; não identifica sozinho a proteção originadora."
+    }
+  ]
+}

@@ -9,7 +9,8 @@
       for (const channel of record.channels) {
         const cl = channel.classification;
         const semantic = cl?.canonical && ['confirmed','manual'].includes(cl.status);
-        const key = JSON.stringify(semantic ? ['meaning',cl.canonical,cl.category,cl.function,channel.phase] : ['name',channel.name,channel.phase]);
+        const functionKey=channel.ansi_functions?.length?channel.ansi_functions.map(f=>f.code).sort().join('/'):(cl?.function||'');
+        const key = JSON.stringify(semantic ? ['meaning',cl.canonical,cl.category,functionKey,channel.phase] : ['name',channel.name,channel.phase]);
         if (!groups.has(key)) groups.set(key, {name: semantic ? cl.canonical : channel.name, phase: channel.phase, basis: semantic ? 'Equivalência confirmada em perfil' : 'Nome e fase originais', a: [], b: []});
         groups.get(key)[side].push(channel);
       }

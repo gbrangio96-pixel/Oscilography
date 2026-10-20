@@ -16,6 +16,8 @@ class Handler(BaseHTTPRequestHandler):
             self.wfile.write(body)
             return
         files = {'/': ('index.html', 'text/html; charset=utf-8'),
+                 '/ansi-catalog.json': ('ansi_catalog.json', 'application/json; charset=utf-8'),
+                 '/ansi_ui.js': ('ansi_ui.js', 'text/javascript; charset=utf-8'),
                  '/comparison.js': ('comparison.js', 'text/javascript; charset=utf-8'),
                  '/report.js': ('report.js', 'text/javascript; charset=utf-8'),
                  '/pdf_layout.js': ('pdf_layout.js', 'text/javascript; charset=utf-8'),

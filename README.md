@@ -16,7 +16,7 @@ Abra `http://localhost:8000` no navegador e selecione os arquivos CFG e DAT do m
 
 ```sh
 python3 -m unittest discover -s tests -v
-node --test tests/test_comparison.js tests/test_report.js
+node --test tests/test_*.js
 ```
 
 Suporta canais digitais em DAT ASCII, BINARY, BINARY32 e FLOAT32, com configuração COMTRADE 1991/1999/2001/2013. Os canais analógicos são lidos com escala a × amostra + b e unidades do CFG; há estatísticas e gráficos. Tempos são relativos à referência do DAT, com multiplicador do CFG e reconstrução pelas taxas de amostragem quando o timestamp é zero. Identificação de função usa o nome original, sem inferir códigos ANSI ou traduzir identificações proprietárias.
@@ -82,3 +82,19 @@ Os canais analógicos apresentam nome, fase, unidade, referência P/S, mínimo, 
 Na tela, selecione o canal para visualizar a curva de cada registro. Gráficos aplicam o skew do CFG, usam envelope min/max quando necessário e não interpolam lacunas. O PDF contém estatísticas de todos os canais e gráficos dos primeiros oito por registro; os demais continuam disponíveis na interface. Estatísticas são calculadas com todas as amostras válidas, independentemente da redução visual.
 
 Para identificar fases, envie CFG + DAT: o campo de fase do CFG é preservado; quando vazio, a fase fica não informada. Para o objeto protegido, acrescente o HDR opcional; `ObjectID` é tratado como identificação explícita, sem inventar nome ou tipo ausente no texto.
+
+## Catálogo ANSI e sequência de ativações
+
+A seção **Catálogo ANSI** permite pesquisar códigos, nomes e descrições de funções usuais de proteção. O botão **Usar código** preenche a função na regra personalizada; o catálogo também aparece como sugestão no campo Função ANSI. Ele é uma referência de uso comum, não uma reprodução completa da norma ou da nomenclatura de cada fabricante.
+
+Depois da leitura, **Funções ANSI associadas e sequência de ativações** apresenta os códigos e nomes vinculados aos sinais, suas ativações, a origem da associação e os canais originais. Cada registro tem sua sequência, com ordem e instante em segundos do DAT. Eventos com o mesmo timestamp compartilham a ordem: não se inventa precedência entre eventos simultâneos. O filtro de funções mapeadas mantém a ordem global original, mesmo quando oculta eventos sem associação.
+
+Sinais já ativos na primeira amostra ficam separados, sem gerar uma ativação artificial em t=0. A comparação e o PDF mantêm A e B em duas colunas, com sequências independentes; não há sincronização de relógios nem delta temporal entre os arquivos.
+
+A função é atribuída pela regra do perfil. Regras genéricas conservadoras podem sugerir associações a partir de identificadores explícitos; sugestões não equivalem a confirmação. O campo aceita códigos ou um nome exato do catálogo, assim como expressões de múltiplos códigos (por exemplo, `50/51`). Códigos fora da referência permanecem identificados como personalizados. Um único sinal associado a vários códigos não comprova a atuação individual de cada função. A lista descreve funções associadas a sinais ativados, sem identificar automaticamente a responsável pelo trip.
+
+Os dados exportados em JSON incluem `ansi.functions`, `ansi.timeline`, `ansi.initial_active` e `ansi.unmapped_channels`, junto da versão do catálogo. O relatório PDF inclui as mesmas evidências independentemente dos filtros selecionados na tela.
+
+### Correções de revisão
+
+A revisão corrigiu a leitura de campos antigos do objeto ao alternar entre análise individual e comparação, a exibição de pontos analógicos isolados e a preservação de extremos na redução dos gráficos próximos de lacunas. O RMS usa acumulação escalada para evitar overflow intermediário. O valor ASCII `99999` é preservado na revisão 1991 e tratado como marcador de ausência nas revisões posteriores. Instantes ANSI usam precisão adicional quando necessário, para não apresentar eventos distintos de nanossegundos como se fossem iguais. Equivalências confirmadas usam códigos ANSI normalizados mesmo quando um perfil declara o nome da função e o outro seu código.

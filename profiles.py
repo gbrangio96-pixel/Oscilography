@@ -3,6 +3,7 @@ import copy
 import fnmatch
 import hashlib
 import json
+from ansi_analysis import get_ansi_catalog
 
 CATEGORIES = {'partida', 'disparo', 'bloqueio', 'alarme', 'posição', 'desconhecido'}
 
@@ -21,7 +22,27 @@ def generic_profile():
                           category=category, function=function, active_state=1,
                           canonical='', status='suggested', priority=0,
                           reason='Identificação textual conhecida; conferir a lógica e a polaridade do relé.'))
-    return dict(id='generico', version='1.0', manufacturer='', model='',
+    # Somente identificadores com código conhecido e ação explícita. Não procura
+    # números em nomes arbitrários, nem associa contatos a uma causa de trip.
+    names = {r['match'] for r in rules}
+    for entry in get_ansi_catalog()['entries']:
+        code = entry['code']
+        function = {'50P':'50', '51P':'51'}.get(code, code)
+        for category, actions in [('partida', ('START','PICKUP','PARTIDA')),
+                                  ('disparo', ('TRIP','OPERATE','OP','DISPARO')),
+                                  ('bloqueio', ('BLOCK',)),
+                                  ('alarme', ('ALARM',))]:
+            for action in actions:
+                for separator in ('_',):
+                    name = code + separator + action
+                    if name in names:
+                        continue
+                    names.add(name)
+                    rules.append(dict(id='generic-ansi-' + code + '-' + action + '-' + str(ord(separator)),
+                                      match=name,match_type='exact',category=category,function=function,
+                                      active_state=1,canonical='',status='suggested',priority=0,
+                                      reason='Sugestão por código e ação explícitos no nome do canal; conferir a função, a lógica e a polaridade no perfil do IED. A associação não prova origem de trip.'))
+    return dict(id='generico', version='1.1', manufacturer='', model='',
                 station='', device='', rules=rules)
 
 

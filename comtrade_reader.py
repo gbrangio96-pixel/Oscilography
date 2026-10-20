@@ -7,6 +7,7 @@ import hashlib
 import re
 from datetime import datetime
 from profiles import apply_profile
+from ansi_analysis import add_ansi_analysis
 from measurements import AnalogChannel, add_durations
 
 
@@ -137,7 +138,7 @@ def _analyze(cfg_bytes, dat_bytes, profile):
                     raise ValueError('Quantidade de colunas do DAT incompatível com o CFG.')
                 if any(not x.strip() or not math.isfinite(dat_number(x)) for x in r[2:2 + na]):
                     analog_missing = True
-                yield int(r[0]), dat_number(r[1]), [int(x) for x in r[2 + na:]], [dat_number(x) if x.strip() and math.isfinite(dat_number(x)) and dat_number(x) != 99999 else None for x in r[2:2 + na]]
+                yield int(r[0]), dat_number(r[1]), [int(x) for x in r[2 + na:]], [dat_number(x) if x.strip() and math.isfinite(dat_number(x)) and (revision == '1991' or dat_number(x) != 99999) else None for x in r[2:2 + na]]
         elif fmt in ('BINARY', 'BINARY32', 'FLOAT32'):
             analog_type = {'BINARY': 'h', 'BINARY32': 'i', 'FLOAT32': 'f'}[fmt]
             record = struct.Struct('<II' + analog_type * na + 'H' * words)
@@ -219,4 +220,4 @@ def _analyze(cfg_bytes, dat_bytes, profile):
                   revision=revision, revision_declared=revision_declared, revision_mode=revision_mode,
                   files=dict(cfg_sha256=hashlib.sha256(cfg_bytes).hexdigest(), dat_sha256=hashlib.sha256(dat_bytes).hexdigest()),
                   validation=dict(warnings=warnings, checks=['Estrutura e contagens do CFG', 'Revisão e datas', 'Taxas e limites de amostras', 'Formato e integridade do DAT', 'Estados digitais binários', 'Sequência e tempos das amostras']))
-    return add_durations(apply_profile(result, profile))
+    return add_ansi_analysis(add_durations(apply_profile(result, profile)))
