@@ -108,4 +108,4 @@ Na validação, erros estruturais bloqueiam a análise; lacunas de amostras, nom
 duplicados, tempos reconstruídos/repetidos e conflitos de regras geram alertas.
 Dois arquivos diferentes com estrutura compatível podem passar pela validação:
 a ferramenta não comprova que CFG e DAT vieram da mesma ocorrência. Confira sua origem.
-Correntes/tensões e causalidade elétrica não são analisadas nesta versão.
+Correntes/tensões têm estatísticas descritivas e gráficos; causalidade elétrica não é determinada automaticamente.

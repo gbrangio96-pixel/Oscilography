@@ -72,3 +72,13 @@ test('objeto opcional aparece no resumo e mantém evidência e hash do HDR',()=>
   const text=doc.pages.flatMap(p=>p.text).map(t=>t.s).join(' ');
   for(const value of ['LT 230 kV São José - Modelo','Objeto relacionado','Objeto protegido:','SHA-256 HDR','hdr-hash'])assert.ok(text.includes(value),value);
 });
+
+test('PDF inclui durações, estatísticas e gráfico analógico com unidades e limites',()=>{
+  const c={...ch('TRIP',[.001]),total_active_duration:.002,active_intervals:[{observed_duration:.002,left_censored:false,right_censored:true,complete:false}]};
+  const r={...record([c]),analog_channels:[{number:1,name:'IA',phase:'A',unit:'A',reference:'S',valid_samples:3,missing_samples:0,minimum:-1,maximum:1,rms:Math.sqrt(2/3),plot:[[0,-1],[.001,0],[.002,1]],plot_reduced:false}]};
+  const doc=createReportLayout(r,false),text=doc.pages.flatMap(p=>p.text).map(t=>t.s).join(' ');
+  assert.ok(text.includes('2.000 ms'));
+  assert.ok(text.includes('RMS global amostral'));
+  assert.ok(text.includes('Tempo do DAT + skew (s)'));
+  for(const t of doc.pages.flatMap(p=>p.text))assert.ok(t.x+t.width<=555.1,JSON.stringify(t));
+});

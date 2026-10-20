@@ -73,13 +73,13 @@
         lines.push('');
       }
     }
-    lines.push('6. LIMITES E RECOMENDAÇÕES','Ativação significa entrada no estado ativo da regra: 0 para 1 ou 1 para 0. Sinais ativos na primeira amostra são listados separadamente. Sem regra, estado ativo 1 é uma hipótese padrão. Estado normal no CFG não define automaticamente a polaridade.','As identificações são extraídas dos arquivos; contatos, alarmes e lógicas também podem estar presentes. A identificação de uma binária não comprova disparo de proteção ou causa da falta.','Fabricante/modelo são metadados declarados, sem identificação automática. Regras confirmadas representam a declaração do responsável, não validação independente da engenharia do relé.','A conclusão se limita aos canais e à janela de cada registro. Pulsos entre amostras e eventos anteriores não podem ser determinados. O relatório inclui todos os canais, independentemente dos filtros da tela.','Revisar alertas, classificações sugeridas, polaridades e ambiguidades. Conferir a lógica do equipamento e os documentos de referência. Análise de correntes/tensões ainda não está implementada.','Caracteres fora do alfabeto ocidental são representados por códigos U+XXXX; nomes originais e perfis completos permanecem no JSON.');
+    lines.push('6. LIMITES E RECOMENDAÇÕES','Ativação significa entrada no estado ativo da regra: 0 para 1 ou 1 para 0. Sinais ativos na primeira amostra são listados separadamente. Sem regra, estado ativo 1 é uma hipótese padrão. Estado normal no CFG não define automaticamente a polaridade.','As identificações são extraídas dos arquivos; contatos, alarmes e lógicas também podem estar presentes. A identificação de uma binária não comprova disparo de proteção ou causa da falta.','Fabricante/modelo são metadados declarados, sem identificação automática. Regras confirmadas representam a declaração do responsável, não validação independente da engenharia do relé.','A conclusão se limita aos canais e à janela de cada registro. Pulsos entre amostras e eventos anteriores não podem ser determinados. O relatório inclui todos os canais, independentemente dos filtros da tela.','Revisar alertas, classificações sugeridas, polaridades e ambiguidades. Conferir a lógica do equipamento e os documentos de referência. As estatísticas analógicas são descritivas da janela: não determinam fasores, seletividade ou tipo de falta.','Caracteres fora do alfabeto ocidental são representados por códigos U+XXXX; nomes originais e perfis completos permanecem no JSON.');
     return lines;
   }
   function createReportLayout(data,compare=false){
     const engine=root.PdfLayout||(typeof require!=='undefined'?require('./pdf_layout.js'):null);
     if(!engine)throw Error('Módulo de diagramação PDF não carregado. Atualize a página.');
-    const {Document,colors:C,wrap}=engine;
+    const {Document,colors:C,wrap,width}=engine;
     const doc=new Document((compare?'Comparação de registros':'Análise de oscilografia')+(data.demonstration?' · DEMONSTRAÇÃO':''));
     const records=compare?[['A',data.a],['B',data.b]]:[['Registro',data]];
     const semantic=reportLines(data,compare);
@@ -91,7 +91,7 @@
     const originColor=c=>['confirmed','manual'].includes(c.classification?.status)?C.teal:c.classification?.status==='conflict'?C.red:C.amber;
     const state=c=>c.classification?.active_state??1;
     const category=c=>(c.classification?.category||'desconhecido')+(c.classification?.function?' / ANSI '+c.classification.function:'');
-    const side=channels=>channels.length?channels.map(c=>`${c.name||'(sem identificação)'} (#${c.number})\n${acts(c).length?'ATIVADO':'Sem nova ativação'}${initial(c)?'; já ativo no início':''}`).join('\n\n'):'Ausente no CFG';
+    const side=channels=>channels.length?channels.map(c=>`${c.name||'(sem identificação)'} (#${c.number})\n${acts(c).length?'ATIVADO':'Sem nova ativação'}${initial(c)?'; já ativo no início':''}\nTempo ativo: ${((c.total_active_duration||0)*1000).toFixed(3)} ms${c.duration_estimated?' (estimado com lacunas)':''}`).join('\n\n'):'Ausente no CFG';
 
     // A capa funciona também como primeira página executiva, sem página vazia decorativa.
     doc.rect(0,0,595,204,C.navy);doc.rect(40,58,40,4,C.mint);
@@ -115,12 +115,38 @@
       doc.subtitle(`${label} | Canais ativados`);
       const activated=r.channels.filter(c=>acts(c).length);
       if(activated.length)doc.table(['CANAL ORIGINAL','FASE','CLASSIFICAÇÃO','ORIGEM','EVIDÊNCIA'],activated.map(c=>[
-        {text:`#${c.number} · ${c.name||'(sem identificação)'}`,font:'F2'},c.phase||'-',category(c),{text:origin(c),fill:originColor(c)},`${acts(c).length} ativação(ões)\nAtivo em ${state(c)}`]),[175,40,100,105,95]);
+        {text:`#${c.number} · ${c.name||'(sem identificação)'}`,font:'F2'},c.phase||'-',category(c),{text:origin(c),fill:originColor(c)},`${acts(c).length} ativação(ões)\nAtivo em ${state(c)}\n${((c.total_active_duration||0)*1000).toFixed(3)} ms observados`]),[175,40,100,105,95]);
       else doc.paragraph('Nenhum canal apresentou nova ativação.',{fill:C.muted});
       const already=r.channels.filter(initial);
       doc.subtitle(`${label} | Já ativos na primeira amostra`);
       if(already.length)doc.table(['CANAL ORIGINAL','CLASSIFICAÇÃO','EVIDÊNCIA'],already.map(c=>[name(c),category(c),`Estado inicial: ${c.initial}\nJá ativo no início; instante anterior desconhecido.`]),[215,140,160]);
       else doc.paragraph('Nenhum canal já ativo no início.',{fill:C.muted});
+    }
+
+    // Estatísticas globais e gráficos próprios de cada registro; sem alinhar relógios A/B.
+    const fmtValue=v=>v==null?'Não disponível':Number(v).toPrecision(6);
+    for(const [label,r] of records){
+      if(!r.analog_channels?.length)continue;
+      doc.subtitle(`${label} | Valores analógicos`);
+      doc.paragraph('Escala a × amostra + b; unidade e referência P/S do CFG. RMS global amostral, incluindo componente CC; não é RMS de ciclo. Sem conversão automática de TC/TP. Tempos dos gráficos incluem o skew do canal. Estatísticas usam todas as amostras válidas.',{size:9,background:C.mint,fill:C.teal});
+      doc.table(['CANAL / UNIDADE / REF.','MÍNIMO','MÁXIMO','RMS JANELA'],r.analog_channels.map(c=>[`${c.name} (${c.unit}) / ${c.reference}\n${c.valid_samples} válidas; ${c.missing_samples} ausentes`,fmtValue(c.minimum),fmtValue(c.maximum),fmtValue(c.rms)]),[215,100,100,100]);
+      if(r.analog_channels.length>8)doc.paragraph('Gráficos dos primeiros 8 canais neste PDF; todos os canais estão nas estatísticas e podem ser selecionados na interface.',{size:9,fill:C.muted});
+      for(const c of r.analog_channels.slice(0,8)){
+        const points=c.plot||[],valid=points.filter(p=>p[1]!=null);
+        doc.ensure(235);doc.paragraph(`${label} · #${c.number} ${c.name} | Fase ${c.phase||'não informada'} | ${c.unit} | referência ${c.reference}`,{size:10,font:'F2',fill:C.teal,gap:5});
+        if(!valid.length){doc.paragraph('Sem pontos válidos para desenhar o canal.');continue}
+        doc.ensure(210);
+        const top=doc.y+8,bottom=top+150,left=103,right=540;
+        let lo=c.minimum,hi=c.maximum,t0=points[0][0],t1=points[points.length-1][0];
+        if(lo===hi){const pad=Math.abs(lo)*.05||1;lo-=pad;hi+=pad}if(t0===t1)t1=t0+1;
+        const x=t=>left+(t-t0)/(t1-t0)*(right-left),y=v=>bottom-(v-lo)/(hi-lo)*150;
+        for(let j=0;j<=4;j++){const f=j/4;doc.line(left,top+f*150,right,top+f*150,C.line);doc.text(42,top+f*150-3,(hi-f*(hi-lo)).toPrecision(4),8,'F3',C.muted);const tick=(t0+f*(t1-t0)).toPrecision(4);doc.text(Math.max(40,Math.min(555-width(tick,8,'F3'),left+f*(right-left)-width(tick,8,'F3')/2)),bottom+10,tick,8,'F3',C.muted)}
+        let path='',open=false;
+        for(const [time,value] of points){if(value==null){open=false;continue}const command=`${x(time).toFixed(2)} ${(842-y(value)).toFixed(2)} ${open?'l':'m'} `;path+=command;open=true;doc.rect(x(time)-.4,y(value)-.4,.8,.8,C.teal)}
+        if(path)doc.command('q '+C.teal.map(v=>v.toFixed(3)).join(' ')+' RG .8 w '+path+' S Q');
+        doc.text(230,bottom+28,'Tempo do DAT + skew (s)',9,'F1',C.muted);
+        doc.y=bottom+47;doc.paragraph(c.plot_reduced?'Gráfico com envelope min/max; lacunas interrompem o traço.':'Gráfico das amostras; lacunas interrompem o traço.',{size:8,fill:C.muted,gap:12});
+      }
     }
 
     doc.section('3','Conclusão e interpretação',compare?'Comparação dos canais ativados, sem comparação de horários.':'Fatos observados e hipóteses de interpretação apresentados separadamente.');
@@ -160,6 +186,7 @@
         doc.ensure(100);doc.paragraph(name(c),{font:'F2',size:11,background:C.pale,fill:C.navy,gap:4});
         const cl=c.classification;
         const facts=[['Estados observados',`Inicial: ${c.initial}; final: ${c.final}; normal CFG: ${c.normal??'-'}`],['Ativação aplicada',`${acts(c).length} ativação(ões); ativo em ${state(c)}; ${initial(c)?'já ativo no início':'não ativo no início'}`]];
+        if(c.active_intervals)facts.push(['Tempo ativo observado',`${(c.total_active_duration*1000).toFixed(3)} ms${c.duration_estimated?' (estimado com lacunas)':''}`],...c.active_intervals.map((interval,i)=>['Intervalo ativo '+(i+1),`${(interval.observed_duration*1000).toFixed(3)} ms; ${interval.left_censored?'já ativo no início; ':''}${interval.right_censored?'ativo no fim; ':''}${interval.gap_affected?'afetado por lacuna; ':''}${interval.complete?'intervalo completo':'intervalo incompleto/incerto'}`]));
         if(cl)facts.push(['Classificação',`${origin(c)} | ${category(c)}`],['Regra / perfil',`${cl.rule_id||'nenhuma'} | ${cl.profile_id} v${cl.profile_version}`],['Justificativa',cl.reason||'Não informada'],['Responsável',cl.reviewer||'Não informado'],['Equivalência',cl.canonical||'Nenhuma']);
         if(cl?.status==='conflict')facts.push(['Regras em conflito',(cl.candidates||[]).join('; ')]);
         if(!compare&&acts(c).length)facts.push(['Ativações no DAT (s)',acts(c).slice(0,12).map(t=>t.toFixed(6)).join('; ')+(acts(c).length>12?' (até 12; lista completa no JSON)':'')]);

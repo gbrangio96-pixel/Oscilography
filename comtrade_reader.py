@@ -7,6 +7,7 @@ import hashlib
 import re
 from datetime import datetime
 from profiles import apply_profile
+from measurements import AnalogChannel, add_durations
 
 
 def analyze(cfg_bytes, dat_bytes, profile=None):
@@ -75,6 +76,7 @@ def _analyze(cfg_bytes, dat_bytes, profile):
         ids = [int(r[0]) for r in definitions]
         if len(ids) != len(set(ids)) or any(i < 1 for i in ids):
             raise ValueError('Números de canais devem ser positivos e únicos por tipo.')
+    analog_channels = [AnalogChannel(r, int(r[0])) for r in rows[2:2 + na]]
     digital = rows[2 + na:2 + na + nd]
     if len(digital) != nd:
         raise ValueError('CFG incompleto: definições dos canais digitais ausentes.')
@@ -116,7 +118,7 @@ def _analyze(cfg_bytes, dat_bytes, profile):
         raise ValueError('Multiplicador de tempo inválido.')
     channels = []
     for r in digital:
-        channels.append(dict(number=int(r[0]), name=r[1], phase=r[2] if len(r) > 2 else '', normal=r[4].strip() if len(r) > 4 else None, initial=None, final=None, rises=[], falls=[], active_samples=0))
+        channels.append(dict(number=int(r[0]), name=r[1], phase=r[2] if len(r) > 2 else '', normal=r[4].strip() if len(r) > 4 else None, initial=None, final=None, rises=[], falls=[], transitions=[], active_samples=0))
     words = (nd + 15) // 16
     analog_missing = False
     def records():
@@ -135,7 +137,7 @@ def _analyze(cfg_bytes, dat_bytes, profile):
                     raise ValueError('Quantidade de colunas do DAT incompatível com o CFG.')
                 if any(not x.strip() or not math.isfinite(dat_number(x)) for x in r[2:2 + na]):
                     analog_missing = True
-                yield int(r[0]), dat_number(r[1]), [int(x) for x in r[2 + na:]]
+                yield int(r[0]), dat_number(r[1]), [int(x) for x in r[2 + na:]], [dat_number(x) if x.strip() and math.isfinite(dat_number(x)) and dat_number(x) != 99999 else None for x in r[2:2 + na]]
         elif fmt in ('BINARY', 'BINARY32', 'FLOAT32'):
             analog_type = {'BINARY': 'h', 'BINARY32': 'i', 'FLOAT32': 'f'}[fmt]
             record = struct.Struct('<II' + analog_type * na + 'H' * words)
@@ -145,13 +147,15 @@ def _analyze(cfg_bytes, dat_bytes, profile):
                 if fmt == 'FLOAT32' and any(not math.isfinite(x) for x in values[2:2 + na]):
                     analog_missing = True
                 packed = values[2 + na:]
-                yield values[0], values[1], [(packed[i // 16] >> (i % 16)) & 1 for i in range(nd)]
+                yield values[0], values[1], [(packed[i // 16] >> (i % 16)) & 1 for i in range(nd)], [v if math.isfinite(v) and not (fmt=='BINARY' and v==-32768) and not (fmt=='BINARY32' and v==-2147483648) else None for v in values[2:2+na]]
         else:
             raise ValueError(f'Formato DAT não suportado: {fmt}.')
     count, previous, first_time, last_time = 0, None, None, None
     previous_sample = 0
     gaps, reconstructed, repeated_times = 0, False, False
-    for sample, timestamp, states in records():
+    sample_gaps = []
+    for sample, timestamp, states, analog_values in records():
+        has_gap = sample > previous_sample + 1
         if sample <= previous_sample:
             raise ValueError('Índices das amostras devem ser crescentes.')
         gaps += sample - previous_sample - 1
@@ -179,6 +183,10 @@ def _analyze(cfg_bytes, dat_bytes, profile):
             raise ValueError('Tempos inválidos ou fora de ordem no DAT.')
         if last_time is not None and t == last_time:
             repeated_times = True
+        if has_gap and last_time is not None:
+            sample_gaps.append([last_time,t])
+        for channel, value in zip(analog_channels, analog_values):
+            channel.add(t,value,has_gap)
         for i, state in enumerate(states):
             if state not in (0, 1):
                 raise ValueError('Canal digital contém valor diferente de 0 ou 1.')
@@ -187,6 +195,7 @@ def _analyze(cfg_bytes, dat_bytes, profile):
                 ch['initial'] = state
             elif previous[i] != state:
                 ch['rises' if state else 'falls'].append(t)
+                ch['transitions'].append([t,state])
             ch['final'] = state
             ch['active_samples'] += state
         if first_time is None:
@@ -197,16 +206,17 @@ def _analyze(cfg_bytes, dat_bytes, profile):
         raise ValueError('O DAT não contém amostras.')
     if rates and previous_sample < rates[-1][1]:
         raise ValueError(f'DAT incompleto: última amostra {previous_sample}; CFG declara {rates[-1][1]}.')
-    if analog_missing:
-        warnings.append('Há amostras analógicas ausentes/não finitas. Os canais digitais foram lidos; valores elétricos não foram interpretados.')
+    if analog_missing or any(c.missing for c in analog_channels):
+        warnings.append('Há amostras analógicas ausentes/não finitas. Estatísticas analógicas usam apenas valores válidos; lacunas não são interpoladas.')
     if gaps:
         warnings.append(f'{gaps} índices de amostras ausentes; transições podem ter ocorrido nas lacunas.')
     if reconstructed:
         warnings.append('Tempos reconstruídos pelas taxas de amostragem para timestamps zero.')
     if repeated_times:
         warnings.append('Há timestamps repetidos no DAT.')
-    result = dict(station=station[0], device=station[1] if len(station) > 1 else '', format=fmt, frequency=frequency, start=start, trigger=trigger, samples=count, duration=last_time-first_time, channels=channels,
+    result = dict(station=station[0], device=station[1] if len(station) > 1 else '', format=fmt, frequency=frequency, start=start, trigger=trigger, samples=count, duration=last_time-first_time, channels=channels, first_time=first_time, last_time=last_time, sample_gaps=sample_gaps,
+                  analog_channels=[c.finish() for c in analog_channels],
                   revision=revision, revision_declared=revision_declared, revision_mode=revision_mode,
                   files=dict(cfg_sha256=hashlib.sha256(cfg_bytes).hexdigest(), dat_sha256=hashlib.sha256(dat_bytes).hexdigest()),
                   validation=dict(warnings=warnings, checks=['Estrutura e contagens do CFG', 'Revisão e datas', 'Taxas e limites de amostras', 'Formato e integridade do DAT', 'Estados digitais binários', 'Sequência e tempos das amostras']))
-    return apply_profile(result, profile)
+    return add_durations(apply_profile(result, profile))

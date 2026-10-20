@@ -19,6 +19,7 @@ class Handler(BaseHTTPRequestHandler):
                  '/comparison.js': ('comparison.js', 'text/javascript; charset=utf-8'),
                  '/report.js': ('report.js', 'text/javascript; charset=utf-8'),
                  '/pdf_layout.js': ('pdf_layout.js', 'text/javascript; charset=utf-8'),
+                 '/analog_plot.js': ('analog_plot.js', 'text/javascript; charset=utf-8'),
                  '/app.js': ('app.js', 'text/javascript; charset=utf-8')}
         if self.path not in files:
             self.send_error(404)

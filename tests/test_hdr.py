@@ -30,6 +30,12 @@ class HdrTests(unittest.TestCase):
         r = attach_hdr(self.base(), b'Protected object: LT 01\nTransformador auxiliar\n', 'a.hdr')
         self.assertEqual(r['object']['name'], 'LT 01')
 
+    def test_objectid_is_protected_object_name(self):
+        for line in ('ObjectID: LT 230 kV A-B', 'ObjectID = LT 230 kV A-B', 'ObjectID\tLT 230 kV A-B', 'ObjectID    LT 230 kV A-B'):
+            r=attach_hdr(self.base(),line.encode(),'ied.hdr')
+            self.assertEqual(r['object']['name'],'LT 230 kV A-B')
+            self.assertEqual(r['object']['status'],'extracted')
+
     def test_free_text_is_suggestion_and_ambiguity_is_preserved(self):
         r = attach_hdr(self.base(), b'LT 01 - A-B\n', 'a.hdr')
         self.assertEqual(r['object']['status'], 'suggested')

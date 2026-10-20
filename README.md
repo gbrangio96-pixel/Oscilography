@@ -19,7 +19,7 @@ python3 -m unittest discover -s tests -v
 node --test tests/test_comparison.js tests/test_report.js
 ```
 
-Suporta canais digitais em DAT ASCII, BINARY, BINARY32 e FLOAT32, com configuração COMTRADE 1991/1999/2001/2013. Os canais analógicos são usados apenas para posicionar os dados digitais; não há análise de formas de onda. Tempos são relativos à referência do DAT, com multiplicador do CFG e reconstrução pelas taxas de amostragem quando o timestamp é zero. Identificação de função usa o nome original, sem inferir códigos ANSI ou traduzir identificações proprietárias.
+Suporta canais digitais em DAT ASCII, BINARY, BINARY32 e FLOAT32, com configuração COMTRADE 1991/1999/2001/2013. Os canais analógicos são lidos com escala a × amostra + b e unidades do CFG; há estatísticas e gráficos. Tempos são relativos à referência do DAT, com multiplicador do CFG e reconstrução pelas taxas de amostragem quando o timestamp é zero. Identificação de função usa o nome original, sem inferir códigos ANSI ou traduzir identificações proprietárias.
 
 ## Formatos e revisões
 
@@ -37,7 +37,7 @@ A associação usa nome/fase originais ou equivalências explícitas confirmadas
 
 Você pode enviar um `.hdr` separado para cada registro. Quando houver seção HDR no CFF ou um HDR de mesmo nome-base/pasta no ZIP, a leitura é automática. Sem HDR, a análise segue normalmente.
 
-A aplicação procura o nome do objeto protegido (LT, transformador, banco de capacitores/reatores etc.) em campos explícitos como “Objeto protegido” e “Protected object”. Menções em texto livre são sugestões. Múltiplos candidatos ficam ambíguos, sem selecionar arbitrariamente. O nome original e a linha de evidência são preservados; a classificação do tipo depende do texto disponível, sem inferir tensões, potência ou identificação ausentes.
+A aplicação procura o nome do objeto protegido (LT, transformador, banco de capacitores/reatores etc.) em campos explícitos como “ObjectID”, “Objeto protegido” e “Protected object”. Menções em texto livre são sugestões. Múltiplos candidatos ficam ambíguos, sem selecionar arbitrariamente. O nome original e a linha de evidência são preservados; a classificação do tipo depende do texto disponível, sem inferir tensões, potência ou identificação ausentes.
 
 O objeto aparece na interface, no resumo do PDF e na rastreabilidade, com nome/hash do HDR. É possível revisar manualmente a identificação na interface, informando responsável e justificativa; a extração original permanece no JSON. O texto do HDR não altera as funções de proteção nem as polaridades dos canais. O upload separado de HDR tem limite de 2 MB.
 
@@ -72,3 +72,13 @@ python3 package_app.py
 ```
 
 O arquivo `downloads/Oscilography.zip` inclui aplicação, documentação e testes, sem dependências externas para executar a aplicação.
+
+## Tempo ativo e valores analógicos
+
+Cada canal digital apresenta intervalos ativos e o tempo total observado, conforme a polaridade do perfil. Intervalos já ativos no início ou ainda ativos no fim são marcados como incompletos. O cálculo cobre da primeira à última amostra: não extrapola além do registro. Lacunas de amostras tornam a duração estimada; tempos de transição continuam limitados à resolução de amostragem. A comparação permanece em duas colunas, sem calcular diferenças de horários entre A e B.
+
+Os canais analógicos apresentam nome, fase, unidade, referência P/S, mínimo, máximo, pico absoluto, média e RMS global amostral da janela. O RMS inclui componente contínua, não é RMS de ciclo, fasor ou média ponderada pelo tempo. Amostras ausentes são excluídas das estatísticas e sinalizadas. A relação primário/secundário é informada, sem conversão automática de TC/TP. Não há diagnóstico automático de tipo de falta.
+
+Na tela, selecione o canal para visualizar a curva de cada registro. Gráficos aplicam o skew do CFG, usam envelope min/max quando necessário e não interpolam lacunas. O PDF contém estatísticas de todos os canais e gráficos dos primeiros oito por registro; os demais continuam disponíveis na interface. Estatísticas são calculadas com todas as amostras válidas, independentemente da redução visual.
+
+Para identificar fases, envie CFG + DAT: o campo de fase do CFG é preservado; quando vazio, a fase fica não informada. Para o objeto protegido, acrescente o HDR opcional; `ObjectID` é tratado como identificação explícita, sem inventar nome ou tipo ausente no texto.

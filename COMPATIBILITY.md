@@ -59,7 +59,7 @@ Para `nrates=0`, os timestamps são necessários. Precisões e metadados adicion
 do CFG 2013 não são usados para sincronizar relógios ou comparar horários.
 
 Amostras analógicas ausentes/não finitas geram alerta e não ocultam canais digitais
-válidos. Elas não recebem interpretação elétrica nesta versão. Valores digitais
+válidos. As estatísticas são descritivas, sem diagnóstico automático de falta. Valores digitais
 inválidos, contagens incompatíveis, DAT truncado e sequências fora de ordem continuam
 sendo erros, inclusive no modo de compatibilidade.
 

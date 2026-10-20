@@ -35,11 +35,11 @@ def attach_hdr(result, data=None, filename=''):
     result['hdr'].update(text=text, encoding=encoding)
     # Um HDR é texto livre; uma etiqueta explícita tem precedência sobre menções soltas.
     explicit, mentions = [], []
-    labels = {'objeto', 'nome do objeto', 'nome da linha', 'line name', 'protected element', 'elemento protegido', 'objeto relacionado', 'objeto protegido', 'equipamento protegido',
+    labels = {'objectid', 'object id', 'object_id', 'objeto', 'nome do objeto', 'nome da linha', 'line name', 'protected element', 'elemento protegido', 'objeto relacionado', 'objeto protegido', 'equipamento protegido',
               'object', 'protected object', 'protected object name', 'object name', 'protected equipment', 'asset', 'asset name', 'circuito', 'circuit', 'feeder', 'alimentador', 'bay'}
     for line in text.splitlines():
         raw = line.strip()
-        match = re.match(r'^([^:=\t]{1,80})\s*[:=\t]\s*(.+)$', raw)
+        match = re.match(r'^([^:=\t]{1,80})\s*[:=\t]\s*(.+)$', raw) or re.match(r'^(ObjectID|Object_ID|Object ID)\s+(.+)$', raw, re.I)
         if match and folded(match[1].strip()) in labels:
             value = match[2].strip()
             if folded(value) not in ('n/a', 'na', 'none', 'nao informado', 'nao identificado', '-', ''):
